@@ -34,7 +34,7 @@ export default function Hero() {
                     />
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto font-bold">
-                    Jadavpur University Entrepreneurship Cell Presents the Fourth Edition of Our Flagship Event
+                    Jadavpur University Entrepreneurship Cell Presents the Fifth Edition of Our Flagship Event
                 </p>
             </div>
         </section>
