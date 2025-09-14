@@ -8,6 +8,7 @@ import Events from '../homepage/EventSection';
 import Speakers from '../homepage/Speakers';
 import Sponsors from '../homepage/Sponsors';
 import Gallery from '../homepage/Gallery';
+import Footer from '../Footer';
 
 // Register ScrollTrigger plugin
 if (typeof window !== 'undefined') {
@@ -127,9 +128,9 @@ export default function ParallaxWebsite() {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative">
+    <div ref={containerRef} className="relative w-full overflow-x-clip">
       {/* Fixed Background Layer */}
-      <div className="fixed inset-0 h-full overflow-hidden z-0">
+      <div className="fixed h-full overflow-hidden z-0">
         <div
           ref={backgroundRef}
           className="h-full"
@@ -140,7 +141,6 @@ export default function ParallaxWebsite() {
             backgroundSize: isMobile ? 'cover' : 'contain',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'left center',
-            transform: isMobile ? 'none' : undefined,
           }}
         />
       </div>
@@ -176,8 +176,7 @@ export default function ParallaxWebsite() {
           <Gallery />
         </section>
 
-        {/* Spacer for smooth scrolling */}
-        <div className="h-20"></div>
+        <Footer />
       </div>
     </div>
   );
