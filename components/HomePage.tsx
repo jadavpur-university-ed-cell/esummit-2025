@@ -2,13 +2,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Hero from '../homepage/HeroSection';
-import About from '../homepage/AboutSection';
-import Events from '../homepage/EventSection';
-import Speakers from '../homepage/Speakers';
-import Sponsors from '../homepage/Sponsors';
-import Gallery from '../homepage/Gallery';
-import Footer from '../Footer';
+import Hero from './homepage/HeroSection';
+import About from './homepage/AboutSection';
+import Events from './homepage/EventSection';
+import Speakers from './homepage/Speakers';
+import Sponsors from './homepage/Sponsors';
+import Gallery from './homepage/Gallery';
+import Footer from './Footer';
+import PreFooter from './homepage/PreFooter';
 
 // Register ScrollTrigger plugin
 if (typeof window !== 'undefined') {
@@ -175,7 +176,8 @@ export default function ParallaxWebsite() {
         <section ref={galleryRef}>
           <Gallery />
         </section>
-
+        
+        <PreFooter />
         <Footer />
       </div>
     </div>

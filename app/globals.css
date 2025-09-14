@@ -4,8 +4,9 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --lavendar: #C084FC;
+  --lavender: #C084FC;
   --indigo: #1B1C3D;
+  --light-purple: #afb2f5;
 
   /* Added by shadcn */
   --radius: 0.625rem;
@@ -47,8 +48,9 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --color-lavendar: var(--lavendar);
+  --color-lavender: var(--lavender);
   --color-indigo:var(--indigo);
+  --color-light-purple: var(--light-purple);
 
   /* Added by shadcn */
   --color-sidebar-ring: var(--sidebar-ring);

@@ -138,8 +138,8 @@ export default function Events() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="bg-lavendar" />
-          <CarouselNext className="bg-lavendar" />
+          <CarouselPrevious className="bg-lavender" />
+          <CarouselNext className="bg-lavender" />
         </Carousel>
       </div>
     </section>
