@@ -1,6 +1,3 @@
-import { useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   Carousel,
   CarouselContent,
@@ -10,8 +7,6 @@ import {
 } from "@/components/ui/carousel";
 import Image from "next/image";
 import Link from "next/link";
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface Event {
   id: number;
@@ -84,29 +79,9 @@ const eventList: Event[] = [
 ];
 
 export default function Events() {
-  const eventsRef = useRef(null);
-
-  gsap.fromTo(
-    eventsRef.current,
-    { opacity: 0, scale: 0.8 },
-    {
-      opacity: 1,
-      scale: 1,
-      scrollTrigger: {
-        trigger: eventsRef.current,
-        start: "top 80%",
-        end: "top 50%",
-        scrub: 1,
-      },
-    }
-  );
-
   return (
     <section className="min-h-screen flex items-center justify-center">
-      <div
-        ref={eventsRef}
-        className="w-full sm:w-5/6 mx-4 text-white flex flex-col items-center gap-y-8"
-      >
+      <div className="w-full sm:w-5/6 mx-4 text-white flex flex-col items-center gap-y-8">
         <h2 className="text-4xl md:text-6xl font-bold mb-8 text-center text-white">
           Events
         </h2>
@@ -127,11 +102,18 @@ export default function Events() {
                   <div className="flex flex-col gap-y-3 justify-between p-3 rounded-xl bg-slate-800/60 h-full">
                     <p>{event.about}</p>
                     <div className="flex items-center justify-center gap-x-3 w-full">
-                        <div className="flex-1 grid place-items-center">
-                        <Link href={event.route} className="rounded-full border border-white/60 py-1 px-3 text-sm">Learn More</Link>
-                        </div>
-                        <div className="h-full w-[1px] bg-gray-400/40"></div>
-                        <p className="flex-1 text-center uppercase">{event.day}</p>
+                      <div className="flex-1 grid place-items-center">
+                        <Link
+                          href={event.route}
+                          className="rounded-full border border-white/60 py-1 px-3 text-sm"
+                        >
+                          Learn More
+                        </Link>
+                      </div>
+                      <div className="h-full w-[1px] bg-gray-400/40"></div>
+                      <p className="flex-1 text-center uppercase">
+                        {event.day}
+                      </p>
                     </div>
                   </div>
                 </div>
