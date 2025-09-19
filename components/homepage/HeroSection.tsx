@@ -1,26 +1,9 @@
-import { useRef } from "react";
-import { gsap } from 'gsap';
 import Image from "next/image";
 
 export default function Hero() {
-    const heroRef = useRef<HTMLDivElement>(null);
-    gsap.fromTo(heroRef.current,
-        { opacity: 1, y: 0 },
-        {
-            opacity: 0,
-            y: -100,
-            scrollTrigger: {
-                trigger: heroRef.current,
-                start: "top top",
-                end: "bottom top",
-                scrub: 1,
-            },
-        }
-    );
 
     return (
         <section
-            ref={heroRef}
             className="min-h-screen flex items-center justify-center text-white"
         >
             <div className="text-center space-y-8 px-4">

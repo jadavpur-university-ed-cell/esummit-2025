@@ -8,11 +8,6 @@ import "swiper/css/pagination";
 import "swiper/css/autoplay"; // Import autoplay CSS (optional)
 import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules"; // Import Autoplay module
 import Image from "next/image";
-import { useRef } from "react";
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const images = [
   { src: "/gallery/1.jpg", alt: "1" },
@@ -42,26 +37,11 @@ const images = [
 ];
 
 function Gallery() {
-    const galleryRef = useRef(null);
-
-    gsap.fromTo(galleryRef.current,
-        { opacity: 0, scale: 0.8 },
-        {
-            opacity: 1,
-            scale: 1,
-            scrollTrigger: {
-                trigger: galleryRef.current,
-                start: "top 80%",
-                end: "top 50%",
-                scrub: 1,
-            },
-        }
-    );
+    
 
   return (
     <section
       id="gallery"
-      ref={galleryRef}
       className=" min-h-[50vh] lg:min-h-screen flex flex-col justify-center w-full overflow-hidden"
     >
       <div className="flex flex-col items-center justify-start p-5 gap-y-10">

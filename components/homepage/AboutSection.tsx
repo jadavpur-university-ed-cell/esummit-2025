@@ -1,27 +1,10 @@
-import { useRef } from "react";
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from "next/image";
 
 export default function Hero() {
-    const aboutRef = useRef<HTMLDivElement>(null);
-    gsap.fromTo(aboutRef.current,
-        { opacity: 0, x: -100 },
-        {
-            opacity: 1,
-            x: 0,
-            scrollTrigger: {
-                trigger: aboutRef.current,
-                start: "top 80%",
-                end: "top 50%",
-                scrub: 1,
-            },
-        }
-    );
 
     return (
         <section className="min-h-[80vh] flex items-center justify-center">
-            <div ref={aboutRef} className="bg-white/5 backdrop-blur-sm flex flex-col gap-y-6 border border-white/20 rounded-md h-4/5 w-full lg:w-3/5 p-8 md:p-12 text-white">
+            <div className="bg-white/5 backdrop-blur-sm flex flex-col gap-y-6 border border-white/20 rounded-md h-4/5 w-full lg:w-3/5 p-8 md:p-12 text-white">
                 <h2 className="text-4xl md:text-6xl justify-center font-bold mb-6 text-center bg-clip-text">
                     About Us
                 </h2>
