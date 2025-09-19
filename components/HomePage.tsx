@@ -86,19 +86,19 @@ export default function ParallaxWebsite() {
           scale: 1,
           scrollTrigger: {
             trigger: eventsRef.current,
-            start: "top 80%",
-            end: "top 50%",
+            start: "top top%",
+            end: "top bottom",
             scrub: 1,
           },
         }
       );
 
-      // Services section reveal
+      // Speakers section reveal
       gsap.fromTo(speakersRef.current,
-        { opacity: 0, x: 100 },
+        { opacity: 0, scale: 0.8},
         {
           opacity: 1,
-          x: 0,
+          scale: 1,
           scrollTrigger: {
             trigger: speakersRef.current,
             start: "top 80%",
@@ -108,7 +108,7 @@ export default function ParallaxWebsite() {
         }
       );
 
-      // Contact section reveal
+      // Sponsors section reveal
       gsap.fromTo(sponsorsRef.current,
         { opacity: 0, y: 100 },
         {
@@ -116,8 +116,8 @@ export default function ParallaxWebsite() {
           y: 0,
           scrollTrigger: {
             trigger: sponsorsRef.current,
-            start: "top 80%",
-            end: "top 50%",
+            start: "top top",
+            end: "top bottom%",
             scrub: 1,
           },
         }

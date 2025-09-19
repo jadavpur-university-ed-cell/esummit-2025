@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image"; 
    export default function PreFooter() {
     return (
-      <main className="mt-1 mx-auto px-4 sm:mt-8 min-h-[40vh] bg-gradient-to-b from-transparent via-indigo/70 to-indigo">
+      <main className="mt-1 mx-auto px-4 sm:mt-80 min-h-[40vh] bg-gradient-to-b from-transparent via-indigo/70 to-indigo">
           <div className="text-center">
             <h1 className="text-4xl tracking-tight font-bold text-[#eae2b7] sm:text-5xl md:text-6xl">
               <span className="block xl:inline text-lavender">6 Events.</span>{' '}
