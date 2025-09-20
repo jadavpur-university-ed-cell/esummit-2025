@@ -80,7 +80,7 @@ const eventList: Event[] = [
 
 export default function Events() {
   return (
-    <section className="min-h-screen flex items-center justify-center">
+    <section className="min-h-screen mt-100 flex items-center justify-center">
       <div className="w-full sm:w-5/6 mx-4 text-white flex flex-col items-center gap-y-8">
         <h2 className="text-4xl md:text-6xl font-bold mb-8 text-center text-white">
           Events

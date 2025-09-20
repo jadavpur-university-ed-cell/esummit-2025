@@ -42,7 +42,7 @@ function Gallery() {
   return (
     <section
       id="gallery"
-      className=" min-h-[50vh] lg:min-h-screen flex flex-col justify-center w-full overflow-hidden"
+      className=" min-h-[50vh] lg:min-h-screen flex mt-80 flex-col justify-center w-full overflow-hidden"
     >
       <div className="flex flex-col items-center justify-start p-5 gap-y-10">
         <h1 className="animated-title text-5xl sm:text-7xl text-white py-3 mb-7 font-bold">
