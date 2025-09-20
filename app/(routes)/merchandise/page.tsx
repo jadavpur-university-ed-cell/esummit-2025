@@ -1,4 +1,4 @@
-import React,{useRef} from 'react';
+import React from 'react';
 import { FaXmark } from 'react-icons/fa6';
 import Image from 'next/image';
 

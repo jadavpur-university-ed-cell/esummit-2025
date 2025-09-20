@@ -10,7 +10,7 @@ import Sponsors from './homepage/Sponsors';
 import Gallery from './homepage/Gallery';
 import Footer from './Footer';
 import PreFooter from './homepage/PreFooter';
-import { FloatingNavbar } from './homepage/Navbar';
+// import { FloatingNavbar } from './homepage/Navbar';
 
 // Register ScrollTrigger plugin
 if (typeof window !== 'undefined') {
@@ -147,7 +147,7 @@ export default function ParallaxWebsite() {
         />
       </div>
 
-      <FloatingNavbar />
+      {/* <FloatingNavbar /> */}
       {/* Content Sections */}
       <div className="relative z-10">
         {/* Hero Section */}
