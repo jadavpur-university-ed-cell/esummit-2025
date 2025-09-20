@@ -1,15 +1,17 @@
-import { FC } from "react";
 import { FaInstagram, FaTwitter, FaLinkedin, FaFacebook } from "react-icons/fa";
 import Link from "next/link";
+import Image from "next/image";
 
-const Footer: FC = () => {
+const Footer = () => {
   return (
     <footer className="bg-[#1B1C3D] text-gray-300 px-6 md:px-16 py-12">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
         <div className="flex items-center h-12">
-          <img
+          <Image
+            width={1000}
+            height={100}
             src="/esummit-25.svg" 
-            alt="E-SUMMIT MIT’25"
+            alt="E-SUMMIT&apos;25"
             className="h-full object-contain"
           />
         </div>
@@ -65,10 +67,9 @@ const Footer: FC = () => {
             Contact
           </h3>
           <ul className="mt-4 space-y-2 text-sm">
-            <li>Debamita</li>
-            <li>Sparsh</li>
             <li>Piyush</li>
-            <li>Jyotiraditya</li>
+            <li>Sohini</li>
+            <li>Jotiraditya</li>
           </ul>
         </div>
       </div>
