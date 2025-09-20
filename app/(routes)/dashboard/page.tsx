@@ -1,4 +1,9 @@
-import { auth } from "@/auth";
+import { auth } from "@/auth"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Dashboard | JU E-Summit'25",
+};
 
 export default async function DashboardPage() {
   const session = await auth();
