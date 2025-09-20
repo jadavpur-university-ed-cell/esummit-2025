@@ -10,6 +10,7 @@ import Sponsors from './homepage/Sponsors';
 import Gallery from './homepage/Gallery';
 import Footer from './Footer';
 import PreFooter from './homepage/PreFooter';
+import { FloatingNavbar } from './homepage/Navbar';
 
 // Register ScrollTrigger plugin
 if (typeof window !== 'undefined') {
@@ -95,7 +96,7 @@ export default function ParallaxWebsite() {
 
       // Speakers section reveal
       gsap.fromTo(speakersRef.current,
-        { opacity: 0, scale: 0.8},
+        { opacity: 0, scale: 0.8 },
         {
           opacity: 1,
           scale: 1,
@@ -146,6 +147,7 @@ export default function ParallaxWebsite() {
         />
       </div>
 
+      <FloatingNavbar />
       {/* Content Sections */}
       <div className="relative z-10">
         {/* Hero Section */}
@@ -176,7 +178,7 @@ export default function ParallaxWebsite() {
         <section ref={galleryRef}>
           <Gallery />
         </section>
-        
+
         <PreFooter />
         <Footer />
       </div>
