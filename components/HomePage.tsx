@@ -138,7 +138,7 @@ export default function ParallaxWebsite() {
           className="h-full"
           style={{
             backgroundImage: 'url(/background.png)',
-            width: isMobile ? '100vw' : `${(11534 / 972) * 100}vh`,
+            width: isMobile ? '100vw' : `${(16534 / 972) * 100}vh`,
             height: '100vh',
             backgroundSize: isMobile ? 'cover' : 'contain',
             backgroundRepeat: 'no-repeat',
