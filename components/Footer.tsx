@@ -8,7 +8,7 @@ const Footer = () => {
     <footer className="bg-[#1B1C3D] text-gray-300 px-6 md:px-16 py-12">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
         <div className="flex items-center h-12">
-          <Image
+          <img
             src="/esummit-25.svg" 
             alt="E-SUMMIT&apos;25"
             className="h-full object-contain"
