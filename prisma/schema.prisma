@@ -20,6 +20,16 @@ enum Role {
   CAMPUS_AMBASSADOR
 }
 
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+}
+enum PaymentMethod {
+  CARD
+  NETBANKING
+  UPI
+}
 type Notification {
   id String
   title String
@@ -38,7 +48,8 @@ model User {
   branch String
   rollNo String?
   role Role
-  notifications Notification[]
+  referralCode String @unique
+  payments Payments[] @relation("UserPayments")
   teamIDs String[] @db.ObjectId
   teams Team[] @relation(fields: [teamIDs], references: [id])
 }
@@ -47,4 +58,15 @@ model Team{
   id String @id @default(auto()) @map("_id") @db.ObjectId
   memberIds String[] @db.ObjectId
   members User[] @relation(fields: [memberIds], references: [id])
+}
+
+model Payments {
+  id             String         @id @default(auto()) @map("_id") @db.ObjectId
+  userId         String         @db.ObjectId
+  user           User           @relation("UserPayments", fields: [userId], references: [id])
+  amount         Int
+  paymentDate    DateTime       @default(now())
+  paymentMethod  PaymentMethod
+  transactionId  String         @unique
+  status         PaymentStatus
 }
