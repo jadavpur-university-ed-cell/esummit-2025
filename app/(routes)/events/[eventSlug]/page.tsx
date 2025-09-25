@@ -2,7 +2,7 @@
 import { useParams, useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { eventData } from "@/assets/eventData";
-import { Event } from "@/types/event";
+import { Event } from "@/types/all";
 import Link from "next/link";
 
 export default function Page() {
