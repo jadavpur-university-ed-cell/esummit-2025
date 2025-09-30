@@ -1,14 +1,15 @@
 # E-SUMMIT 2025 WEBSITE:
 
-### Features Missing
+### //TODO s:
+- [ ] Move all Prisma Client to one directory and one object call only (no multiple calls and API overloading)
 
-- Payment Setup with Razorpay
+### Features Missing:
 - UI for login and routing post OAuth 2.0
-- Data in EVents
+- Data in Events
 - mobile friendly view
 - api consummation @frontend
 
-### Known Bugs:
+### Known Issues:
 
 _[Branch] - pkg_
 
@@ -27,4 +28,8 @@ _[Branch] - pkg_
 
 ./app/(routes)/admin/teams/[eventName]/page.tsx
 5:32  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./components/merchandise/MerchandiseCSR.tsx
+172:56  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+213:44  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
 ```

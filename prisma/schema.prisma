@@ -30,6 +30,11 @@ enum PaymentMethod {
   NETBANKING
   UPI
 }
+
+enum MerchandiseType {
+  SHIRT
+  // CAP
+}
 type Notification {
   id String
   title String
@@ -52,6 +57,8 @@ model User {
   payments Payments[] @relation("UserPayments")
   teamIDs String[] @db.ObjectId
   teams Team[] @relation(fields: [teamIDs], references: [id])
+  shirtSize String? // XS, S, M, L, XL, XXL
+  merchandiseOrders MerchandiseOrder[]
 }
 
 model Team{
@@ -64,9 +71,28 @@ model Payments {
   id             String         @id @default(auto()) @map("_id") @db.ObjectId
   userId         String         @db.ObjectId
   user           User           @relation("UserPayments", fields: [userId], references: [id])
-  amount         Int
+  amount         Float
   paymentDate    DateTime       @default(now())
   paymentMethod  PaymentMethod
   transactionId  String         @unique
   status         PaymentStatus
+}
+
+model MerchandiseOrder {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  orderId     String   @unique
+  amount      Float
+  currency    String   @default("INR")
+  receipt     String?
+  status      String   @default("created")
+  paymentId   String?
+  userId      String   @db.ObjectId
+  user        User     @relation(fields: [userId], references: [id])  
+  merchandise MerchandiseType
+  size        String
+  couponUsed  Boolean  @default(false)
+  couponCode  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  @@map("merchandise_orders")
 }
