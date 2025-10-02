@@ -9,7 +9,7 @@ interface SignInButtonProps {
 export function SignInButton({ provider, label }: SignInButtonProps) {
   return (
     <Button
-      onClick={() => signIn(provider)}
+      onClick={() => signIn(provider, {callbackUrl: "/dashboard"})}
       className="px-4 py-2 bg-primary text-white rounded hover:bg-primary/10"
     >
       {label ?? `Sign in with ${provider.charAt(0).toUpperCase() + provider.slice(1)}`}

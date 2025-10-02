@@ -111,14 +111,14 @@ export default function ParallaxWebsite() {
 
       // Sponsors section reveal
       gsap.fromTo(sponsorsRef.current,
-        { opacity: 0, y: 100 },
+        { opacity: 0, scale: 0.8 },
         {
           opacity: 1,
-          y: 0,
+          scale: 1,
           scrollTrigger: {
             trigger: sponsorsRef.current,
-            start: "top top",
-            end: "top bottom%",
+            start: "top bottom",
+            end: "top top",
             scrub: 1,
           },
         }
