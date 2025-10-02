@@ -35,12 +35,16 @@ enum MerchandiseType {
   SHIRT
   // CAP
 }
-type Notification {
-  id String
+
+model Notification{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @db.ObjectId
+  user User @relation(fields: [userId], references: [id])
   title String
   description String
-  tags String[]
-  read Boolean
+  createdAt DateTime @default(now())
+  read Boolean @default(false)
+  @@map ("notifications")
 }
 
 model User {
@@ -59,6 +63,7 @@ model User {
   teams Team[] @relation(fields: [teamIDs], references: [id])
   shirtSize String? // XS, S, M, L, XL, XXL
   merchandiseOrders MerchandiseOrder[]
+  notifications Notification[]
 }
 
 model Team{

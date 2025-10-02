@@ -1,6 +1,6 @@
 import React from "react";
 import { prisma } from "@/prisma/client";
-import VerifyUser from "../VerifyUser";
+import VerifyUser from "../VerifyUsers";
 
 interface Transaction {
 	purchaseId: string;
