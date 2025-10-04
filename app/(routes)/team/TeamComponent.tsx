@@ -148,7 +148,7 @@ const TeamPage = () => {
                           : 'text-[#eae2b7] hover:bg-[#c085fd]/20 hover:text-[#c085fd]',
                         tabIdx === 0 ? 'rounded-l-xl' : '',
                         tabIdx === teams.length - 1 ? 'rounded-r-xl' : '',
-                        'group relative min-w-0 flex-1 py-3 px-6 text-sm font-medium text-center transition-all duration-200 border-r border-[#c085fd]/10 last:border-r-0'
+                        'group relative min-w-0 flex-1 py-3 px-6 text-sm font-medium text-center transition-all duration-200 border-r border-[#c085fd]/10 last:border-r-0 cursor-pointer'
                       )}
                       aria-current={team.name === activeTeam ? 'page' : undefined}
                     >

@@ -7,7 +7,7 @@ export const mockUserData: User = {
   gender: "Male",
   graduationYear: "2028",
   phone: "9876543210",
-  role: Role.admin,
+  role: Role.participant,
   institution: "Jadavpur University",
   foodPreference: "Non-Vegetarian",
   merchandise: {
