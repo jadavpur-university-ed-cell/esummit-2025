@@ -25,6 +25,7 @@ enum PaymentStatus {
   COMPLETED
   FAILED
 }
+
 enum PaymentMethod {
   CARD
   NETBANKING
@@ -66,10 +67,10 @@ model User {
   notifications Notification[]
 }
 
-model Team{
-  id String @id @default(auto()) @map("_id") @db.ObjectId
+model Team {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   memberIds String[] @db.ObjectId
-  members User[] @relation(fields: [memberIds], references: [id])
+  members   User[]   @relation(fields: [memberIds], references: [id])
 }
 
 model Payments {

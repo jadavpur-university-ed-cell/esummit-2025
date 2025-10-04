@@ -2,11 +2,17 @@
   "name": "esummit-2025",
   "version": "0.1.0",
   "private": true,
+  "type" : "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "seed": "node prisma/seed.js",
+    "seed:users": "node prisma/seeds/seedUsers.js",
+    "seed:teams": "node prisma/seeds/seedTeams.js",
+    "seed:payments": "node prisma/seeds/seedPayments.js",
+    "seed:orders": "node prisma/seeds/seedMerchandiseOrders.js"
   },
   "dependencies": {
     "@prisma/client": "^6.16.3",

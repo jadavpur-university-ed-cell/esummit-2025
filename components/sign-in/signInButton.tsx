@@ -10,7 +10,7 @@ export function SignInButton({ provider, label }: SignInButtonProps) {
   return (
     <Button
       onClick={() => signIn(provider, {callbackUrl: "/dashboard"})}
-      className="px-4 py-2 bg-primary text-white rounded hover:bg-primary/10"
+      className="px-4 py-2 bg-primary text-white rounded hover:bg-primary/10 cursor-pointer"
     >
       {label ?? `Sign in with ${provider.charAt(0).toUpperCase() + provider.slice(1)}`}
     </Button>

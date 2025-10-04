@@ -1,17 +1,38 @@
 "use client";
 
-import { useState } from "react";
-import { mockMultipleUser } from "@/mock/mockMultipleUserData";
+import { useState, useEffect } from "react";
+import { User } from '@/types/all';
 
 export default function AdminDashboard() {
+    const [users, setUsers] = useState<User []>([]);
     const [search, setSearch] = useState("");
+    const [loading, setLoading] = useState(true);
 
-    const filteredUsers = mockMultipleUser.filter(
+    // Fetch users from the server API
+    useEffect(() => {
+        async function fetchUsers() {
+            try {
+                const res = await fetch("/api/users");
+                const data = await res.json();
+                setUsers(data);
+            } catch (error) {
+                console.error("Failed to fetch users:", error);
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchUsers();
+    }, []);
+
+    // Filter users based on search input
+    const filteredUsers = users.filter(
         (user) =>
-            user.name.toLowerCase().includes(search.toLowerCase()) ||
-            user.email.toLowerCase().includes(search.toLowerCase()) ||
-            user.role.toLowerCase().includes(search.toLowerCase())
+            user.name?.toLowerCase().includes(search.toLowerCase()) ||
+            user.email?.toLowerCase().includes(search.toLowerCase()) ||
+            user.role?.toLowerCase().includes(search.toLowerCase())
     );
+
+    // if (loading) return <p className="text-white mt-4">Loading users...</p>;
 
     return (
         <div
@@ -35,14 +56,15 @@ export default function AdminDashboard() {
             </div>
 
             <div className="flex flex-col gap-2">
-                <div className="flex gap-4 bg-white/20 p-3 rounded-t-lg border-2 font-bold">
+                <div className="flex gap-4 bg-white/60 p-3 rounded-t-lg border-2 font-bold">
                     <p className="font-bold w-32">name</p>
-                    <p className="w-95">email</p>
-                    <p className="w-32">role</p>
+                    <p className="w-75">email</p>
+                    <p className="w-52">role</p>
                     <p className="w-52">institution</p>
                     <p className="w-32">phone</p>
                     <p className="w-32">graduationYear</p>
                 </div>
+
                 {filteredUsers.map((user, index) => (
                     <div
                         key={index}
@@ -50,16 +72,12 @@ export default function AdminDashboard() {
                     >
                         {/* User info row */}
                         <div className="flex flex-row flex-wrap gap-6 items-center">
-                            <p className="font-bold w-32 ">{user.name}</p>
-                            <p className="w-90 ">{user.email}</p>
-                            <p className="w-32 ">{user.role}</p>
-                            <p className="w-48 ">{user.institution}</p>
-                            <p className="w-32 ">{user.phone}</p>
-                            <p className="w-32 ">{user.graduationYear}</p>
-                            {/* <p className="w-32">{user.gender}</p>
-                                <p className="w-32">{user.foodPreference}</p>
-                                <p className="w-32">{user.merchandise.size} Shirt</p>
-                                <p className="w-32">{user.merchandise.status}</p> */}
+                            <p className="font-bold w-32">{user.name}</p>
+                            <p className="w-70">{user.email}</p>
+                            <p className="w-52">{user.role}</p>
+                            <p className="w-48">{user.college}</p>
+                            <p className="w-32">{user.phone}</p>
+                            <p className="w-32">{user.year}</p>
                         </div>
 
                         {/* Action buttons */}
@@ -73,9 +91,16 @@ export default function AdminDashboard() {
                         </div>
                     </div>
                 ))}
-                {filteredUsers.length === 0 && (
+
+                {(filteredUsers.length === 0 && !loading) && (
                     <p className="text-white mt-4">No users found.</p>
                 )}
+
+                {
+                    loading && (
+                        <p className="text-white mt-4">Loading, please wait!</p>
+                    )
+                }
             </div>
         </div>
     );

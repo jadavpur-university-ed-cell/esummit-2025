@@ -21,12 +21,12 @@ export default async function DashboardPage() {
     <NotSigned />
   }
 
-  if (mockUserData.role === Role.admin) {
+  if (mockUserData.role === Role.ADMIN) {
     return (
       <AdminDashboard />
     )
   }
-  if (mockUserData.role === Role.superadmin) {
+  if (mockUserData.role === Role.SUPER_ADMIN) {
     return (
       <SuperAdminDashboard />
     )
