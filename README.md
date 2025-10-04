@@ -3,7 +3,6 @@
 ### //TODO s:
 - [ ] Move all Prisma Client to one directory and one object call only (no multiple calls and API overloading)
 - [ ] Fix that signin component pls
-- [ ] fix background.png to stretch fully
 
 ### Features Missing:
 - Data in Events

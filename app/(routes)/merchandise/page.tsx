@@ -1,6 +1,14 @@
 import  getServerSession from 'next-auth';
 import { prisma } from '@/prisma/client';
 import MerchandiseClient from '@/components/merchandise/MerchandiseCSR';
+import Image from 'next/image';
+import { FaXmark } from 'react-icons/fa6';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Merchandise | JU E-Summit 2025',
+  description: 'Shop the official merchandise of JU E-Summit 2025',
+};
 
 // Dynamic Pricing from environment variables
 const SHIRT_PRICE = parseInt(process.env.NEXT_PUBLIC_SHIRT_PRICE || '300');
