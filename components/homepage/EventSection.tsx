@@ -86,9 +86,9 @@ export default function Events() {
           Events
         </h2>
         <Carousel opts={{ loop: true, align: "start" }} className="w-5/6">
-          <CarouselContent className="pl-4">
+          <CarouselContent>
             {eventList.map((event) => (
-              <CarouselItem key={event.id} className="basis-1/4">
+              <CarouselItem key={event.id} className="md:basis-1/4">
                 <div className="h-full p-4 bg-indigo/80 rounded-3xl border-2 border-black drop-shadow-2xl flex flex-col gap-y-4">
                   <div className="rounded-xl w-full aspect-square grid place-items-center bg-blue-900/20">
                     <Image
