@@ -8,7 +8,7 @@ export const mockUserData: User = {
   year: "2028",
   password : "123",
   phone: "9876543210",
-  role: Role.ADMIN,
+  role: Role.USER,
   college: "Jadavpur University",
   foodPreference: "Non-Vegetarian",
   merchandise: {

@@ -1,6 +1,10 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import LinkedIn from "next-auth/providers/linkedin";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
 const ALLOWED_DOMAINS = [
   "@gmail.com",
   "@jadavpuruniversity.in",
@@ -27,6 +31,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           prompt: "consent",
           access_type: "offline",
           response_type: "code",
+          scope: "openid profile email",
         },
       },
     }),
@@ -39,9 +44,34 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         const domainAllowed = ALLOWED_DOMAINS.some((domain) =>
           email.endsWith(domain)
         );
-        return !!(emailVerified && domainAllowed);
+        if (!emailVerified || !domainAllowed) return false;
+
+        //first time checking of user is done
+        const exisitingUser = await prisma.user.findUnique({ where: { email } });
+        if (!exisitingUser) {
+          await prisma.user.create({
+            data: {
+              email: email,
+              name: profile?.name ?? "",
+              role: "USER",
+            },
+          });          
+          return true;
+        }
       }
       return true;
+    },
+    async session({ session }) {
+      const dbUser = await prisma.user.findUnique({
+        where: { email: session.user.email! },
+      });
+
+      
+      if (dbUser) {
+        session.user.id = dbUser.id;
+      }
+      console.log("auth.ts session is: ", session );
+      return session;
     },
   },
   secret: process.env.AUTH_SECRET,

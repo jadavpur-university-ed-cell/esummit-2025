@@ -17,6 +17,7 @@ enum Role {
   USER
   REFERRED_USER
   ADMIN
+  SUPER_ADMIN
   CAMPUS_AMBASSADOR
 }
 
@@ -53,14 +54,14 @@ model User {
   id                String             @id @default(auto()) @map("_id") @db.ObjectId
   email             String             @unique
   name              String
-  password          String
-  phone             String             @unique
-  college           String
-  year              String
-  branch            String
+  password          String?
+  phone             String?            @unique
+  college           String?
+  year              String?
+  branch            String?
   rollNo            String?
   role              Role
-  referralCode      String             @unique
+  referralCode      String?
   payments          Payments[]         @relation("UserPayments")
   teamIDs           String[]           @db.ObjectId
   teams             Team[]             @relation(fields: [teamIDs], references: [id])

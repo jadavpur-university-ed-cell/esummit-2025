@@ -27,6 +27,23 @@ export type Event = {
   sponsors: string[];
 };
 
+export interface SessionUser {
+  id?: string;    
+  name?: string | null;
+  email?: string | null;
+  image?: string | null;
+}
+
+
+export interface Session {
+  user?: SessionUser;
+  expires: string; // ISO date string
+}
+
+export interface DashboardClientProps {
+  session: Session;
+}
+
 // Updated Roles based on Prisma schema
 export enum Role {
   USER = "USER",

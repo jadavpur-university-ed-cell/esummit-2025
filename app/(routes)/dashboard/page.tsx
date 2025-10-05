@@ -1,14 +1,8 @@
 import { auth } from "@/auth";
 import type { Metadata } from "next";
-import { Role } from "@/types/all";
 
-import AdminDashboard from "@/components/dashboard/admin/admin-dashboard";
-import SuperAdminDashboard from "@/components/dashboard/super-admin/super-admin-dashboard";
-import UserDashboard from "@/components/dashboard/user/user-dashboard";
 import NotSigned from "@/components/dashboard/not-signed/not-signed";
-
-import { mockEventData } from "@/mock/mockEventData";
-import { mockUserData } from "@/mock/mockUserData";
+import DashboardClient from "@/components/dashboard/DashboardClient";
 
 export const metadata: Metadata = {
   title: "Dashboard | JU E-Summit'25",
@@ -16,25 +10,13 @@ export const metadata: Metadata = {
 
 export default async function DashboardPage() {
   const session = await auth();
-  console.log("session is:", session)
-  if (!session) {
-    <NotSigned />
-  }
+  console.log("Dashboard - session is:", session)
+  
+  if (!session?.user?.email) {
+    console.log("No session found, bitch");
+    return (
+      <NotSigned />
+    )}
 
-  if (mockUserData.role === Role.ADMIN) {
-    return (
-      <AdminDashboard />
-    )
-  }
-  if (mockUserData.role === Role.SUPER_ADMIN) {
-    return (
-      <SuperAdminDashboard />
-    )
-  }
-  return (
-    <UserDashboard
-      eventData={mockEventData}
-      userData={mockUserData}
-    />
-  );
+  return <DashboardClient session={session} />
 }
