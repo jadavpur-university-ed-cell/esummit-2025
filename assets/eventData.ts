@@ -6,6 +6,7 @@ export const eventData: Event[] = [
         eventName: "LaunchX",
         about: "random text",
         description: "some more text",
+        imageUrl: "./launchx.webp",
         rounds: [
             {
                 number: "round 1",
@@ -70,6 +71,7 @@ export const eventData: Event[] = [
         eventName: "Mock Stock",
         about: "random text",
         description: "some more text",
+        imageUrl: "./mockstock.webp",
         rounds: [
             {
                 number: "round 1",
@@ -134,6 +136,7 @@ export const eventData: Event[] = [
         eventName: "Hack N Pitch",
         about: "random text",
         description: "some more text",
+        imageUrl: "./hacknpitch.webp",
         rounds: [
             {
                 number: "round 1",
@@ -198,6 +201,7 @@ export const eventData: Event[] = [
         eventName: "Corporate Clash",
         about: "random text",
         description: "some more text",
+        imageUrl: "./corporateclash.webp",
         rounds: [
             {
                 number: "round 1",
@@ -262,6 +266,7 @@ export const eventData: Event[] = [
         eventName: "Summit Cup",
         about: "random text",
         description: "some more text",
+        imageUrl: "./summitcup.webp",
         rounds: [
             {
                 number: "round 1",
@@ -326,6 +331,7 @@ export const eventData: Event[] = [
         eventName: "Equity Edge",
         about: "random text",
         description: "some more text",
+        imageUrl: "./equityedge.webp",
         rounds: [
             {
                 number: "round 1",
@@ -390,6 +396,7 @@ export const eventData: Event[] = [
         eventName: "Inspira Talks",
         about: "random text",
         description: "some more text",
+        imageUrl: "./inspiratalks.webp",
         rounds: [
             {
                 number: "round 1",
@@ -454,6 +461,7 @@ export const eventData: Event[] = [
         eventName: "Dizmart",
         about: "random text",
         description: "some more text",
+        imageUrl: "./dizmart.webp",
         rounds: [
             {
                 number: "round 1",

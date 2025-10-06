@@ -21,6 +21,7 @@ export type Event = {
   eventName: string;
   about: string;
   description: string;
+  imageUrl?: string;
   rounds: Round[];
   contact: Contact[];
   faq: FAQ[];
