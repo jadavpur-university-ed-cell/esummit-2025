@@ -31,26 +31,71 @@ const SignIn = () => {
     }
   })();
   return (
-    <div
-      className="min-h-screen flex items-center justify-center pb-5"
+    <div className="min-h-screen flex"
       style={{
         backgroundImage: 'url(/background.png)',
         backgroundSize: 'auto 100%',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'left',
-      }}
-    >
-      <div className="flex flex-col items-center justify-center bg-white/20 backdrop-blur-md rounded-xl p-22 text-center text-white">
-        <Image
-          src="/home/logo.svg"
-          alt="E-Summit Logo"
-          width={500}
-          height={500}
-          className="drop-shadow-[0px_32px_32px_rgba(80,0,180,0.45)]"
-        />
-        <div className="flex flex-col mt-10 gap-4">
-          <SignInButton provider="google" />
-          <SignInButton provider="linkedin" />
+      }}>
+        
+      {/* Left Gallery Absolute */}
+      <div className="hidden lg:block absolute inset-y-0 left-0 w-1/2">
+        <div className="relative w-full h-full">
+          <Image
+            src="/loginbg.webp"
+            alt="Login Illustration"
+            fill
+            className="object-cover"
+            priority
+            sizes="(max-width: 1024px) 50vw"
+          />
+        </div>
+      </div>
+
+
+      {/* Right Side - Login Form */}
+      <div className="hidden lg:flex lg:w-5/6 items-center justify-end px-8">
+        <div className="flex flex-col py-12 px-6 bg-white/20 backdrop-blur-md rounded-xl max-w-sm w-full">
+          {/* Mobile Logo/Header */}
+          <div className="lg:hidden text-center mb-8">
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              E-Summit
+            </h1>
+            <p className="text-gray-300 mt-2">Welcome back</p>
+          </div>
+
+          {/* Desktop Header */}
+          <div className="hidden lg:block">
+            <h2 className="text-3xl font-bold text-white">
+              Welcome back
+            </h2>
+            <p className="mt-2 text-sm text-gray-300">
+              Sign in to your account to continue
+            </p>
+          </div>
+
+          <div className="mt-8">
+            {/* Sign In Buttons */}
+            <div className="space-y-4">
+              <SignInButton provider="google" />
+              <SignInButton provider="linkedin" />
+            </div>
+
+            {/* Additional Info */}
+            <div className="mt-6 text-center">
+              <p className="text-xs hover:dark:text-gray-400">
+                By signing in, you agree to our{" "}
+                <a href="/terms" className="text-indigo hover:underline">
+                  Terms of Service
+                </a>{" "}
+                and{" "}
+                <a href="/privacy" className="text-indigo hover:underline">
+                  Privacy Policy
+                </a>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
