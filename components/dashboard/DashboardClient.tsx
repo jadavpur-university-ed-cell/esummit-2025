@@ -21,10 +21,12 @@ export default function DashboardClient({ session }: DashboardClientProps) {
 
     (async () => {
       try {
+        "use server";
         const res = await fetch("/api/find-user", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ session }),
+          // credentials: "include"
         });
         if (!res.ok) throw new Error("Failed to load user");
         const data = await res.json();

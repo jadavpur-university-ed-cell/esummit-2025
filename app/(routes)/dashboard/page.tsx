@@ -17,6 +17,7 @@ export default async function DashboardPage() {
     return (
       <NotSigned />
     )}
-
+  
+  console.log("Session found bitch");
   return <DashboardClient session={session} />
 }
