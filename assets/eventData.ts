@@ -6,6 +6,9 @@ export const eventData: Event[] = [
         eventName: "LaunchX",
         about: "random text",
         description: "some more text",
+        previewText: "Showcase, pitch, and launch your startup with expert backing.",
+        day: "Day 3",
+        image: "LaunchX.png",
         rounds: [
             {
                 number: "round 1",
@@ -70,6 +73,9 @@ export const eventData: Event[] = [
         eventName: "Mock Stock",
         about: "random text",
         description: "some more text",
+        previewText: "Master trading skills in a risk-free, competitive stock simulation.",
+        day: "Day 1",
+        image: "MockStock.png",
         rounds: [
             {
                 number: "round 1",
@@ -134,6 +140,9 @@ export const eventData: Event[] = [
         eventName: "Hack N Pitch",
         about: "random text",
         description: "some more text",
+        previewText: "Join Hack-n-Pitch: Innovate, hack, and pitch your ideas overnight!",
+        day: "Day 2",
+        image: "HackNPitch.png",
         rounds: [
             {
                 number: "round 1",
@@ -198,6 +207,9 @@ export const eventData: Event[] = [
         eventName: "Corporate Clash",
         about: "random text",
         description: "some more text",
+        previewText: "Test your strategic skills in the ultimate analyst challenge.",
+        day: "Day 1",
+        image: "CorporateClash.png",
         rounds: [
             {
                 number: "round 1",
@@ -262,6 +274,9 @@ export const eventData: Event[] = [
         eventName: "Summit Cup",
         about: "random text",
         description: "some more text",
+        previewText: "New Event",
+        day: "Someday",
+        image: "MockIPL.png",
         rounds: [
             {
                 number: "round 1",
@@ -326,6 +341,9 @@ export const eventData: Event[] = [
         eventName: "Equity Edge",
         about: "random text",
         description: "some more text",
+        previewText: "new event",
+        day: "someday",
+        image: "MockIPL.png",
         rounds: [
             {
                 number: "round 1",
@@ -390,6 +408,9 @@ export const eventData: Event[] = [
         eventName: "Inspira Talks",
         about: "random text",
         description: "some more text",
+        previewText: "Learn from top experts and ignite your entrepreneurial journey.",
+        day: "Day 3",
+        image: "inspiratalks.png",
         rounds: [
             {
                 number: "round 1",
@@ -454,6 +475,9 @@ export const eventData: Event[] = [
         eventName: "Dizmart",
         about: "random text",
         description: "some more text",
+        previewText: "Design impactful labels at Dizmart, merging creativity, branding, and marketing.",
+        day: "Day 2",
+        image: "DizMart.png",
         rounds: [
             {
                 number: "round 1",
