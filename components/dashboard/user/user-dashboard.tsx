@@ -3,6 +3,7 @@ import { LogOut, Bell } from "lucide-react";
 import { Event } from "@/types/all";
 import { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
+import { useState } from "react";
 
 interface UserDashboardProps {
     eventData?: Event[];
@@ -15,6 +16,49 @@ export default function UserDashboard({
     userData = {} as User,
     profileImage = "/user.png"
 }: UserDashboardProps) {
+    const [editing, setEditing] = useState(false);
+    const [form, setForm] = useState({
+        phone: userData.phone || "",
+        college: userData.college || "",
+        branch: userData.branch || "",
+        shirtSize: userData.shirtSize || "",
+        year: userData.year || "",
+    });
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+
+    const handleChange = (field: string, value: string) => {
+        setForm(prev => ({ ...prev, [field]: value }));
+    };
+
+
+    const handleSave = async () => {
+        setLoading(true);
+        setError(null);
+        try {
+            const res = await fetch("/api/edit-profile", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: userData.email, ...form }),
+            });
+            const data = await res.json();
+            if (!res.ok) {
+                setError(data.error || "Something went wrong.");
+                setLoading(false);
+                return;
+            } else {
+                setEditing(false);
+                window.location.reload();
+            }
+        } catch (err) {
+            console.error(err);
+            setError("Something went wrong.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <section
             style={{
@@ -75,8 +119,8 @@ export default function UserDashboard({
                         <section className="flex flex-col items-center gap-6 p-6 rounded-md h-full w-full backdrop-blur-lg bg-white/20 text-xl">
                             <div className="flex justify-center items-center w-full">
                                 <p className="font-bold">My Profile</p>
-                                <button className="cursor-pointer py-2 px-3 ml-2 hover:bg-background/20 rounded-md transition-all hover:shadow-md">
-                                    Edit Profile
+                                <button onClick={() => setEditing(!editing)} className="cursor-pointer py-2 px-3 ml-2 hover:bg-background/20 rounded-md transition-all hover:shadow-md">
+                                    {editing ? "Cancel" : "Edit Profile"}
                                 </button>
                             </div>
                             <div className="flex flex-row">
@@ -84,12 +128,38 @@ export default function UserDashboard({
                                     <p>Name: {userData.name || "user"}</p>
                                     <p>Email: {userData.email || "N.A."}</p>
                                     <p>Role: {userData.role || "N.A."}</p>
-                                    <p>Phone No: {userData.phone || "N.A."}</p>
-                                    <p>Institution: {userData.college || "N.A."}</p>
-                                    <p>Shirt Size: {userData.shirtSize || "N.A."}</p>
-                                    {/* <p>Food Preference: {userData.foodPreference || "N.A."}</p>
-                                    <p>Gender: {userData.gender || "N.A."}</p> */}
-                                    <p>Graduation Year: {userData.year || "N.A."}</p>
+
+                                    {editing ? (
+                                        <>
+                                            <input className="border p-1 rounded-md" placeholder="Phone" value={form.phone} onChange={(e) => handleChange("phone", e.target.value)} />
+                                            <input className="border p-1 rounded-md" placeholder="Institution" value={form.college} onChange={(e) => handleChange("college", e.target.value)} />
+                                            <input className="border p-1 rounded-md" placeholder="Branch" value={form.branch} onChange={(e) => handleChange("branch", e.target.value)} />
+                                            <select
+                                                className="border p-1 rounded-md"
+                                                value={form.shirtSize}
+                                                onChange={(e) => handleChange("shirtSize", e.target.value)}
+                                            >
+                                                <option value="">Select Shirt Size</option>
+                                                <option value="XS">XS</option>
+                                                <option value="S">S</option>
+                                                <option value="M">M</option>
+                                                <option value="L">L</option>
+                                                <option value="XL">XL</option>
+                                                <option value="XXL">XXL</option>
+                                            </select>
+                                            <input className="border p-1 rounded-md" placeholder="Graduation Year" value={form.year} onChange={(e) => handleChange("year", e.target.value)} />
+                                            <button onClick={handleSave} disabled={loading} className="bg-blue-500 px-4 py-2 rounded-md text-white mt-2 cursor-pointer">Save</button>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <p>Phone No: {userData.phone || "N.A."}</p>
+                                            <p>Institution: {userData.college || "N.A."}</p>
+                                            <p>Branch: {userData.branch || "N.A."}</p>
+                                            <p>Shirt Size: {userData.shirtSize || "N.A."}</p>
+                                            <p>Graduation Year: {userData.year || "N.A."}</p>
+                                        </>
+                                    )}
+                                    {error && <p className="text-red-500">{error}</p>}
                                 </div>
                                 <div className="relative w-32 h-32">
                                     {/* <div className="absolute inset-0 rounded-fullp-[3px]"> */}

@@ -53,8 +53,9 @@ export function SignInButton({ provider, label }: SignInButtonProps) {
 
   return (
     <Button
-      onClick={() => signIn(provider, {callbackUrl: "/dashboard"})}
-      className="px-4 py-2 bg-primary text-white rounded hover:bg-primary/10 cursor-pointer"
+      onClick={() => signIn(provider, { callbackUrl: "/dashboard" })}
+      className={`flex items-center justify-center px-4 py-3 rounded-xl font-medium transform hover:scale-105 ${config.className}`}
+      variant="outline"
     >
       <span className="flex items-center justify-center w-6 h-6 mr-3">
         {config.icon}

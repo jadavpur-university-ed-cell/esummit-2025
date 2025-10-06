@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ success: true, user: updatedUser });
   } catch (err) {
-    console.error("Error in complete-profile:", err);
+    console.error("Error in editing-profile:", err);
     return NextResponse.json(
       { error: "Something went wrong" },
       { status: 500 }
