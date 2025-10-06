@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer id="contact" className="bg-[#1B1C3D] text-gray-300 px-6 md:px-16 py-12">
       <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 place-items-center">
-        <div className="flex items-center h-12 col-span-2 md:col-span-1">
+        <Link href={"/"} className="flex items-center h-12 col-span-2 md:col-span-1">
           <Image
             width={1000}
             height={100}
@@ -14,7 +14,7 @@ const Footer = () => {
             alt="E-SUMMIT&apos;25"
             className="h-full object-contain"
           />
-        </div>
+        </Link>
 
         <div>
           <h3 className="text-sm font-semibold text-white uppercase tracking-wide">

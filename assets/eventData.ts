@@ -411,32 +411,7 @@ export const eventData: Event[] = [
         previewText: "Learn from top experts and ignite your entrepreneurial journey.",
         day: "Day 3",
         image: "inspiratalks.png",
-        rounds: [
-            {
-                number: "round 1",
-                title: "screening round",
-                about: "preliminary submission",
-                mode: "online"
-            },
-            {
-                number: "round 1",
-                title: "screening round",
-                about: "preliminary submission",
-                mode: "online"
-            },
-            {
-                number: "round 1",
-                title: "screening round",
-                about: "preliminary submission",
-                mode: "online"
-            },
-            {
-                number: "round 1",
-                title: "screening round",
-                about: "preliminary submission",
-                mode: "online"
-            }
-        ],
+        rounds: [],
         contact: [
             {
                 name: "john doe",
@@ -538,3 +513,18 @@ export const eventData: Event[] = [
         sponsors: []
     },
 ]
+
+export const inspiraTalksSpeakers = [
+    {
+        id: 1,
+        name: "Coming Soon",
+        designation: "",
+        image: "/speakerImages/comingsoon.png"
+    },
+    {   
+        id: 2,
+        name: "Coming Soon",
+        designation: "",
+        image: "/speakerImages/comingsoon.png"
+    },
+];
