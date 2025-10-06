@@ -1,15 +1,19 @@
 import Image from "next/image";
 import { LogOut, Bell } from "lucide-react";
-import { Event, User } from "@/types/all";
+import { Event } from "@/types/all";
+import { User } from "@prisma/client";
+import { signOut } from "next-auth/react";
 
 interface UserDashboardProps {
     eventData?: Event[];
     userData?: User;
+    profileImage?: string;
 }
 
 export default function UserDashboard({
     eventData = [],
-    userData = {} as User
+    userData = {} as User,
+    profileImage = "/user.png"
 }: UserDashboardProps) {
     return (
         <section
@@ -30,7 +34,10 @@ export default function UserDashboard({
                         </div>
                     </button>
                     <p className="text-4xl grid place-items-center">My Dashboard</p>
-                    <button className="cursor-pointer flex flex-row p-3 rounded-lg transition-all hover:bg-background/20 hover:-translate-y-0.5 text-red-500 font-semibold">
+                    <button
+                        onClick={() => signOut({ callbackUrl: "/" })}
+                        className="cursor-pointer flex flex-row p-3 rounded-lg transition-all hover:bg-background/20 hover:-translate-y-0.5 text-red-500 font-semibold"
+                    >
                         <LogOut />
                         <div className="pl-5">
                             Logout
@@ -51,13 +58,15 @@ export default function UserDashboard({
                                 <p className="py-2 text-xl">My Merchandise</p>
                                 <div className="w-full max-w-3xs rounded-xl h-40  flex items-center justify-center">
                                     <Image
-                                        src={userData.merchandise.src}
+                                        src={"/merchandise/merch-in-dashboard.svg"}
                                         height={150}
                                         width={150}
                                         alt={"Merchandise Image"}
                                     />
                                 </div>
-                                <p className="flex text-lg">Status: {userData.merchandise.status}</p>
+                                <p className="flex text-lg">Status:
+                                    {/* {userData.merchandise.status || "N.A."} */}
+                                </p>
                             </section>
                         </div>
                     </div>
@@ -67,7 +76,7 @@ export default function UserDashboard({
                             <div className="flex justify-center items-center w-full">
                                 <p className="font-bold">My Profile</p>
                                 <button className="cursor-pointer py-2 px-3 ml-2 hover:bg-background/20 rounded-md transition-all hover:shadow-md">
-                                    Edit Icon
+                                    Edit Profile
                                 </button>
                             </div>
                             <div className="flex flex-row">
@@ -76,17 +85,17 @@ export default function UserDashboard({
                                     <p>Email: {userData.email || "N.A."}</p>
                                     <p>Role: {userData.role || "N.A."}</p>
                                     <p>Phone No: {userData.phone || "N.A."}</p>
-                                    <p>Institution: {userData.institution || "N.A."}</p>
-                                    <p>Shirt Size: {userData.merchandise.size || "N.A."}</p>
-                                    <p>Food Preference: {userData.foodPreference || "N.A."}</p>
-                                    <p>Gender: {userData.gender || "N.A."}</p>
-                                    <p>Graduation Year: {userData.graduationYear || "N.A."}</p>
+                                    <p>Institution: {userData.college || "N.A."}</p>
+                                    <p>Shirt Size: {userData.shirtSize || "N.A."}</p>
+                                    {/* <p>Food Preference: {userData.foodPreference || "N.A."}</p>
+                                    <p>Gender: {userData.gender || "N.A."}</p> */}
+                                    <p>Graduation Year: {userData.year || "N.A."}</p>
                                 </div>
                                 <div className="relative w-32 h-32">
                                     {/* <div className="absolute inset-0 rounded-fullp-[3px]"> */}
                                     {/* <div className="w-full h-full rounded-full bg-black flex items-center justify-center"> */}
                                     <Image
-                                        src="/user.png"
+                                        src={profileImage}
                                         alt="Profile"
                                         width={128}
                                         height={128}
@@ -101,10 +110,11 @@ export default function UserDashboard({
                 </div>
 
                 {/* Registered Events */}
+
                 <div className="col-span-full rounded-md p-px order-3">
                     <section className="flex flex-col gap-6 rounded-md h-full w-full my-3 backdrop-blur-lg bg-white/20 py-6 px-[6vw]">
                         <p className="text-2xl flex">Registered Events</p>
-                        {userData.registeredEvents.length > 0 ? (
+                        {/* {userData.registeredEvents.length > 0 ? (
                             <div className="grid gap-4 md:grid-cols-2">
                                 {userData.registeredEvents.map((eventSlug) => {
                                     const event = eventData.find((e) => e.eventSlug === eventSlug);
@@ -120,7 +130,7 @@ export default function UserDashboard({
                             </div>
                         ) : (
                             <p className="flex text-lg">No events have been registered, as of now!</p>
-                        )}
+                        )} */}
                     </section>
                 </div>
 
@@ -128,7 +138,7 @@ export default function UserDashboard({
                 <div className="col-span-full rounded-md p-px order-4">
                     <section className="flex flex-col gap-6 rounded-md h-full w-full my-3 backdrop-blur-lg bg-white/20 py-6 px-[6vw]">
                         <p className="text-2xl flex">Wishlisted Events</p>
-                        {userData.wishlist.length > 0 ? (
+                        {/* {userData.wishlist.length > 0 ? (
                             <div className="grid gap-4 md:grid-cols-2">
                                 {userData.wishlist.map((eventSlug) => {
                                     const event = eventData.find((e) => e.eventSlug === eventSlug);
@@ -144,7 +154,7 @@ export default function UserDashboard({
                             </div>
                         ) : (
                             <p className="flex text-lg">No events are in your wishlist, as of now!</p>
-                        )}
+                        )} */}
                     </section>
                 </div>
 
@@ -152,7 +162,7 @@ export default function UserDashboard({
                 <div className="col-span-full rounded-md p-px order-5">
                     <section className="flex flex-col gap-6 rounded-md h-full w-full my-3 backdrop-blur-lg bg-white/20 py-6 px-[6vw]">
                         <p className="text-2xl flex">Pending Events</p>
-                        {userData.pendingEvents.length > 0 ? (
+                        {/* {userData.pendingEvents.length > 0 ? (
                             <div className="grid gap-4 md:grid-cols-2">
                                 {userData.pendingEvents.map((eventSlug) => {
                                     const event = eventData.find((e) => e.eventSlug === eventSlug);
@@ -168,7 +178,7 @@ export default function UserDashboard({
                             </div>
                         ) : (
                             <p className="flex text-lg">No events are pending, as of now!</p>
-                        )}
+                        )} */}
                     </section>
                 </div>
             </main>

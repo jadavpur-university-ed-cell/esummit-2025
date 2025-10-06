@@ -24,10 +24,10 @@ function NavComponent({ name, location }: { name: string; location: string }) {
 function Navbar() {
   const navigationItems = {
 	"Home":"/",
-	"About":"/about",
-	"Events":"/events",
-	"Contact":"/contact",
-	"Login":"/login",
+	"About":"#about",
+	"Events":"#events",
+	"Contact":"#contact",
+	"Login":"/sign-in",
   }
 
   const [showNavbar, setShowNavbar] = useState(true);
