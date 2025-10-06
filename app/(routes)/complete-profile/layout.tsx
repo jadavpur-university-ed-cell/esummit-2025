@@ -1,4 +1,3 @@
-"use client";
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "@/app/globals.css";
 import Navbar from "@/components/Navbar";
