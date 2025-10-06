@@ -2,9 +2,9 @@
 
 ### //TODO s:
 - [ ] Move all Prisma Client to one directory and one object call only (no multiple calls and API overloading)
+- [ ] Fix that signin component pls
 
 ### Features Missing:
-- UI for login and routing post OAuth 2.0
 - Data in Events
 - mobile friendly view
 - api consummation @frontend

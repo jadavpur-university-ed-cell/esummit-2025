@@ -1,7 +1,7 @@
 "use client"
 import { SignInButton } from "./signInButton";
 import { useSearchParams } from "next/navigation";
-import Image from "next/image";
+import Image from 'next/image';
 
 type AuthErrorType =
   | "AccessDenied"
