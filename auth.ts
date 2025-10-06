@@ -1,9 +1,7 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import LinkedIn from "next-auth/providers/linkedin";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import {prisma} from "@/prisma/client"
 
 const ALLOWED_DOMAINS = [
   "@gmail.com",
