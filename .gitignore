@@ -44,3 +44,4 @@ next-env.d.ts
 /generated/prisma
 
 /db_data
+/db_config

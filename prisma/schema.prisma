@@ -55,12 +55,14 @@ model User {
   email             String             @unique
   name              String
   password          String?
-  phone             String?            
+  phone             String?
   college           String?
   year              String?
   branch            String?
   rollNo            String?
-  role              Role
+  role              Role?              @default(USER)
+  image             String?
+  emailVerified     Boolean?           @default(false)
   referralCode      String?
   payments          Payments[]         @relation("UserPayments")
   teamIDs           String[]           @db.ObjectId
@@ -68,6 +70,29 @@ model User {
   shirtSize         String? // XS, S, M, L, XL, XXL
   merchandiseOrders MerchandiseOrder[]
   notifications     Notification[]
+  accounts          Account[]
+
+  @@map("user")
+}
+
+model Account {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  token_type        String?
+  refresh_token     String? @db.String
+  access_token      String? @db.String
+  id_token          String? @db.String
+  scope             String?
+  session_state     String?
+  expires_at        Int?
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @db.ObjectId
+
+  @@unique([provider, providerAccountId])
+  @@map("account")
 }
 
 model Team {

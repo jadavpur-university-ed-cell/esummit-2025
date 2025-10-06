@@ -13,7 +13,7 @@ export default async function DashboardPage() {
   console.log("Dashboard - session is:", session)
   
   if (!session?.user?.email) {
-    console.log("No session found, bitch");
+    console.log("No session found");
     return (
       <NotSigned />
     )}
