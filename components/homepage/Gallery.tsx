@@ -1,13 +1,8 @@
 "use client";
 import React from "react";
-import "./Gallery.css";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
-import "swiper/css/autoplay"; // Import autoplay CSS (optional)
-import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules"; // Import Autoplay module
 import Image from "next/image";
+import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 const images = [
   { src: "/gallery/1.jpg", alt: "1" },
@@ -37,8 +32,6 @@ const images = [
 ];
 
 function Gallery() {
-    
-
   return (
     <section
       id="gallery"
@@ -48,6 +41,7 @@ function Gallery() {
         <h1 className="animated-title text-5xl sm:text-7xl text-white py-3 mb-7 font-bold">
           Gallery
         </h1>
+        {/*
         <Swiper
           effect={"coverflow"}
           grabCursor={true}
@@ -74,6 +68,26 @@ function Gallery() {
             </SwiperSlide>
           ))}
         </Swiper>
+        */}
+        <Carousel
+          opts={{ loop: true, align: "start" }}
+          className="w-5/6 md:w-1/2"
+          plugins={[Autoplay({ delay: 2000 })]}
+        >
+          <CarouselContent>
+            {images.map((image) => (
+              <CarouselItem key={image.alt}>
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  width={900}
+                  height={600}
+                  className="rounded-4xl aspect-video"
+                />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
       </div>
     </section>
   );

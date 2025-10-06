@@ -26,23 +26,13 @@ const PreviousSponsor: React.FC<{ sponsors: Sponsor[] }> = ({ sponsors }) => {
       <style jsx>{`
         .previous-sponsor-list {
           display: flex;
+          justify-content: center;
           align-items: center;
           flex-wrap: wrap;
           /* overflow-x: auto;  Enable horizontal scrolling */
-          gap: 20px;
+          gap: 30px;
           padding: 20px;
           max-width: 100vw;
-        }
-
-        .previous-sponsor-item {
-          flex-shrink: 0; /* Prevent shrinking of items */
-          transition: transform 0.2s ease, filter 0.2s ease;
-          filter: grayscale(100%);
-        }
-
-        .previous-sponsor-item:hover {
-          transform: scale(1.1); /* Slight zoom on hover */
-          filter: grayscale(0); /* Remove grayscale on hover */
         }
 
         .grayscale {

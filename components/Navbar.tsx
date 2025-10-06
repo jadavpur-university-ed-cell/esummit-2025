@@ -24,9 +24,9 @@ function NavComponent({ name, location }: { name: string; location: string }) {
 function Navbar() {
   const navigationItems = {
 	"Home":"/",
-	"About":"/about",
-	"Events":"/events",
-	"Contact":"/contact",
+	"About":"#about",
+	"Events":"#events",
+	"Contact":"#contact",
 	"Login":"/login",
   }
 
@@ -34,6 +34,14 @@ function Navbar() {
   const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
+
+	if(window.location.pathname.startsWith("/events")){
+		setShowNavbar(false);
+		return;
+	}else{
+		setShowNavbar(true);
+	}
+
 	const handleScroll = () => {
 	  const currentScrollY = window.scrollY;
 	  const thresholdHeight = document.body.scrollHeight * 0.4;

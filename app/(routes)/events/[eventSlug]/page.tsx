@@ -1,9 +1,10 @@
 "use client";
 import { useParams, useRouter } from "next/navigation";
 import React, { useState } from "react";
-import { eventData } from "@/assets/eventData";
+import { eventData, inspiraTalksSpeakers } from "@/assets/eventData";
 import { Event } from "@/types/all";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Page() {
   const { eventSlug } = useParams();
@@ -41,13 +42,7 @@ export default function Page() {
       {/* Hero Section */}
       <div className="text-center px-4 pt-12 sm:pt-0 mb-16">
         <h1 className="text-6xl font-bold mb-8 tracking-wider text-gray-200">
-          {eventDetails.eventName === "LaunchX" ? (
-            <>
-              LAUNCH<span className="text-purple-400">X</span>
-            </>
-          ) : (
-            eventDetails.eventName.toUpperCase()
-          )}
+          {eventDetails.eventName.toUpperCase()}
         </h1>
         <p className="text-gray-300 max-w-2xl mx-auto text-lg leading-relaxed mb-12">
           {eventDetails.about}
@@ -58,38 +53,65 @@ export default function Page() {
       </div>
 
       {/* Description Section */}
-      <div className="max-w-4xl mx-auto px-6 mb-20">
+      <div className="max-w-4xl mx-auto px-6 mb-12">
         <p className="text-gray-300 leading-relaxed text-center">
           {eventDetails.description}
         </p>
       </div>
 
       {/* Rounds Section */}
-      <div className="max-w-6xl mx-auto px-6 mb-20">
-        <h2 className="text-4xl font-bold text-center mb-12 text-gray-200">
-          Rounds
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {eventDetails.rounds.map((round, index) => (
-            <div
-              key={index}
-              className="bg-gradient-to-br from-purple-400/20 to-pink-400/20 backdrop-blur-sm rounded-2xl p-8 border border-purple-400/30"
-            >
-              <div className="bg-purple-400 text-black px-4 py-2 rounded-full font-semibold inline-block mb-4 capitalize">
-                {round.number}
+      {eventDetails.rounds.length > 0 && (
+        <div className="max-w-6xl mx-auto px-6 mb-20">
+          <h2 className="text-4xl font-bold text-center mb-12 text-gray-200">
+            Rounds
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {eventDetails.rounds.map((round, index) => (
+              <div
+                key={index}
+                className="bg-gradient-to-br from-purple-400/20 to-pink-400/20 backdrop-blur-sm rounded-2xl p-8 border border-purple-400/30"
+              >
+                <div className="bg-purple-400 text-black px-4 py-2 rounded-full font-semibold inline-block mb-4 capitalize">
+                  {round.number}
+                </div>
+                <h3 className="text-2xl font-bold mb-2 capitalize">
+                  {round.title}
+                </h3>
+                <p className="text-gray-300 mb-4 capitalize">{round.about}</p>
+                <div className="flex items-center text-gray-400">
+                  <div className="w-2 h-2 bg-gray-400 rounded-full mr-2"></div>
+                  <span className="capitalize">{round.mode}</span>
+                </div>
               </div>
-              <h3 className="text-2xl font-bold mb-2 capitalize">
-                {round.title}
-              </h3>
-              <p className="text-gray-300 mb-4 capitalize">{round.about}</p>
-              <div className="flex items-center text-gray-400">
-                <div className="w-2 h-2 bg-gray-400 rounded-full mr-2"></div>
-                <span className="capitalize">{round.mode}</span>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      )}
+
+      {/* Speakers for Inspira Talks */}
+      {eventDetails.eventSlug === "inspira-talks" && (
+        <div className="w-full flex flex-col gap-8 items-center mb-12">
+          <h1 className="text-4xl font-bold">Speakers</h1>
+          <div className="flex flex-col md:flex-row flex-wrap gap-8">
+            {inspiraTalksSpeakers.map((speaker) => (
+              <div
+                key={speaker.id}
+                className="flex flex-col rounded-2xl p-6 bg-slate-800/50 border border-gray-300/10"
+              >
+                <Image
+                  src={speaker.image}
+                  alt={speaker.name}
+                  width={300}
+                  height={300}
+                  className="rounded-xl bg-light-purple/10"
+                />
+                <h2 className="text-xl mt-3 font-semibold">{speaker.name}</h2>
+                <p className="text-light-purple">{speaker.designation}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Points of Contact */}
       <div className="max-w-6xl mx-auto px-6 mb-20">

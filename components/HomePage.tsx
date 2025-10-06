@@ -156,11 +156,11 @@ export default function ParallaxWebsite() {
         </section>
 
         {/* About Section */}
-        <section ref={aboutRef}>
+        <section id='about' ref={aboutRef}>
           <About />
         </section>
 
-        <section ref={eventsRef}>
+        <section id='events' ref={eventsRef}>
           <Events />
         </section>
 
