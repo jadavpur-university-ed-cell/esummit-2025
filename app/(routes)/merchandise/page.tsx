@@ -1,14 +1,13 @@
-"use client"
-import { getServerSession } from 'next-auth';
-import { prisma } from '@/prisma/client';
-import MerchandiseClient from '@/components/merchandise/MerchandiseCSR';
+"use client";
+
 import Image from 'next/image';
 import { FaXmark } from 'react-icons/fa6';
 import Script from 'next/script';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 // Dynamic Pricing from environment variables
-const SHIRT_PRICE = parseInt(process.env.NEXT_PUBLIC_SHIRT_PRICE || '300');
+const SHIRT_PRICE = parseInt('1');
+console.log('Env check:', SHIRT_PRICE);
 const CAP_PRICE = parseInt(process.env.NEXT_PUBLIC_CAP_PRICE || '200');
 const DEVELOPER_COUPON_CODE = process.env.NEXT_PUBLIC_DEVELOPER_COUPON_CODE || 'ESUMMIT_DEV_2025';
 const DEVELOPER_PRICE = parseInt(process.env.NEXT_PUBLIC_DEVELOPER_PRICE || '50');
@@ -25,57 +24,76 @@ interface UserDetails {
 }
 
 export default function Merchandise() {
+  const [session, setSession] = useState<any | null>(undefined);
+  const [loadingSession, setLoadingSession] = useState(true);
   const editUserRef = useRef(null);
   const [isScriptLoaded, setIsScriptLoaded] = useState(false);
 
-  const handlePayment = () => {
-    console.log('RAZORPAY_KEY_ID:', RAZORPAY_KEY_ID);
-    console.log('Script loaded:', isScriptLoaded);
-    console.log('Window Razorpay:', typeof window !== 'undefined' ? window.Razorpay : 'undefined');
-
-    if (!RAZORPAY_KEY_ID) {
-      alert('Razorpay Key ID is missing! Check your environment variables.');
-      return;
-    }
-
-    if (!isScriptLoaded) {
-      alert('Payment system is loading. Please try again in a moment.');
-      return;
-    }
-
-    if (typeof window === 'undefined' || !window.Razorpay) {
-      alert('Payment system not available. Please refresh the page.');
-      return;
-    }
-
-    const options = {
-      key: RAZORPAY_KEY_ID,
-      amount: SHIRT_PRICE * 100, // Convert to paise
-      currency: 'INR',
-      name: 'E-Summit 25 Merchandise',
-      description: 'Official T-Shirt',
-      handler: function(response) {
-        alert(`Payment Successful! ID: ${response.razorpay_payment_id}`);
-        console.log('Payment Response:', response);
-      },
-      prefill: {
-        name: 'Test User',
-        email: 'test@example.com',
-      },
-      theme: { color: '#c085fd' },
-      modal: {
-        ondismiss: function() {
-          console.log('Payment modal closed');
-        }
+  useEffect(() => {
+    const fetchSession = async () => {
+      try {
+        const res = await fetch("/api/get-session");
+        const data = await res.json();
+        setSession(data.session);
+      } catch (err) {
+        console.error("Failed to fetch session:", err);
+        setSession(null);
+      } finally {
+        setIsScriptLoaded(true);
       }
     };
+    fetchSession();
+  }, []);
+
+  const handlePayment = async () => {
+    if (!RAZORPAY_KEY_ID || !isScriptLoaded || typeof window === "undefined" || !window.Razorpay) {
+      alert("Payment system not ready. Please refresh.");
+      return;
+    }
 
     try {
+      // STEP 1 — Create order on backend
+      const res = await fetch("/api/create-order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          amount: SHIRT_PRICE,
+          merchandise: "SHIRT",
+          userId: session.user.id,
+        }),
+      });
+      const { orderId } = await res.json();
+      if (!orderId) throw new Error("Order creation failed");
+
+      // STEP 2 — Open Razorpay Checkout
+      const options = {
+        key: RAZORPAY_KEY_ID,
+        amount: SHIRT_PRICE * 100,
+        currency: "INR",
+        name: "E-Summit 25 Merchandise",
+        description: "Official T-Shirt",
+        order_id: orderId,
+        handler: async function (response) {
+          // STEP 3 — Verify payment
+          const verifyRes = await fetch("/api/verify-payment", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(response),
+          });
+          const result = await verifyRes.json();
+          if (result.success) {
+            alert("Payment verified successfully!");
+          } else {
+            alert("Payment verification failed!");
+          }
+        },
+      };
+
       const rzp = new window.Razorpay(options);
       rzp.open();
-    } catch (error) {
-      console.error('Razorpay initialization error:', error);
-      alert('Payment initialization failed. Please try again.');
+    } catch (err) {
+      console.error("Payment error:", err);
+      alert("Failed to start payment. Try again.");
     }
   };
 
@@ -112,7 +130,7 @@ export default function Merchandise() {
           backgroundPosition: 'left',
         }}>
         <div className='min-h-screen flex items-center justify-center'>
-          <div className='bg-gradient-to-br backdrop-blur-lg border border-white/20 rounded-2xl p-1 max-w-5xl mx-4'>
+          <div className='bg-gradient-to-br backdrop-blur-lg border border-white/20 rounded-2xl p-1 max-w-5xl mx-4 my-10'>
             <h1 className="text-4xl text-[#c085fd] mt-8 justify-center font-bold text-center">
               E-Summit&apos;25 Merchandise
             </h1>
@@ -145,10 +163,19 @@ export default function Merchandise() {
                   <div className="flex my-6">
                     <span className="title-font font-medium text-2xl text-white">₹{SHIRT_PRICE}.00</span>
                     <button
-                      className="flex ml-auto bg-[#c085fd] text-[#101720] font-semibold border-0 py-2 px-6 focus:outline-none hover:bg-[#EAE2B7] rounded-full"
-                      onClick={handlePayment}
+                      className="flex ml-auto bg-[#c085fd] text-[#101720] font-semibold border-0 py-2 px-6 focus:outline-none hover:bg-[#EAE2B7] rounded-full cursor-pointer"
+                      onClick={() => {
+                        if (!isScriptLoaded) return;
+                        if (session) handlePayment();
+                        else window.location.href = "/sign-in";
+                      }}
                     >
-                      Buy {!isScriptLoaded && '(Loading...)'}
+                      {session === undefined || !isScriptLoaded
+                        ? "Loading..."
+                        : session
+                          ? "Buy"
+                          : "Login"
+                      }
                     </button>
                     <dialog
                       ref={editUserRef}
@@ -166,8 +193,8 @@ export default function Merchandise() {
           </div>
         </div>
       </section>
-      <Script 
-        src="https://checkout.razorpay.com/v1/checkout.js" 
+      <Script
+        src="https://checkout.razorpay.com/v1/checkout.js"
         onLoad={() => {
           console.log('Razorpay script loaded successfully');
           setIsScriptLoaded(true);
