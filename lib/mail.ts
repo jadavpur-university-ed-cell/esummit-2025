@@ -6,7 +6,7 @@ interface email{
     body: string
 }
 
-export default async function sendMail({to,name,subject,body}:email){
+export default async function sendMail({to,subject,body}:email){
     const password = process.env.SMTP_PASSWORD;
     const email = process.env.SMTP_EMAIL;
 
@@ -18,7 +18,7 @@ export default async function sendMail({to,name,subject,body}:email){
         }
     })
     try{
-        const testResult = await transport.verify();
+        // const testResult = await transport.verify();
     }
     catch(err){
         console.error(err);

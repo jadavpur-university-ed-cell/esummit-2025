@@ -1,9 +1,9 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-// Define a type for the response data for better type safety
+// Define a type for the response data
 type TeamWithMembers = {
   id: string;
   memberIds: string[];
@@ -12,6 +12,7 @@ type TeamWithMembers = {
     name: string;
     email: string;
     college?: string | null;
+    image?: string | null;
   }[];
 };
 
@@ -19,23 +20,12 @@ type ErrorResponse = {
   message: string;
 };
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<TeamWithMembers[] | ErrorResponse>
-) {
-  // Only allow GET requests for this endpoint
-  if (req.method !== 'GET') {
-    res.setHeader('Allow', ['GET']);
-    return res.status(405).json({ message: `Method ${req.method} Not Allowed` });
-  }
-
+// Handle GET requests
+export async function GET() {
   try {
-    // Fetch all teams from the database
     const teams = await prisma.team.findMany({
-      // Use 'include' to fetch the related 'members' (User objects)
       include: {
         members: {
-          // Use 'select' to pick only the necessary and non-sensitive fields
           select: {
             id: true,
             name: true,
@@ -47,13 +37,20 @@ export default async function handler(
       },
     });
 
-    // Send the successful response
-    return res.status(200).json(teams);
+    return NextResponse.json<TeamWithMembers[]>(teams, { status: 200 });
   } catch (error) {
-    // Log the error for debugging purposes
     console.error("Failed to fetch teams:", error);
-    
-    // Send an internal server error response
-    return res.status(500).json({ message: "Something went wrong." });
+    return NextResponse.json<ErrorResponse>(
+      { message: "Something went wrong." },
+      { status: 500 }
+    );
   }
+}
+
+// (Optional) Handle other HTTP methods gracefully
+export async function POST() {
+  return NextResponse.json(
+    { message: "Method POST Not Allowed" },
+    { status: 405 }
+  );
 }

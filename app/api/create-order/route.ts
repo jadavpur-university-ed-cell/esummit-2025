@@ -11,7 +11,9 @@ export async function POST(req: Request) {
     }
 
     const body = await req.json();
-    const { amount, merchandise, couponUsed, couponCode } = body;
+    const { amount, merchandise, 
+      // couponUsed, couponCode 
+    }  = body;
 
     if (!amount || !merchandise ) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });

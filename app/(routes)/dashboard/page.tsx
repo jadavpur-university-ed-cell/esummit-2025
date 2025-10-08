@@ -14,6 +14,7 @@ export default async function DashboardPage() {
   
   if (!session?.user?.email) {
     console.log("No session found");
+    
     return (
       <NotSigned />
     )}

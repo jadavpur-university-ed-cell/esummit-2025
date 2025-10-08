@@ -8,8 +8,8 @@ import AdminDashboard from "@/components/dashboard/admin/admin-dashboard";
 import SuperAdminDashboard from "@/components/dashboard/super-admin/super-admin-dashboard";
 import UserDashboard from "@/components/dashboard/user/user-dashboard";
 import NotSigned from "@/components/dashboard/not-signed/not-signed";
-import { mockEventData } from "@/mock/mockEventData";
 import { DashboardClientProps } from "@/types/all";
+import SkeletonLoader from "./skeletal/skeletal";
 
 export default function DashboardClient({ session }: DashboardClientProps) {
   const [user, setUser] = useState<User | null>(null);
@@ -21,7 +21,7 @@ export default function DashboardClient({ session }: DashboardClientProps) {
 
     (async () => {
       try {
-        "use server";
+        
         const res = await fetch("/api/find-user", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -39,7 +39,7 @@ export default function DashboardClient({ session }: DashboardClientProps) {
     })();
   }, [session]);
 
-  if (!session || loading) return <p className="text-black min-h-screen">Loading...</p>;
+  if (!session || loading) return <div className="text-black min-h-screen"><SkeletonLoader /></div>;
   if (!user) return <NotSigned />;
 
   switch (user.role) {
@@ -49,7 +49,6 @@ export default function DashboardClient({ session }: DashboardClientProps) {
       return <SuperAdminDashboard />;
     default:
       return <UserDashboard
-        eventData={mockEventData}
         userData={user}
         profileImage={profileImage}
       />;

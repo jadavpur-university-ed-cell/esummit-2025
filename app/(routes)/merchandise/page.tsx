@@ -4,6 +4,14 @@ import Image from 'next/image';
 import { FaXmark } from 'react-icons/fa6';
 import Script from 'next/script';
 import { useRef, useState, useEffect } from 'react';
+import { Session } from '@/types/all';
+import { useRouter } from 'next/navigation';
+
+interface Response {
+  razorpay_order_id: String,
+  razorpay_payment_id: String,
+  razorpay_signature: String
+}
 
 // Dynamic Pricing from environment variables
 const SHIRT_PRICE = parseInt('359');
@@ -12,19 +20,19 @@ const DEVELOPER_COUPON_CODE = process.env.NEXT_PUBLIC_DEVELOPER_COUPON_CODE || '
 const DEVELOPER_PRICE = parseInt(process.env.NEXT_PUBLIC_DEVELOPER_PRICE || '50');
 const RAZORPAY_KEY_ID = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!;
 
-interface UserDetails {
-  id: string;
-  name: string;
-  email: string;
-  shirtSize?: string;
-  college: string;
-  year: string;
-  branch: string;
-}
+// interface UserDetails {
+//   id: string;
+//   name: string;
+//   email: string;
+//   shirtSize?: string;
+//   college: string;
+//   year: string;
+//   branch: string;
+// }
 
 export default function Merchandise() {
-  const [session, setSession] = useState<any | null>(undefined);
-  const [loadingSession, setLoadingSession] = useState(true);
+  const router = useRouter();
+  const [session, setSession] = useState<Session | null>(null);
   const editUserRef = useRef(null);
   const [isScriptLoaded, setIsScriptLoaded] = useState(false);
 
@@ -70,7 +78,7 @@ export default function Merchandise() {
         currency: "INR",
         name: "E-Summit 25 Merchandise",
         description: "Official T-Shirt",
-        handler: async function (response) {
+        handler: async function (response: Response) {
           const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = response;
 
           // if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature) {
@@ -92,7 +100,7 @@ export default function Merchandise() {
 
           const result = await verifyRes.json();
           if (result.success) {
-            alert("Payment verified successfully!");
+            router.push("/dashboard");
           } else {
             alert("Payment verification failed!");
           }
@@ -112,22 +120,22 @@ export default function Merchandise() {
   };
 
   // Rest of your component logic stays the same...
-  const merchandiseData = {
-    SHIRT: {
-      name: "E-Summit'25 T-Shirt",
-      description: "Presenting the Official Merch of E-Summit'25. Grab your hands on the exclusive merchandise of E-Summit'25! A round-necked T-Shirt with a 200 GSM fabric, perfect for your casual outings.",
-      image: "/shirt.png",
-      originalPrice: SHIRT_PRICE
-    },
-  };
+  // const merchandiseData = {
+  //   SHIRT: {
+  //     name: "E-Summit'25 T-Shirt",
+  //     description: "Presenting the Official Merch of E-Summit'25. Grab your hands on the exclusive merchandise of E-Summit'25! A round-necked T-Shirt with a 200 GSM fabric, perfect for your casual outings.",
+  //     image: "/shirt.png",
+  //     originalPrice: SHIRT_PRICE
+  //   },
+  // };
 
-  const pricingConfig = {
-    shirtPrice: SHIRT_PRICE,
-    capPrice: CAP_PRICE,
-    developerCouponCode: DEVELOPER_COUPON_CODE,
-    developerPrice: DEVELOPER_PRICE,
-    razorpayKeyId: RAZORPAY_KEY_ID,
-  };
+  // const pricingConfig = {
+  //   shirtPrice: SHIRT_PRICE,
+  //   capPrice: CAP_PRICE,
+  //   developerCouponCode: DEVELOPER_COUPON_CODE,
+  //   developerPrice: DEVELOPER_PRICE,
+  //   razorpayKeyId: RAZORPAY_KEY_ID,
+  // };
 
   return (
     <>
@@ -178,6 +186,7 @@ export default function Merchandise() {
                         if (!isScriptLoaded) return;
                         if (session) handlePayment();
                         else window.location.href = "/sign-in";
+
                       }}
                     >
                       {session === undefined || !isScriptLoaded

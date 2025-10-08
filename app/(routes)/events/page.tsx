@@ -4,7 +4,6 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
 import { DirectionAwareHover } from "@/components/ui/direction-aware-hover";
-import Image from 'next/image';
 import { eventData } from '@/assets/eventData';
 
 // Register ScrollTrigger plugin

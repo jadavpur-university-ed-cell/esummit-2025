@@ -3,19 +3,27 @@ import { LogOut, Bell } from "lucide-react";
 import { Event } from "@/types/all";
 import { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 interface UserDashboardProps {
-    eventData?: Event[];
     userData?: User;
     profileImage?: string;
 }
 
+interface MerchandiseOrder {
+    amount: number;
+    size: string;
+    status: string;
+    createdAt: string;
+    orderId: string;
+}
+
 export default function UserDashboard({
-    eventData = [],
     userData = {} as User,
     profileImage = "/user.png"
 }: UserDashboardProps) {
+    const router = useRouter();
     const [editing, setEditing] = useState(false);
     const [form, setForm] = useState({
         phone: userData.phone || "",
@@ -25,6 +33,7 @@ export default function UserDashboard({
         year: userData.year || "",
     });
     const [loading, setLoading] = useState(false);
+    const [orders, setOrders] = useState<MerchandiseOrder[] >([]);
     const [error, setError] = useState<string | null>(null);
 
 
@@ -32,6 +41,29 @@ export default function UserDashboard({
         setForm(prev => ({ ...prev, [field]: value }));
     };
 
+    useEffect(() => {
+        const fetchOrders = async () => {
+            try {
+                setLoading(true);
+                const res = await fetch("/api/order-by-user");
+                const data = await res.json();
+
+                if (!res.ok) {
+                    throw new Error(data.error || "Failed to fetch orders");
+                }
+
+                setOrders(data.order || "");
+                console.log(data);
+            } catch (err: any) {
+                console.error(err);
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchOrders();
+    }, []);
 
     const handleSave = async () => {
         setLoading(true);
@@ -67,191 +99,201 @@ export default function UserDashboard({
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'left',
             }}
-            className="pb-5"
+            className="pb-10 min-h-screen text-[#AFB2F5]"
         >
-            <main className="px-6 xms:px-16 md:px-[6vw] pt-20 text-[#afb2f5] font-semibold">
-                <header className="flex gap-4 justify-around py-6 md:py-8">
-                    <button className="cursor-pointer flex flex-row p-3 rounded-lg transition-all hover:bg-background/20 hover:-translate-y-0.5 font-semibold">
+            <main className="px-8 md:px-[6vw] pt-20 font-medium">
+                {/* Header */}
+                <header className="flex flex-wrap justify-between items-center py-8 gap-4 border-b border-white/10">
+                    <button className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/10 transition-all">
                         <Bell />
-                        <div className="pl-5">
-                            Notifications
-                        </div>
+                        <span>Notifications</span>
                     </button>
-                    <p className="text-4xl grid place-items-center">My Dashboard</p>
+
+                    <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-center md:flex-1">
+                        My Dashboard
+                    </h1>
+
                     <button
-                        onClick={() => signOut({ callbackUrl: "/" })}
-                        className="cursor-pointer flex flex-row p-3 rounded-lg transition-all hover:bg-background/20 hover:-translate-y-0.5 text-red-500 font-semibold"
+                        onClick={() => signOut({ callbackUrl: '/' })}
+                        className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/10 transition-all text-red-500 cursor-pointer"
                     >
                         <LogOut />
-                        <div className="pl-5">
-                            Logout
-                        </div>
+                        <span>Logout</span>
                     </button>
                 </header>
 
-                <p className="flex gap-4 py-6 md:py-8 text-2xl md:hidden">
-                    Hello, {userData.name}!
-                </p>
-
-                <div className="pb-6 md:pb-8 grid grid-cols-1 md:grid-cols-2 gap-6 xms:gap-x-16 md:gap-x-[6vw] md:gap-y-8">
-
+                <div className="py-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {/* Merchandise Section */}
                     <div className="order-2 md:order-1">
-                        <p className="md:flex py-4 text-2xl hidden">Hello, {userData.name}!</p>
-                        <div className="rounded-md ">
-                            <section className="flex flex-col items-center gap-6 p-6 rounded-md h-full w-full backdrop-blur-md bg-white/20">
-                                <p className="py-2 text-xl">My Merchandise</p>
-                                <div className="w-full max-w-3xs rounded-xl h-40  flex items-center justify-center">
-                                    <Image
-                                        src={"/merchandise/merch-in-dashboard.svg"}
-                                        height={150}
-                                        width={150}
-                                        alt={"Merchandise Image"}
-                                    />
-                                </div>
-                                <p className="flex text-lg">Status:
-                                    {/* {userData.merchandise.status || "N.A."} */}
-                                </p>
-                            </section>
-                        </div>
+                        <section className="backdrop-blur-md bg-white/10 border border-white/20 rounded-xl p-6 shadow-lg flex flex-col items-center">
+                            <h2 className="text-2xl font-semibold mb-3">My Merchandise</h2>
+                            <div className="my-4 w-full max-w-xs flex justify-center">
+                                <Image
+                                    src="/merchandise/shirt_nobg.png"
+                                    height={300}
+                                    width={300}
+                                    alt="Merchandise"
+                                    className="w-40 md:w-48"
+                                />
+                            </div>
+
+                            {!orders ? (
+                                <button
+                                    className="bg-[#c085fd] text-[#101720] font-semibold py-2 px-6 rounded-full hover:bg-[#EAE2B7] transition-all mt-3 cursor-pointer"
+                                    onClick={() => router.push('/merchandise')}
+                                >
+                                    Buy Merchandise
+                                </button>
+                            ) : (
+                                <table className="w-full text-sm md:text-base mt-5 border-collapse rounded-lg overflow-hidden">
+                                    <thead className="bg-[#c085fd]/20 text-left">
+                                        <tr>
+                                            <th className="p-3 font-medium">Order ID</th>
+                                            <th className="p-3 font-medium">Status</th>
+                                            <th className="p-3 font-medium">Size</th>
+                                            <th className="p-3 font-medium">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {orders.map((order, i) => (
+                                            <tr key = {i} className="border-t border-white/20 hover:bg-white/5 transition">
+                                            <td className="p-3">{order?.orderId || 'N.A.'}</td>
+                                            <td className="p-3">{order?.status || 'N.A.'}</td>
+                                            <td className="p-3">{order?.size || 'N.A.'}</td>
+                                            <td className="p-3">
+                                                {order?.amount ? `₹${order.amount}` : 'N.A.'}
+                                            </td>
+                                        </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            )}
+                        </section>
                     </div>
 
-                    <div className="rounded-md p-px order-1 md:order-2">
-                        <section className="flex flex-col items-center gap-6 p-6 rounded-md h-full w-full backdrop-blur-lg bg-white/20 text-xl">
-                            <div className="flex justify-center items-center w-full">
-                                <p className="font-bold">My Profile</p>
-                                <button onClick={() => setEditing(!editing)} className="cursor-pointer py-2 px-3 ml-2 hover:bg-background/20 rounded-md transition-all hover:shadow-md">
-                                    {editing ? "Cancel" : "Edit Profile"}
-                                </button>
-                            </div>
-                            <div className="flex flex-row">
-                                <div className="flex flex-col items-start space-y-1 font-medium">
-                                    <p>Name: {userData.name || "user"}</p>
-                                    <p>Email: {userData.email || "N.A."}</p>
-                                    <p>Role: {userData.role || "N.A."}</p>
+                    {/* Profile Section */}
+                    <div className="order-1 md:order-2">
+                        <section className="flex flex-col md:flex-row justify-between gap-8 p-6 rounded-xl backdrop-blur-md bg-white/10 border border-white/20 shadow-lg">
+                            <div className="flex flex-col gap-6 w-full md:w-2/3">
+                                <div className="flex items-center justify-between">
+                                    <h2 className="text-2xl font-semibold">My Profile</h2>
+                                    <button
+                                        onClick={() => setEditing(!editing)}
+                                        className="text-sm px-4 py-2 bg-black/70 text-white rounded-md hover:bg-black transition cursor-pointer"
+                                    >
+                                        {editing ? 'Cancel' : 'Edit'}
+                                    </button>
+                                </div>
 
-                                    {editing ? (
-                                        <>
-                                            <input className="border p-1 rounded-md" placeholder="Phone" value={form.phone} onChange={(e) => handleChange("phone", e.target.value)} />
-                                            <input className="border p-1 rounded-md" placeholder="Institution" value={form.college} onChange={(e) => handleChange("college", e.target.value)} />
-                                            <input className="border p-1 rounded-md" placeholder="Branch" value={form.branch} onChange={(e) => handleChange("branch", e.target.value)} />
-                                            <select
-                                                className="border p-1 rounded-md"
-                                                value={form.shirtSize}
-                                                onChange={(e) => handleChange("shirtSize", e.target.value)}
-                                            >
-                                                <option value="">Select Shirt Size</option>
-                                                <option value="XS">XS</option>
-                                                <option value="S">S</option>
-                                                <option value="M">M</option>
-                                                <option value="L">L</option>
-                                                <option value="XL">XL</option>
-                                                <option value="XXL">XXL</option>
-                                            </select>
-                                            <input className="border p-1 rounded-md" placeholder="Graduation Year" value={form.year} onChange={(e) => handleChange("year", e.target.value)} />
-                                            <button onClick={handleSave} disabled={loading} className="bg-blue-500 px-4 py-2 rounded-md text-white mt-2 cursor-pointer">Save</button>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <p>Phone No: {userData.phone || "N.A."}</p>
-                                            <p>Institution: {userData.college || "N.A."}</p>
-                                            <p>Branch: {userData.branch || "N.A."}</p>
-                                            <p>Shirt Size: {userData.shirtSize || "N.A."}</p>
-                                            <p>Graduation Year: {userData.year || "N.A."}</p>
-                                        </>
-                                    )}
-                                    {error && <p className="text-red-500">{error}</p>}
-                                </div>
-                                <div className="relative w-32 h-32">
-                                    {/* <div className="absolute inset-0 rounded-fullp-[3px]"> */}
-                                    {/* <div className="w-full h-full rounded-full bg-black flex items-center justify-center"> */}
-                                    <Image
-                                        src={profileImage}
-                                        alt="Profile"
-                                        width={128}
-                                        height={128}
-                                        className="rounded-full object-cover w-28 h-28 hover:scale-105 transition-transform duration-300"
-                                    />
-                                    {/* </div> */}
-                                    {/* </div> */}
-                                </div>
+                                {editing ? (
+                                    <div className="flex flex-col gap-3">
+                                        <input
+                                            className="border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
+                                            placeholder="Phone"
+                                            value={form.phone}
+                                            onChange={(e) => handleChange('phone', e.target.value)}
+                                        />
+                                        <input
+                                            className="border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
+                                            placeholder="Institution"
+                                            value={form.college}
+                                            onChange={(e) => handleChange('college', e.target.value)}
+                                        />
+                                        <input
+                                            className="border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
+                                            placeholder="Branch"
+                                            value={form.branch}
+                                            onChange={(e) => handleChange('branch', e.target.value)}
+                                        />
+                                        <select
+                                            className="border border-gray-300 bg-transparent p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
+                                            value={form.shirtSize}
+                                            onChange={(e) => handleChange('shirtSize', e.target.value)}
+                                        >
+                                            <option value="" className="text-black">Select Shirt Size</option>
+                                            {['XS', 'S', 'M', 'L', 'XL', 'XXL'].map((s) => (
+                                                <option key={s} value={s} className="text-black">
+                                                    {s}
+                                                </option>
+                                            ))}
+                                        </select>
+                                        <input
+                                            className="border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
+                                            placeholder="Graduation Year"
+                                            value={form.year}
+                                            onChange={(e) => handleChange('year', e.target.value)}
+                                        />
+                                        <button
+                                            onClick={handleSave}
+                                            disabled={loading}
+                                            className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md mt-2"
+                                        >
+                                            Save
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-3 text-base w-full">
+                                        <div className="col-span-2 sm:col-span-3">
+                                            <p className="text-gray-400 text-sm">Email</p>
+                                            <p className="font-medium text-white break-all">{userData.email || 'N.A.'}</p>
+                                        </div>
+
+                                        <div>
+                                            <p className="text-gray-400 text-sm">Role</p>
+                                            <p className="font-medium text-white">{userData.role || 'N.A.'}</p>
+                                        </div>
+                                        <div>
+                                            <p className="text-gray-400 text-sm">Phone</p>
+                                            <p className="font-medium text-white">{userData.phone || 'N.A.'}</p>
+                                        </div>
+                                        <div>
+                                            <p className="text-gray-400 text-sm">Institution</p>
+                                            <p className="font-medium text-white">{userData.college || 'N.A.'}</p>
+                                        </div>
+                                        <div>
+                                            <p className="text-gray-400 text-sm">Branch</p>
+                                            <p className="font-medium text-white">{userData.branch || 'N.A.'}</p>
+                                        </div>
+                                        <div>
+                                            <p className="text-gray-400 text-sm">Shirt Size</p>
+                                            <p className="font-medium text-white">{userData.shirtSize || 'N.A.'}</p>
+                                        </div>
+                                        <div>
+                                            <p className="text-gray-400 text-sm">Graduation Year</p>
+                                            <p className="font-medium text-white">{userData.year || 'N.A.'}</p>
+                                        </div>
+                                    </div>
+                                )}
+                                {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+                            </div>
+
+                            <div className="relative w-32 h-32 md:w-40 md:h-40 flex-shrink-0 self-center md:self-start">
+                                <Image
+                                    src={profileImage}
+                                    alt="Profile"
+                                    width={160}
+                                    height={160}
+                                    className="rounded-full object-cover w-full h-full border-4 border-white/30 shadow-md hover:scale-105 transition-transform duration-300"
+                                />
                             </div>
                         </section>
                     </div>
                 </div>
 
-                {/* Registered Events */}
-
-                <div className="col-span-full rounded-md p-px order-3">
-                    <section className="flex flex-col gap-6 rounded-md h-full w-full my-3 backdrop-blur-lg bg-white/20 py-6 px-[6vw]">
-                        <p className="text-2xl flex">Registered Events</p>
-                        {/* {userData.registeredEvents.length > 0 ? (
-                            <div className="grid gap-4 md:grid-cols-2">
-                                {userData.registeredEvents.map((eventSlug) => {
-                                    const event = eventData.find((e) => e.eventSlug === eventSlug);
-                                    if (!event) return null;
-                                    return (
-                                        <div key={eventSlug} className="rounded-lg bg-zinc-900/50 p-4 hover:shadow-md transition">
-                                            <p className="text-xl font-semibold">{event.eventName}</p>
-                                            <p className="text-sm text-gray-300">{event.description}</p>
-                                            <p className="text-sm text-gray-400 mt-1">{event.about}</p>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        ) : (
-                            <p className="flex text-lg">No events have been registered, as of now!</p>
-                        )} */}
+                {/* Event Sections */}
+                {['Registered', 'Wishlisted', 'Pending'].map((type) => (
+                    <section
+                        key={type}
+                        className="my-8 p-6 rounded-xl backdrop-blur-md bg-white/10 border border-white/20 shadow-lg"
+                    >
+                        <h2 className="text-2xl font-semibold mb-4">{type} Events</h2>
+                        <p className="text-lg text-gray-300">
+                            No events in this category, as of now.
+                        </p>
                     </section>
-                </div>
-
-                {/* Wishlisted Events */}
-                <div className="col-span-full rounded-md p-px order-4">
-                    <section className="flex flex-col gap-6 rounded-md h-full w-full my-3 backdrop-blur-lg bg-white/20 py-6 px-[6vw]">
-                        <p className="text-2xl flex">Wishlisted Events</p>
-                        {/* {userData.wishlist.length > 0 ? (
-                            <div className="grid gap-4 md:grid-cols-2">
-                                {userData.wishlist.map((eventSlug) => {
-                                    const event = eventData.find((e) => e.eventSlug === eventSlug);
-                                    if (!event) return null;
-                                    return (
-                                        <div key={eventSlug} className="rounded-lg bg-zinc-900/50 p-4 hover:shadow-md transition">
-                                            <p className="text-xl font-semibold">{event.eventName}</p>
-                                            <p className="text-sm text-gray-300">{event.description}</p>
-                                            <p className="text-sm text-gray-400 mt-1">{event.about}</p>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        ) : (
-                            <p className="flex text-lg">No events are in your wishlist, as of now!</p>
-                        )} */}
-                    </section>
-                </div>
-
-                {/* Pending Events */}
-                <div className="col-span-full rounded-md p-px order-5">
-                    <section className="flex flex-col gap-6 rounded-md h-full w-full my-3 backdrop-blur-lg bg-white/20 py-6 px-[6vw]">
-                        <p className="text-2xl flex">Pending Events</p>
-                        {/* {userData.pendingEvents.length > 0 ? (
-                            <div className="grid gap-4 md:grid-cols-2">
-                                {userData.pendingEvents.map((eventSlug) => {
-                                    const event = eventData.find((e) => e.eventSlug === eventSlug);
-                                    if (!event) return null;
-                                    return (
-                                        <div key={eventSlug} className="rounded-lg bg-zinc-900/50 p-4 hover:shadow-md transition">
-                                            <p className="text-xl font-semibold">{event.eventName}</p>
-                                            <p className="text-sm text-gray-300">{event.description}</p>
-                                            <p className="text-sm text-gray-400 mt-1">{event.about}</p>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        ) : (
-                            <p className="flex text-lg">No events are pending, as of now!</p>
-                        )} */}
-                    </section>
-                </div>
+                ))}
             </main>
         </section>
+
     )
 }

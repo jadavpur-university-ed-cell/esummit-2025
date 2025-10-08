@@ -1,4 +1,4 @@
-import crypto from "crypto";
+
 import { NextResponse } from "next/server";
 import { prisma } from "@/prisma/client";
 import { auth } from "@/auth";
@@ -10,7 +10,9 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
         }
 
-        const { razorpay_order_id, razorpay_payment_id, razorpay_signature, merchandise, amount } = await req.json();
+        const {
+            // razorpay_order_id, razorpay_signature,
+            razorpay_payment_id, merchandise, amount } = await req.json();
 
         // const body = razorpay_order_id + "|" + razorpay_payment_id;
         // const expectedSignature = crypto

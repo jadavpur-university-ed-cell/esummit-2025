@@ -16,20 +16,20 @@ const SignIn = () => {
   const searchParams = useSearchParams();
   const error = searchParams.get("error") as AuthErrorType | null;
 
-  const errorMessage = (() => {
-    switch (error) {
-      case "AccessDenied":
-        return "You're not allowed to sign in with this email domain.";
-      case "OAuthAccountNotLinked":
-        return "This account is already linked with a different provider.";
-      case "Configuration":
-        return "There was a configuration issue.";
-      case "Callback":
-        return "Something went wrong during sign-in. Please try again.";
-      default:
-        return error ? "An unknown error occurred." : null;
-    }
-  })();
+  // const errorMessage = (() => {
+  //   switch (error) {
+  //     case "AccessDenied":
+  //       return "You're not allowed to sign in with this email domain.";
+  //     case "OAuthAccountNotLinked":
+  //       return "This account is already linked with a different provider.";
+  //     case "Configuration":
+  //       return "There was a configuration issue.";
+  //     case "Callback":
+  //       return "Something went wrong during sign-in. Please try again.";
+  //     default:
+  //       return error ? "An unknown error occurred." : null;
+  //   }
+  // })();
   return (
     <div className="min-h-screen flex"
       style={{

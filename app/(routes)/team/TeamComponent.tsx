@@ -22,6 +22,7 @@ const TeamPage = () => {
   
   const [activeTeam, setActiveTeam] = useState(teams[0].name);
   const [isMobile, setIsMobile] = useState(false);
+  console.log(isMobile);
   
   const activeMembers = teams.find(team => team.name === activeTeam)?.members ?? [];
 
