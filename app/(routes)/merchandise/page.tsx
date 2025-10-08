@@ -6,7 +6,7 @@ import Script from 'next/script';
 import { useRef, useState, useEffect } from 'react';
 
 // Dynamic Pricing from environment variables
-const SHIRT_PRICE = parseInt('1');
+const SHIRT_PRICE = parseInt('359');
 console.log('Env check:', SHIRT_PRICE);
 const CAP_PRICE = parseInt(process.env.NEXT_PUBLIC_CAP_PRICE || '200');
 const DEVELOPER_COUPON_CODE = process.env.NEXT_PUBLIC_DEVELOPER_COUPON_CODE || 'ESUMMIT_DEV_2025';
