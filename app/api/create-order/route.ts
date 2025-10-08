@@ -20,42 +20,18 @@ export async function POST(req: Request) {
     // Fetch extra user data from Prisma
     const user = await prisma.user.findUnique({
       where: { email: session.user.email },
-      select: {
-        id: true,
-        name: true,
-        email: true,
-        shirtSize: true,
-        college: true,
-        year: true,
-        branch: true,
-      },
+      select: { id: true, shirtSize: true },
     });
 
-    if (!user) {
-      return NextResponse.json({ error: "User not found" }, { status: 404 });
-    }
-
-    if (!user.shirtSize){
-      return NextResponse.json({ error: "Please complete your profile"}, {status: 422})
+    if (!user || !user.shirtSize) {
+      return NextResponse.json({ error: "Complete your profile first" }, { status: 422 });
     }
 
     // Generate a unique order ID / receipt
     const receipt = `merch_${crypto.randomBytes(8).toString("hex")}`;
 
     // Create the MerchandiseOrder in Prisma
-    const order = await prisma.merchandiseOrder.create({
-      data: {
-        orderId: receipt,
-        amount,
-        merchandise,
-        size: user.shirtSize,
-        userId: user.id,
-        couponUsed: couponUsed || false,
-        couponCode: couponCode || null,
-      },
-    });
-
-    return NextResponse.json({ orderId: order.orderId });
+    return NextResponse.json({ orderId: receipt });
   } catch (err) {
     console.error("Error creating merchandise order:", err);
     return NextResponse.json({ error: "Something went wrong" }, { status: 500 });

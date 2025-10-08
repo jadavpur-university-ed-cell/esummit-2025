@@ -7,7 +7,6 @@ import { useRef, useState, useEffect } from 'react';
 
 // Dynamic Pricing from environment variables
 const SHIRT_PRICE = parseInt('359');
-console.log('Env check:', SHIRT_PRICE);
 const CAP_PRICE = parseInt(process.env.NEXT_PUBLIC_CAP_PRICE || '200');
 const DEVELOPER_COUPON_CODE = process.env.NEXT_PUBLIC_DEVELOPER_COUPON_CODE || 'ESUMMIT_DEV_2025';
 const DEVELOPER_PRICE = parseInt(process.env.NEXT_PUBLIC_DEVELOPER_PRICE || '50');
@@ -58,8 +57,7 @@ export default function Merchandise() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           amount: SHIRT_PRICE,
-          merchandise: "SHIRT",
-          userId: session.user.id,
+          merchandise: "SHIRT"
         }),
       });
       const { orderId } = await res.json();
@@ -72,14 +70,26 @@ export default function Merchandise() {
         currency: "INR",
         name: "E-Summit 25 Merchandise",
         description: "Official T-Shirt",
-        order_id: orderId,
         handler: async function (response) {
-          // STEP 3 — Verify payment
+          const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = response;
+
+          // if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature) {
+          //   alert("Payment failed: incomplete response from Razorpay");
+          //   return;
+          // }
+
           const verifyRes = await fetch("/api/verify-payment", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(response),
+            body: JSON.stringify({
+              razorpay_order_id,
+              razorpay_payment_id,
+              razorpay_signature,
+              merchandise: "SHIRT",
+              amount: SHIRT_PRICE
+            }),
           });
+
           const result = await verifyRes.json();
           if (result.success) {
             alert("Payment verified successfully!");
