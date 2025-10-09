@@ -40,9 +40,9 @@ export default function Page() {
       </nav>
 
       {/* Hero Section */}
-      <div className="text-center px-4 pt-12 sm:pt-0 mb-16">
+      <div className="text-center px-4 pt-12 sm:pt-0 mb-16 flex flex-col items-center">
         <h1 className="text-6xl font-bold mb-8 tracking-wider text-gray-200">
-          {eventDetails.eventName.toUpperCase()}
+          {eventDetails.eventName}
         </h1>
         <p className="text-gray-300 max-w-2xl mx-auto text-lg leading-relaxed mb-12">
           {eventDetails.about}
@@ -99,7 +99,7 @@ export default function Page() {
                 className="flex flex-col rounded-2xl p-6 bg-slate-800/50 border border-gray-300/10"
               >
                 <Image
-                  src={speaker.image}
+                  src={speaker.imageUrl}
                   alt={speaker.name}
                   width={300}
                   height={300}

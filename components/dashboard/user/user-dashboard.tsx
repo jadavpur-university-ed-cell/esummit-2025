@@ -114,7 +114,10 @@ export default function UserDashboard({
                     </h1>
 
                     <button
-                        onClick={() => signOut({ callbackUrl: '/' })}
+                        onClick={() => {
+                            signOut({ redirect: false });
+                            router.push("/");
+                        }}
                         className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/10 transition-all text-red-500 cursor-pointer"
                     >
                         <LogOut />

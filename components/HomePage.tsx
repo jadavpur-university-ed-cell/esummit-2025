@@ -31,7 +31,7 @@ export default function ParallaxWebsite() {
 
   useEffect(() => {
     // Detect screen width
-    if (window.innerWidth < 1024) return;
+    //if (window.innerWidth < 1024) return;
     const mobileCheck = window.innerWidth < 1024;
     setIsMobile(mobileCheck);
 
@@ -137,7 +137,7 @@ export default function ParallaxWebsite() {
           ref={backgroundRef}
           className="h-full"
           style={{
-            backgroundImage: 'url(/background.png)',
+            backgroundImage: isMobile ? 'url(/mobile-background.png)' : 'url(/background.png)',
             width: isMobile ? '100vw' : `${(16534 / 972) * 100}vh`,
             height: '100vh',
             backgroundSize: isMobile ? 'cover' : 'contain',
