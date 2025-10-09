@@ -1,8 +1,15 @@
+"use client"
 import { FaInstagram, FaTwitter, FaLinkedin, FaFacebook } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
+import {  usePathname } from "next/navigation";
 
 const Footer = () => {
+	const pathname = usePathname()
+	if (pathname === "/sign-in")
+			return (
+				<></>
+	)
   return (
     <footer id="contact" className="bg-[#1B1C3D] text-gray-300 px-6 md:px-16 py-12">
       <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 place-items-center">

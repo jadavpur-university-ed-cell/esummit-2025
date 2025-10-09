@@ -95,7 +95,7 @@ export const DirectionAwareHover = ({
               )}
               width="1000"
               height="1000"
-              src={imageUrl}
+              src={'/event-logo/Dizmart.png'}
             />
           </motion.div>
           <motion.div
