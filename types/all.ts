@@ -26,6 +26,9 @@ export type Event = {
   contact: Contact[];
   faq: FAQ[];
   sponsors: string[];
+  day?: string;
+  image?: string;
+  previewText?: string;
 };
 
 export interface SessionUser {

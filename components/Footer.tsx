@@ -4,9 +4,9 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#1B1C3D] text-gray-300 px-6 md:px-16 py-12">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
-        <div className="flex items-center h-12">
+    <footer id="contact" className="bg-[#1B1C3D] text-gray-300 px-6 md:px-16 py-12">
+      <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 place-items-center">
+        <Link href={"/"} className="flex items-center h-12 col-span-2 md:col-span-1">
           <Image
             width={1000}
             height={100}
@@ -14,7 +14,7 @@ const Footer = () => {
             alt="E-SUMMIT&apos;25"
             className="h-full object-contain"
           />
-        </div>
+        </Link>
 
         <div>
           <h3 className="text-sm font-semibold text-white uppercase tracking-wide">
@@ -74,9 +74,9 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="border-t border-gray-600 mt-10 pt-6 flex flex-col md:flex-row items-center justify-between text-xs text-gray-400">
+      <div className="border-t border-gray-600 mt-10 pt-6 flex flex-col md:flex-row items-center justify-between text-xs text-gray-400 text-center">
         <p>
-          © {new Date().getFullYear()} Jadavpur University Entrepreneurship Cell. All rights reserved.
+          © 2025 Jadavpur University Entrepreneurship Cell. All rights reserved.
         </p>
 
         <div className="flex space-x-5 mt-4 md:mt-0 text-lg">
