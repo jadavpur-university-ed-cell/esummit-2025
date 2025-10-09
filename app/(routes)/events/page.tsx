@@ -117,7 +117,7 @@ const EventPage = () => {
                   className="event-card relative w-full aspect-video overflow-hidden rounded-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
                 >
                   <DirectionAwareHover
-                    imageUrl={`/${event.image}`}
+                    imageUrl={`/event-logos/${event.image}`}
                     className="relative h-full w-full overflow-visible border-2 border-[#c085fd]/20"
                   >
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
