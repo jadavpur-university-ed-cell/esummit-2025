@@ -6,7 +6,9 @@ export const eventData: Event[] = [
         eventName: "LaunchX",
         about: "random text",
         description: "some more text",
-        imageUrl: "./launchx.webp",
+        previewText: "Showcase, pitch, and launch your startup with expert backing.",
+        day: "Day 3",
+        image: "/teams/12.png",
         rounds: [
             {
                 number: "round 1",
@@ -71,7 +73,9 @@ export const eventData: Event[] = [
         eventName: "Mock Stock",
         about: "random text",
         description: "some more text",
-        imageUrl: "./mockstock.webp",
+        previewText: "Master trading skills in a risk-free, competitive stock simulation.",
+        day: "Day 1",
+        image: "/teams/4.png",
         rounds: [
             {
                 number: "round 1",
@@ -136,7 +140,9 @@ export const eventData: Event[] = [
         eventName: "Hack N Pitch",
         about: "random text",
         description: "some more text",
-        imageUrl: "./hacknpitch.webp",
+        previewText: "Join Hack-n-Pitch: Innovate, hack, and pitch your ideas overnight!",
+        day: "Day 2",
+        image: "/teams/6.png",
         rounds: [
             {
                 number: "round 1",
@@ -201,7 +207,9 @@ export const eventData: Event[] = [
         eventName: "Corporate Clash",
         about: "random text",
         description: "some more text",
-        imageUrl: "./corporateclash.webp",
+        previewText: "Test your strategic skills in the ultimate analyst challenge.",
+        day: "Day 1",
+        image: "/teams/5.png",
         rounds: [
             {
                 number: "round 1",
@@ -266,7 +274,9 @@ export const eventData: Event[] = [
         eventName: "Summit Cup",
         about: "random text",
         description: "some more text",
-        imageUrl: "./summitcup.webp",
+        previewText: "New Event",
+        day: "Someday",
+        image: "/teams/8.png",
         rounds: [
             {
                 number: "round 1",
@@ -331,7 +341,9 @@ export const eventData: Event[] = [
         eventName: "Equity Edge",
         about: "random text",
         description: "some more text",
-        imageUrl: "./equityedge.webp",
+        previewText: "new event",
+        day: "someday",
+        image: "/teams/7.png",
         rounds: [
             {
                 number: "round 1",
@@ -396,33 +408,10 @@ export const eventData: Event[] = [
         eventName: "Inspira Talks",
         about: "random text",
         description: "some more text",
-        imageUrl: "./inspiratalks.webp",
-        rounds: [
-            {
-                number: "round 1",
-                title: "screening round",
-                about: "preliminary submission",
-                mode: "online"
-            },
-            {
-                number: "round 1",
-                title: "screening round",
-                about: "preliminary submission",
-                mode: "online"
-            },
-            {
-                number: "round 1",
-                title: "screening round",
-                about: "preliminary submission",
-                mode: "online"
-            },
-            {
-                number: "round 1",
-                title: "screening round",
-                about: "preliminary submission",
-                mode: "online"
-            }
-        ],
+        previewText: "Learn from top experts and ignite your entrepreneurial journey.",
+        day: "Day 3",
+        image: "/teams/9.png",
+        rounds: [],
         contact: [
             {
                 name: "john doe",
@@ -461,7 +450,9 @@ export const eventData: Event[] = [
         eventName: "Dizmart",
         about: "random text",
         description: "some more text",
-        imageUrl: "./dizmart.webp",
+        previewText: "Design impactful labels at Dizmart, merging creativity, branding, and marketing.",
+        day: "Day 2",
+        image: "/teams/2.png",
         rounds: [
             {
                 number: "round 1",
@@ -522,3 +513,18 @@ export const eventData: Event[] = [
         sponsors: []
     },
 ]
+
+export const inspiraTalksSpeakers = [
+    {
+        id: 1,
+        name: "Coming Soon",
+        designation: "",
+        image: "/speakerImages/comingsoon.png"
+    },
+    {   
+        id: 2,
+        name: "Coming Soon",
+        designation: "",
+        image: "/speakerImages/comingsoon.png"
+    },
+];

@@ -1,25 +1,21 @@
 import Image from "next/image";
 
 export default function Hero() {
-
-    return (
-        <section
-            className="min-h-screen flex items-center justify-center text-white"
-        >
-            <div className="text-center space-y-8 px-4">
-                <h1 className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-white via-purple-200 to-blue-200 bg-clip-text text-transparent">
-                    <Image
-                        src="/home/logo.svg"
-                        alt="E-Summit Logo"
-                        width={500}
-                        height={500}
-                        className="w-[65vw] drop-shadow-[(0 px 32px rgba(80, 0, 180, 0.45)]"
-                    />
-                </h1>
-                <p className="text-xl md:text-2xl text-[#afb2f5] max-w-2xl mx-auto font-semibold">
-                    Jadavpur University Entrepreneurship Cell Presents the Fifth Edition of Our Flagship Event
-                </p>
-            </div>
-        </section>
-    )
+  return (
+    <section className="min-h-screen flex items-center justify-center text-white">
+      <div className="flex flex-col items-center text-center space-y-8 px-4">
+        <Image
+          src="/home/logo.svg"
+          alt="E-Summit Logo"
+          width={500}
+          height={500}
+          className="w-[80vw] md:w-[65vw] drop-shadow-[(0 px 32px rgba(80, 0, 180, 0.45)]"
+        />
+        <p className="md:text-2xl text-[#afb2f5] max-w-2xl mx-auto font-semibold">
+          Jadavpur University Entrepreneurship Cell Presents the Fifth Edition
+          of Our Flagship Event
+        </p>
+      </div>
+    </section>
+  );
 }

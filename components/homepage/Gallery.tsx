@@ -1,13 +1,8 @@
 "use client";
 import React from "react";
-import "./Gallery.css";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
-import "swiper/css/autoplay"; // Import autoplay CSS (optional)
-import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules"; // Import Autoplay module
 import Image from "next/image";
+import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 const images = [
   { src: "/gallery/1.jpg", alt: "1" },
@@ -34,11 +29,28 @@ const images = [
   { src: "/gallery/22.jpg", alt: "22" },
   { src: "/gallery/23.jpg", alt: "23" },
   { src: "/gallery/24.jpg", alt: "24" },
+  { src: "/gallery/25.jpg", alt: "25" },
+  { src: "/gallery/26.jpg", alt: "26" },
+  { src: "/gallery/27.jpg", alt: "27" },
+  { src: "/gallery/28.jpg", alt: "28" },
+  { src: "/gallery/29.jpg", alt: "29" },
+  { src: "/gallery/30.jpg", alt: "30" },
+  { src: "/gallery/31.jpg", alt: "31" },
+  { src: "/gallery/32.jpg", alt: "32" },
+  { src: "/gallery/33.jpg", alt: "33" },
+  { src: "/gallery/34.jpg", alt: "34" },
+  { src: "/gallery/35.jpg", alt: "35" },
+  { src: "/gallery/36.jpg", alt: "36" },
+  { src: "/gallery/37.jpg", alt: "37" },
+  { src: "/gallery/38.jpg", alt: "38" },
+  { src: "/gallery/39.jpg", alt: "39" },
+  { src: "/gallery/40.jpg", alt: "40" },
+  { src: "/gallery/41.jpg", alt: "41" },
+  { src: "/gallery/42.jpg", alt: "42" },
+  { src: "/gallery/43.jpg", alt: "43" },
 ];
 
 function Gallery() {
-    
-
   return (
     <section
       id="gallery"
@@ -48,6 +60,7 @@ function Gallery() {
         <h1 className="animated-title text-5xl sm:text-7xl text-white py-3 mb-7 font-bold">
           Gallery
         </h1>
+        {/*
         <Swiper
           effect={"coverflow"}
           grabCursor={true}
@@ -74,6 +87,26 @@ function Gallery() {
             </SwiperSlide>
           ))}
         </Swiper>
+        */}
+        <Carousel
+          opts={{ loop: true, align: "start" }}
+          className="w-5/6 md:w-1/2"
+          plugins={[Autoplay({ delay: 2000 })]}
+        >
+          <CarouselContent>
+            {images.map((image) => (
+              <CarouselItem key={image.alt}>
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  width={900}
+                  height={600}
+                  className="rounded-4xl aspect-video"
+                />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
       </div>
     </section>
   );
