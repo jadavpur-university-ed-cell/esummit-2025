@@ -128,44 +128,6 @@ export const teams: Team[] = [
   // Add more teams...
 ];
 
-// const teams: Team[] = [
-//   {
-//     name: 'Admin',
-//     members: [
-//       {
-//         name: 'Debamita Banerjee',
-//         role: 'Student Head',
-//         imageUrl:
-//           '/Team/Debamita_Banerjee.jpeg',
-//         instaUrl: 'https://www.instagram.com/debamitaa?igsh=aHJjeGZ1NzFpc24w&utm_source=qr',
-//         linkedinUrl: 'https://www.linkedin.com/in/debamita-banerjee?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',
-//       },
-//       {
-//         name: 'Asmit Acharya',
-//         role: 'Deputy Student Head',
-//         imageUrl:
-//           '/Team/Asmit_Acharya.jpg',
-//         instaUrl: '#',
-//         linkedinUrl: 'https://www.linkedin.com/in/asmit-acharya-086792228/',
-//       },
-//       {
-//         name: 'Harsham Mishra',
-//         role: 'Deputy Student Head',
-//         imageUrl:
-//           '/Team/Harsham_Mishra.jpg',
-//         instaUrl: 'https://www.instagram.com/harsham_09/',
-//         linkedinUrl: 'https://www.linkedin.com/in/harsham-mishra-bb1728228/',
-//       },
-//       {
-//         name: 'Sparsh Gupta',
-//         role: 'IIC Student Lead',
-//         imageUrl:
-//           '/Team/Sparsh_Gupta.png',
-//         instaUrl: 'https://www.instagram.com/sparshxgupta/',
-//         linkedinUrl: 'https://www.linkedin.com/in/sparsh-gupta-7bb201243/',
-//       }
-//     ],
-//   },
 //   {
 //     name: 'Tech',
 //     members: [
@@ -208,22 +170,6 @@ export const teams: Team[] = [
 //           '/Team/Arnob_Bhakta.jpg',
 //         instaUrl: '#',
 //         linkedinUrl: 'https://www.linkedin.com/in/arnob-bhakta-a86531296/',
-//       },
-//       {
-//         name: 'Anuran Das',
-//         role: 'OC, Frontend Developer',
-//         imageUrl:
-//           '/Team/Anuran_Das.png',
-//         instaUrl: 'https://www.instagram.com/anu.run?igsh=MTRvcHlla2x6dTY3dw==',
-//         linkedinUrl: 'https://www.linkedin.com/in/anuran-das-86898a23b',
-//       },
-//       {
-//         name: 'Arka Dutta',
-//         role: 'OC, Backend Developer',
-//         imageUrl:
-//           '/Team/Arka_Dutta.jpg',
-//         instaUrl: '#',
-//         linkedinUrl: 'https://www.linkedin.com/in/arka-dutta-282b22287',
 //       },
 //       {
 //         name: 'Rishob Mondal',
@@ -271,14 +217,6 @@ export const teams: Team[] = [
 //         linkedinUrl: 'https://www.linkedin.com/in/sohamdeep-mondal?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',
 //       },
 //       {
-//         name: 'Souptik Dasgupta',
-//         role: 'PR Member',
-//         imageUrl:
-//           '/Team/Souptik_Dasgupta.jpg',
-//         instaUrl: 'https://www.instagram.com/dark_sdg_4_u/profilecard/?igsh=MW55N3B6bzl1eTk4Ng==',
-//         linkedinUrl: 'https://www.linkedin.com/in/souptik-dasgupta-246871325?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-//       },
-//       {
 //         name: 'Oyshi Mukherjee',
 //         role: 'Organising PR',
 //         imageUrl:
@@ -295,13 +233,6 @@ export const teams: Team[] = [
 //         linkedinUrl: 'https://www.linkedin.com/in/anamitra-roy-832a6b301?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
 //       },
 //       {
-//         name: 'Rajiv Mishra',
-//         role: 'Organising PR',
-//         imageUrl:
-//           '/Team/Rajiv_Mishra.jpg',
-//         instaUrl: 'https://www.instagram.com/rajiv._.mishra7?igsh=MWJrZzc1NmE2N3Z5NQ==',
-//         linkedinUrl: 'https://www.linkedin.com/in/rajivmishra068',
-//       },
 //       {
 //         name: 'Sayandip Das',
 //         role: 'Organising PR',
@@ -316,22 +247,6 @@ export const teams: Team[] = [
 //         imageUrl: '/Team/Rudra_Ray.jpeg',
 //         instaUrl: 'https://www.instagram.com/rudray006/',
 //         linkedinUrl: 'https://www.linkedin.com/in/rudray006/',
-//       },
-//       {
-//         name: 'Sayan Biswas',
-//         role: 'Organising PR',
-//         imageUrl:
-//           '/Team/Sayan_Biswas.jpg',
-//         instaUrl: 'http://instagram.com/spartan0765/',
-//         linkedinUrl: 'https://www.linkedin.com/in/sayan-biswas-7b5b52284',
-//       },
-//       {
-//         name: 'Rupkatha Biswas',
-//         role: 'Organising PR',
-//         imageUrl:
-//           '/Team/Rupkatha_Biswas.jpg',
-//         instaUrl: 'https://www.instagram.com/rups_biswas/profilecard/?igsh=MWUydTBzYzZhZTV1cg==',
-//         linkedinUrl: 'https://www.linkedin.com/in/rupkatha-biswas-232098311?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
 //       },
 //       // Add more Public Relations team members here
 //     ],
@@ -420,22 +335,6 @@ export const teams: Team[] = [
 //         linkedinUrl: 'https://www.linkedin.com/in/taufiqueali?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
 //       },
 //       {
-//         name: 'Bitan Mukherjee',
-//         role: 'Judges Coordinator',
-//         imageUrl:
-//           '/Team/Bitan_Mukherjee.jpg',
-//         instaUrl: 'https://www.instagram.com/bitanmukherjeeee?igsh=MWV3cmFsZjY0dmdkbw==',
-//         linkedinUrl: 'https://www.linkedin.com/in/bitan-mukherjee-10b66a1a8?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-//       },
-//       {
-//         name: 'Arpan Banerjee ',
-//         role: 'Judges Coordinator',
-//         imageUrl:
-//           '/Team/Arpan_Banerjee.jpg',
-//         instaUrl: 'https://www.instagram.com/arpan_banerjee_ab?igsh=N2J0bDd5OG1sc3Bt',
-//         linkedinUrl: 'https://www.linkedin.com/in/arpan-banerjee-470ba6297',
-//       },
-//       {
 //         name: 'Ayudh Banerjee',
 //         role: 'Judges Coordinator',
 //         imageUrl:
@@ -443,14 +342,6 @@ export const teams: Team[] = [
 //         instaUrl: 'https://www.instagram.com/melody_of_lyf/',
 //         linkedinUrl: 'https://www.linkedin.com/in/ayudh-banerjee/',
 //       },
-//       {
-//         name: 'Rahul Verma',
-//         role: 'Judges Coordinator',
-//         imageUrl:
-//           '/Team/Rahul_Verma.jpg',
-//         instaUrl: 'https://www.instagram.com/rv_rahulverma.31/profilecard/?igsh=dmZ2ZG1zNjczaTB2',
-//         linkedinUrl: 'https://www.linkedin.com/in/rahulverma31?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-//       }
 //       // Add more finance team members here
 //     ],
 //   },
@@ -505,15 +396,6 @@ export const teams: Team[] = [
 //         instaUrl: 'https://www.instagram.com/thelaughinghooman?igsh=c2Z4MzV0YzBvOHpv',
 //         linkedinUrl: 'https://www.linkedin.com/in/pramaray?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
 //       },
-      
-//       {
-//         name: 'Shrinjita Biswas',
-//         role: 'OC, Video Editor',
-//         imageUrl:
-//           '/Team/Shrinjita_Biswas.jpg',
-//         instaUrl: 'https://www.instagram.com/shrinjita.exe?igsh=ZGMwanRiMDB4cXcw',
-//         linkedinUrl: 'https://www.linkedin.com/in/shrinjita-biswas-82421921a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-//       },
 //       {
 //         name: 'Chandrima Ghosh',
 //         role: 'Designer',
@@ -529,14 +411,6 @@ export const teams: Team[] = [
 //           '/Team/Saumili_Roy.jpeg',
 //         instaUrl: 'https://www.instagram.com/saumilir?igsh=MWVzejloNTl4YTJwOQ==',
 //         linkedinUrl: 'http://linkedin.com/saumili-roy',
-//       },
-//       {
-//         name: 'Arijit Paul',
-//         role: 'Designer',
-//         imageUrl:
-//           '/Team/Arijit_Paul.jpg',
-//         instaUrl: 'https://www.instagram.com/arijit140106/',
-//         linkedinUrl: 'https://www.linkedin.com/in/arijit-paul-384906280/',
 //       },
 //       {
 //         name: 'Sombrata Biswas',
@@ -585,22 +459,7 @@ export const teams: Team[] = [
 //         instaUrl: 'https://www.instagram.com/barnik_br7/',
 //         linkedinUrl: 'https://www.linkedin.com/in/barnik-ray-br7/',
 //       },
-//       {
-//         name: 'Moon Roy Samal',
-//         role: 'OC, Logistics Member',
-//         imageUrl:
-//           '/Team/Moon_Roy_Samal.jpg',
-//         instaUrl: 'https://www.instagram.com/_self.w.a.n.d.e.r.e.r_?igsh=emN0YnBxazdocGlw',
-//         linkedinUrl: 'https://www.linkedin.com/in/moon-roy-samal-4b3621333?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-//       },
-//       {
-//         name: 'Prerana Acharyya',
-//         role: 'OC, Logistics Member',
-//         imageUrl:
-//           '/Team/Prerana_Acharyya.jpeg',
-//         instaUrl: 'https://www.instagram.com/likewise_pa/',
-//         linkedinUrl: 'https://www.linkedin.com/in/prerana-acharyya-60b1652a1',
-//       },
+//       
 //       // Add more finance team members here
 //     ],
 //   },
