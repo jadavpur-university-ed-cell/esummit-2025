@@ -17,6 +17,7 @@ enum Role {
   USER
   REFERRED_USER
   ADMIN
+  SUPER_ADMIN
   CAMPUS_AMBASSADOR
 }
 
@@ -25,48 +26,108 @@ enum PaymentStatus {
   COMPLETED
   FAILED
 }
+
 enum PaymentMethod {
   CARD
   NETBANKING
   UPI
 }
-type Notification {
-  id String
-  title String
+
+enum MerchandiseType {
+  SHIRT
+  // CAP
+}
+
+model Notification {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String   @db.ObjectId
+  user        User     @relation(fields: [userId], references: [id])
+  title       String
   description String
-  tags String[]
-  read Boolean
+  createdAt   DateTime @default(now())
+  read        Boolean  @default(false)
+
+  @@map("notifications")
 }
 
 model User {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
-  email String @unique
-  name  String
-  password String
-  college String
-  year String
-  branch String
-  rollNo String?
-  role Role
-  referralCode String @unique
-  payments Payments[] @relation("UserPayments")
-  teamIDs String[] @db.ObjectId
-  teams Team[] @relation(fields: [teamIDs], references: [id])
+  id                String             @id @default(auto()) @map("_id") @db.ObjectId
+  email             String             @unique
+  name              String
+  password          String?
+  phone             String?
+  college           String?
+  year              String?
+  branch            String?
+  rollNo            String?
+  role              Role?              @default(USER)
+  image             String?
+  emailVerified     Boolean?           @default(false)
+  referralCode      String?
+  payments          Payments[]         @relation("UserPayments")
+  teamIDs           String[]           @db.ObjectId
+  teams             Team[]             @relation(fields: [teamIDs], references: [id])
+  shirtSize         String? // XS, S, M, L, XL, XXL
+  merchandiseOrders MerchandiseOrder[]
+  notifications     Notification[]
+  accounts          Account[]
+
+  @@map("user")
 }
 
-model Team{
-  id String @id @default(auto()) @map("_id") @db.ObjectId
+model Account {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  token_type        String?
+  refresh_token     String? @db.String
+  access_token      String? @db.String
+  id_token          String? @db.String
+  scope             String?
+  session_state     String?
+  expires_at        Int?
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @db.ObjectId
+
+  @@unique([provider, providerAccountId])
+  @@map("account")
+}
+
+model Team {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   memberIds String[] @db.ObjectId
-  members User[] @relation(fields: [memberIds], references: [id])
+  members   User[]   @relation(fields: [memberIds], references: [id])
 }
 
 model Payments {
-  id             String         @id @default(auto()) @map("_id") @db.ObjectId
-  userId         String         @db.ObjectId
-  user           User           @relation("UserPayments", fields: [userId], references: [id])
-  amount         Int
-  paymentDate    DateTime       @default(now())
-  paymentMethod  PaymentMethod
-  transactionId  String         @unique
-  status         PaymentStatus
+  id            String        @id @default(auto()) @map("_id") @db.ObjectId
+  userId        String        @db.ObjectId
+  user          User          @relation("UserPayments", fields: [userId], references: [id])
+  amount        Float
+  paymentDate   DateTime      @default(now())
+  paymentMethod PaymentMethod
+  transactionId String        @unique
+  status        PaymentStatus
+}
+
+model MerchandiseOrder {
+  id          String          @id @default(auto()) @map("_id") @db.ObjectId
+  orderId     String          @unique
+  amount      Float
+  currency    String          @default("INR")
+  receipt     String?
+  status      String          @default("created")
+  paymentId   String?
+  userId      String          @db.ObjectId
+  user        User            @relation(fields: [userId], references: [id])
+  merchandise MerchandiseType
+  size        String
+  couponUsed  Boolean         @default(false)
+  couponCode  String?
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  @@map("merchandise_orders")
 }

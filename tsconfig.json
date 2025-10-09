@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/bg/Fire.jsx", "components/HomePage.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/bg/Fire.jsx", "components/HomePage.tsx", "prisma/seeds/seedMerchandiseOrders.js", "prisma/seeds/seedUsers.js", "prisma/seeds/seedTeams.js", "prisma/seeds/seedPayments.js", "prisma/seed.js"],
   "exclude": ["node_modules"]
 }
