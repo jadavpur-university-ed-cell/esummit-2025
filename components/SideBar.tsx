@@ -1,10 +1,7 @@
 "use client";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
-import { usePathname } from "next/navigation";
+import React, { useState } from "react";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
 import { NavigationItems } from "./Navbar";
 
 function NavComponent({ name, location, onClick }: { name: string; location: string; onClick?: () => void }) {
