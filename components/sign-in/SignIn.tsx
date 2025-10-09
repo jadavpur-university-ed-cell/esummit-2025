@@ -2,6 +2,7 @@
 import { SignInButton } from "./signInButton";
 import { useSearchParams } from "next/navigation";
 import Image from 'next/image';
+import Link from "next/link";
 
 type AuthErrorType =
   | "AccessDenied"
@@ -62,15 +63,15 @@ const SignIn = () => {
             <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               E-Summit
             </h1>
-            <p className="text-gray-600 dark:text-gray-300 mt-2">Welcome back</p>
+            <p className="text-gray-600 dark:text-gray-200 mt-2">Welcome back</p>
           </div>
 
           {/* Desktop Header */}
           <div className="hidden lg:block">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+            <h2 className="text-3xl font-bold text-white">
               Welcome back
             </h2>
-            <p className="mt-2 text-sm text-black dark:text-gray-300">
+            <p className="mt-2 text-sm text-gray-300` ">
               Sign in to your account to continue
             </p>
           </div>
@@ -86,13 +87,9 @@ const SignIn = () => {
             <div className="mt-6 text-center">
               <p className="text-xs text-gray-500 dark:text-gray-400">
                 By signing in, you agree to our{" "}
-                <a href="/terms" className="text-indigo hover:underline">
-                  Terms of Service
-                </a>{" "}
-                and{" "}
-                <a href="/privacy" className="text-indigo hover:underline">
+                <Link href="/privacy-policy.pdf" className="text-indigo hover:underline">
                   Privacy Policy
-                </a>
+                </Link>
               </p>
             </div>
           </div>

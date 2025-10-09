@@ -45,17 +45,17 @@ const Footer = () => {
           </h3>
           <ul className="mt-4 space-y-2 text-sm">
             <li>
-              <Link href="/brochure" className="hover:text-white transition">
+              <Link href="/participant-handbook.pdf" className="hover:text-white transition">
                 Brochure
               </Link>
             </li>
             <li>
-              <Link href="/sponsors" className="hover:text-white transition">
+              <Link href="/sponsorship-brochure.pdf" className="hover:text-white transition">
                 For Sponsors
               </Link>
             </li>
             <li>
-              <Link href="/privacy" className="hover:text-white transition">
+              <Link href="/privacy-policy.pdf" className="hover:text-white transition">
                 Privacy
               </Link>
             </li>
@@ -66,17 +66,22 @@ const Footer = () => {
           <h3 className="text-sm font-semibold text-white uppercase tracking-wide">
             Contact
           </h3>
-          <ul className="mt-4 space-y-2 text-sm">
-            <li>Piyush</li>
-            <li>Sohini</li>
-            <li>Jotiraditya</li>
+          <ul className="mt-4 space-y-2 text-sm"><li>
+              <Link href="https://api.whatsapp.com/send/?phone=917439484942&text&type=phone_number&app_absent=0" target="_blank">Piyush</Link>
+            </li>
+            <li>
+              <Link href="https://api.whatsapp.com/send/?phone=919432209101&text&type=phone_number&app_absent=0" target="_blank">Sohini</Link>
+            </li>
+            <li>
+              <Link href="https://api.whatsapp.com/send/?phone=916289867756&text&type=phone_number&app_absent=0" target="_blank">Jotiraditya</Link>
+            </li>
           </ul>
         </div>
       </div>
 
       <div className="border-t border-gray-600 mt-10 pt-6 flex flex-col md:flex-row items-center justify-between text-xs text-gray-400 text-center">
         <p>
-          © 2025 Jadavpur University Entrepreneurship Cell. All rights reserved.
+          ©{new Date().getFullYear()} <Link href="https://juecell.com/" target="_blank">Jadavpur University Entrepreneurship Cell</Link>. All rights reserved.
         </p>
 
         <div className="flex space-x-5 mt-4 md:mt-0 text-lg">

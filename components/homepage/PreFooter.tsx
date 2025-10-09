@@ -12,7 +12,7 @@ export default function PreFooter() {
         <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
           <div className="rounded-xl">
             <Link
-              href="https://maps.app.goo.gl/QNHBBPYsk6dDgycz6"
+              href="https://maps.app.goo.gl/dSx4nDjFR45xCQHC7"
               target="blank"
               className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-gray-100 bg-light-purple hover:bg-lavender hover:text-[#101720] md:py-4 md:text-lg md:px-10"
             >
@@ -21,7 +21,7 @@ export default function PreFooter() {
           </div>
           <div className="mt-3 rounded-xl sm:mt-0 sm:ml-3">
             <Link
-              href="https://maps.app.goo.gl/JqL6uRJngAFemuha9"
+              href="https://maps.app.goo.gl/hhmjoZccCTMDHvNK9"
               target="blank"
               className="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-full text-[#101720] bg-lavender hover:bg-light-purple hover:text-gray-100 md:py-4 md:text-lg md:px-10"
             >
