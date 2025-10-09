@@ -25,7 +25,8 @@ function NavComponent({ name, location }: { name: string; location: string }) {
 function Navbar() {
 	const session = useSession();
 	let navigationItems;
-	if (session) {
+	console.log(session);
+	if (session.data) {
 		navigationItems = {
 			"Home": "/",
 			"About": "/about",
