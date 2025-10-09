@@ -8,7 +8,7 @@ export const eventData: Event[] = [
         description: "some more text",
         previewText: "Showcase, pitch, and launch your startup with expert backing.",
         day: "Day 3",
-        image:" /LaunchX.png",
+        image:"LaunchX.png",
         imageUrl: "/eventFlyer/12.png",
         rounds: [
             {
@@ -76,7 +76,7 @@ export const eventData: Event[] = [
         description: "some more text",
         previewText: "Master trading skills in a risk-free, competitive stock simulation.",
         day: "Day 1",
-        image:" /MockStock.png",
+        image:"MockStock.png",
         imageUrl: "/eventFlyer/4.png",
         rounds: [
             {
@@ -144,7 +144,7 @@ export const eventData: Event[] = [
         description: "some more text",
         previewText: "Join Hack-n-Pitch: Innovate, hack, and pitch your ideas overnight!",
         day: "Day 2",
-        image:" /HackNPitch.png",
+        image:"HackNPitch.png",
         imageUrl: "/eventFlyer/6.png",
         rounds: [
             {
@@ -212,7 +212,7 @@ export const eventData: Event[] = [
         description: "some more text",
         previewText: "Test your strategic skills in the ultimate analyst challenge.",
         day: "Day 1",
-        image:" /CorporateClash.png",
+        image:"CorporateClash.png",
         imageUrl: "/eventFlyer/5.png",
         rounds: [
             {
@@ -280,7 +280,7 @@ export const eventData: Event[] = [
         description: "some more text",
         previewText: "New Event",
         day: "Someday",
-        // image:" /SummitCup.png",
+        image:"SummitCup.png",
         imageUrl: "/eventFlyer/8.png",
         rounds: [
             {
@@ -348,6 +348,7 @@ export const eventData: Event[] = [
         description: "some more text",
         previewText: "new event",
         day: "someday",
+				image:"inspiratalks",
         imageUrl: "/eventFlyer/7.png",
         rounds: [
             {
@@ -415,7 +416,7 @@ export const eventData: Event[] = [
         description: "some more text",
         previewText: "Learn from top experts and ignite your entrepreneurial journey.",
         day: "Day 3",
-        image:" /inspiratalks.png",
+        image:"inspiratalks.png",
         imageUrl: "/eventFlyer/9.png",
         rounds: [],
         contact: [
@@ -458,7 +459,7 @@ export const eventData: Event[] = [
         description: "some more text",
         previewText: "Design impactful labels at Dizmart, merging creativity, branding, and marketing.",
         day: "Day 2",
-        image:" /Dizmart.png",
+        image:"Dizmart.png",
         imageUrl: "/eventFlyer/3.png",
         rounds: [
             {
@@ -526,12 +527,12 @@ export const inspiraTalksSpeakers = [
         id: 1,
         name: "Coming Soon",
         designation: "",
-        imageUrlUrl: "/speakerimageUrlUrls/comingsoon.png"
+				imageUrl: "/speakerImages/comingsoon.png"
     },
     {   
         id: 2,
         name: "Coming Soon",
         designation: "",
-        imageUrlUrl: "/speakerimageUrlUrls/comingsoon.png"
+        imageUrl: "/speakerImages/comingsoon.png"
     },
 ];
