@@ -8,7 +8,7 @@ export const eventData: Event[] = [
         description: "some more text",
         previewText: "Showcase, pitch, and launch your startup with expert backing.",
         day: "Day 3",
-        image: "LaunchX.png",
+        image: "/teams/12.png",
         rounds: [
             {
                 number: "round 1",
@@ -75,7 +75,7 @@ export const eventData: Event[] = [
         description: "some more text",
         previewText: "Master trading skills in a risk-free, competitive stock simulation.",
         day: "Day 1",
-        image: "MockStock.png",
+        image: "/teams/4.png",
         rounds: [
             {
                 number: "round 1",
@@ -142,7 +142,7 @@ export const eventData: Event[] = [
         description: "some more text",
         previewText: "Join Hack-n-Pitch: Innovate, hack, and pitch your ideas overnight!",
         day: "Day 2",
-        image: "HackNPitch.png",
+        image: "/teams/6.png",
         rounds: [
             {
                 number: "round 1",
@@ -209,7 +209,7 @@ export const eventData: Event[] = [
         description: "some more text",
         previewText: "Test your strategic skills in the ultimate analyst challenge.",
         day: "Day 1",
-        image: "CorporateClash.png",
+        image: "/teams/5.png",
         rounds: [
             {
                 number: "round 1",
@@ -276,7 +276,7 @@ export const eventData: Event[] = [
         description: "some more text",
         previewText: "New Event",
         day: "Someday",
-        image: "MockIPL.png",
+        image: "/teams/8.png",
         rounds: [
             {
                 number: "round 1",
@@ -343,7 +343,7 @@ export const eventData: Event[] = [
         description: "some more text",
         previewText: "new event",
         day: "someday",
-        image: "MockIPL.png",
+        image: "/teams/7.png",
         rounds: [
             {
                 number: "round 1",
@@ -410,7 +410,7 @@ export const eventData: Event[] = [
         description: "some more text",
         previewText: "Learn from top experts and ignite your entrepreneurial journey.",
         day: "Day 3",
-        image: "inspiratalks.png",
+        image: "/teams/9.png",
         rounds: [],
         contact: [
             {
@@ -452,7 +452,7 @@ export const eventData: Event[] = [
         description: "some more text",
         previewText: "Design impactful labels at Dizmart, merging creativity, branding, and marketing.",
         day: "Day 2",
-        image: "DizMart.png",
+        image: "/teams/2.png",
         rounds: [
             {
                 number: "round 1",

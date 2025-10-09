@@ -10,7 +10,7 @@ export default function Hero() {
                 </h2>
                 <div className="flex flex-col gap-y-6 sm:flex-row items-center">
                     <Image
-                        src={"/home/ju.png"}
+                        src={"/home/ju.webp"}
                         width={500}
                         height={500}
                         alt={"JU image"}
