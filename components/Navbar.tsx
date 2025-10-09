@@ -2,7 +2,7 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
-import { usePathname } from "next/navigation";
+import {  usePathname } from "next/navigation";
 import SideBar from "./SideBar";
 
 function NavComponent({ name, location }: { name: string; location: string }) {
@@ -50,21 +50,27 @@ function Navbar() {
   const session = useSession();
   const navigationItems:NavigationItems = session.data? {
       Home: "/",
-      About: "#about",
-      Events: "#events",
-      Contact: "#contact",
+      About: "/#about",
+      Events: "/#events",
+      Contact: "/#contact",
       Dashboard: "/dashboard",
 	}:{
       Home: "/",
-      About: "#about",
-      Events: "#events",
+      About: "/#about",
+      Events: "/#events",
       Contact: "#contact",
       Login: "/sign-in",
     };
 
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  
+	const pathname = usePathname()
+	if (pathname.startsWith("/events")){
+		return (<>
+		<SideBar navigationItems={navigationItems}></SideBar>
+						</>)
+	}
+
   useEffect(() => {
 	  const handleScroll = () => {
 		  const currentScrollY = window.scrollY;
