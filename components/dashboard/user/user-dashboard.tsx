@@ -33,7 +33,7 @@ export default function UserDashboard({
         year: userData.year || "",
     });
     const [loading, setLoading] = useState(false);
-    const [orders, setOrders] = useState<MerchandiseOrder[] >([]);
+    const [orders, setOrders] = useState<MerchandiseOrder[]>([]);
     const [error, setError] = useState<string | null>(null);
 
 
@@ -53,7 +53,7 @@ export default function UserDashboard({
                 }
 
                 setOrders(data.order || "");
-                console.log(data);
+                console.log("Data from user-dashboard is:", data.order);
             } catch (err: any) {
                 console.error(err);
                 setError(err.message);
@@ -104,10 +104,10 @@ export default function UserDashboard({
             <main className="px-8 md:px-[6vw] pt-20 font-medium">
                 {/* Header */}
                 <header className="flex flex-wrap justify-between items-center py-8 gap-4 border-b border-white/10">
-                    <button className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/10 transition-all">
+                    {/* <button className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/10 transition-all">
                         <Bell />
                         <span>Notifications</span>
-                    </button>
+                    </button> */}
 
                     <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-center md:flex-1">
                         My Dashboard
@@ -122,7 +122,7 @@ export default function UserDashboard({
                     </button>
                 </header>
 
-                <div className="py-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="py-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
                     {/* Merchandise Section */}
                     <div className="order-2 md:order-1">
                         <section className="backdrop-blur-md bg-white/10 border border-white/20 rounded-xl p-6 shadow-lg flex flex-col items-center">
@@ -136,10 +136,17 @@ export default function UserDashboard({
                                     className="w-40 md:w-48"
                                 />
                             </div>
-
-                            {!orders ? (
+                            {
+                                !userData.shirtSize && (
+                                    <div className="text-red-600">
+                                        Please complete your Profile first
+                                    </div>
+                                )
+                            }
+                            {!orders || orders.length === 0 ? (
                                 <button
                                     className="bg-[#c085fd] text-[#101720] font-semibold py-2 px-6 rounded-full hover:bg-[#EAE2B7] transition-all mt-3 cursor-pointer"
+                                    disabled={!userData.shirtSize}
                                     onClick={() => router.push('/merchandise')}
                                 >
                                     Buy Merchandise
@@ -156,14 +163,14 @@ export default function UserDashboard({
                                     </thead>
                                     <tbody>
                                         {orders.map((order, i) => (
-                                            <tr key = {i} className="border-t border-white/20 hover:bg-white/5 transition">
-                                            <td className="p-3">{order?.orderId || 'N.A.'}</td>
-                                            <td className="p-3">{order?.status || 'N.A.'}</td>
-                                            <td className="p-3">{order?.size || 'N.A.'}</td>
-                                            <td className="p-3">
-                                                {order?.amount ? `₹${order.amount}` : 'N.A.'}
-                                            </td>
-                                        </tr>
+                                            <tr key={i} className="border-t border-white/20 hover:bg-white/5 transition">
+                                                <td className="p-3">{order?.orderId || 'N.A.'}</td>
+                                                <td className="p-3">{order?.status || 'N.A.'}</td>
+                                                <td className="p-3">{order?.size || 'N.A.'}</td>
+                                                <td className="p-3">
+                                                    {order?.amount ? `₹${order.amount}` : 'N.A.'}
+                                                </td>
+                                            </tr>
                                         ))}
                                     </tbody>
                                 </table>
@@ -226,7 +233,7 @@ export default function UserDashboard({
                                         <button
                                             onClick={handleSave}
                                             disabled={loading}
-                                            className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md mt-2"
+                                            className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md mt-2 cursor-pointer"
                                         >
                                             Save
                                         </button>
