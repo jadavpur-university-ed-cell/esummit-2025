@@ -32,7 +32,7 @@ const SignIn = () => {
   //   }
   // })();
   return (
-    <div className="min-h-screen flex"
+    <div className="min-h-screen flex flex-col items-center justify-center md:flex-row"
       style={{
         backgroundImage: 'url(/background.png)',
         backgroundSize: 'auto 100%',
@@ -56,22 +56,22 @@ const SignIn = () => {
 
 
       {/* Right Side - Login Form */}
-      <div className="hidden lg:flex lg:w-5/6 items-center justify-end px-8">
-        <div className="flex flex-col py-12 px-6 bg-white/20 backdrop-blur-md rounded-xl max-w-sm w-full">
+      <div className="flex w-5/6 items-center justify-center md:justify-end px-8">
+        <div className="flex flex-col py-12 px-6 bg-white/10 backdrop-blur-md rounded-xl max-w-sm w-full">
           {/* Mobile Logo/Header */}
           <div className="lg:hidden text-center mb-8">
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <h1 className="text-4xl font-bold text-[#c084fc] bg-clip-text">
               E-Summit
             </h1>
-            <p className="text-gray-600 dark:text-gray-200 mt-2">Welcome back</p>
+            <h1 className="text-[#afb2f5] font-medium mt-2">Welcome back</h1>
           </div>
 
           {/* Desktop Header */}
           <div className="hidden lg:block">
-            <h2 className="text-3xl font-bold text-white">
+            <h2 className="text-4xl font-bold text-[#afb2f5]">
               Welcome back
             </h2>
-            <p className="mt-2 text-sm text-gray-300` ">
+            <p className="mt-2 text-sm text-white">
               Sign in to your account to continue
             </p>
           </div>
