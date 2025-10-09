@@ -21,7 +21,6 @@ export const teams: Team[] = [
         role: 'Student Head',
         imageUrl:
           '/team/Piyush_Gupta.webp',
-          '/team/Piyush_Gupta.webp',
         instaUrl: 'https://www.instagram.com/kpiyushgupta/',
         linkedinUrl: 'http://linkedin.com/in/kumarpiyushgupta',
       },
@@ -29,7 +28,6 @@ export const teams: Team[] = [
         name: 'Jotiraditya Banerjee',
         role: 'Deputy Student Head',
         imageUrl:
-          '/team/Jotiraditya_Banerjee.png',
           '/team/Jotiraditya_Banerjee.png',
         instaUrl: 'https://www.instagram.com/_._leviianthan_._',
         linkedinUrl: 'https://www.linkedin.com/in/jotiraditya?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
@@ -39,7 +37,6 @@ export const teams: Team[] = [
         role: 'Deputy Student Head',
         imageUrl:
           '/team/Sohini_Hazra.png',
-          '/team/Sohini_Hazra.png',
         instaUrl: 'https://www.instagram.com/_._.sohini._._/',
         linkedinUrl: 'https://www.linkedin.com/in/sohini-hazra-a17121254/',
       },
@@ -47,7 +44,6 @@ export const teams: Team[] = [
         name: 'Anurag Dey',
         role: 'Design Head',
         imageUrl:
-          '/team/Anurag_Dey.jpg',
           '/team/Anurag_Dey.jpg',
         instaUrl: 'https://www.instagram.com/_theweirdintrovert_/',
         linkedinUrl: 'https://www.linkedin.com/in/iamanurag101/',
@@ -57,7 +53,6 @@ export const teams: Team[] = [
         role: 'Logistics Head',
         imageUrl:
           '/team/Gourab_Paul.png',
-          '/team/Gourab_Paul.png',
         instaUrl: 'https://www.instagram.com/gourab____paul/',
         linkedinUrl: 'https://www.linkedin.com/in/gourab-paul-259156227/',
       },
@@ -65,7 +60,6 @@ export const teams: Team[] = [
         name: 'Sohamdeep Mondal',
         role: 'Operations Head',
         imageUrl:
-          '/team/Sohamdeep_Mondal.jpeg',
           '/team/Sohamdeep_Mondal.jpeg',
         instaUrl: 'https://www.instagram.com/sohamdeep7?igsh=Y21vODFndWlpdGto&utm_source=qr',
         linkedinUrl: 'https://www.linkedin.com/in/sohamdeep-mondal?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',
@@ -75,7 +69,6 @@ export const teams: Team[] = [
         role: 'Operations Head',
         imageUrl:
           '/team/Raktim_Banerjee.jpg',
-          '/team/Raktim_Banerjee.jpg',
         instaUrl: '#',
         linkedinUrl: 'https://www.linkedin.com/in/banerjeeraktim?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
       },
@@ -83,7 +76,6 @@ export const teams: Team[] = [
         name: 'Sakshya Mukherjee',
         role: 'Sponsorship Co-Lead',
         imageUrl:
-          '/team/Sakshya_Mukherjee.jpg',
           '/team/Sakshya_Mukherjee.jpg',
         instaUrl: 'https://www.instagram.com/_.sakshya._/profilecard/?igsh=d3YwamM5MzFrbndp',
         linkedinUrl: 'https://www.linkedin.com/in/sakshyamukherjee/',
@@ -93,7 +85,6 @@ export const teams: Team[] = [
         role: 'Sponsorship Member',
         imageUrl:
           '/team/Shivam_Mundra.jpg',
-          '/team/Shivam_Mundra.jpg',
         instaUrl: 'https://www.instagram.com/shivam_mundra24/',
         linkedinUrl: 'https://www.linkedin.com/in/shivam-mundra-97989123b/',
       },
@@ -102,13 +93,11 @@ export const teams: Team[] = [
   },
   {
     name: 'Tech',
-    name: 'Tech',
     members: [
       {
         name: 'Rahul Pandey',
         role: 'Tech Lead',
         imageUrl:
-          '/team/Rahul_Pandey.jpeg',
           '/team/Rahul_Pandey.jpeg',
         instaUrl: 'https://www.instagram.com/rahul.p_19?igsh=MWYzaTZlc3hzZ25oeA==',
         linkedinUrl: 'https://www.linkedin.com/in/rahul-pandey2005/',
@@ -118,16 +107,13 @@ export const teams: Team[] = [
         role: 'Tech Lead',
         imageUrl:
           '/team/Arnob_Bhakta.jpg',
-          '/team/Arnob_Bhakta.jpg',
         instaUrl: '#',
         linkedinUrl: 'https://www.linkedin.com/in/arnob-bhakta/',
       },
       {
-      {
         name: 'Yash Raj Singh',
         role: 'Backend Developer',
         imageUrl:
-          '/team/Yash_Raj_Singh.jpg',
           '/team/Yash_Raj_Singh.jpg',
         instaUrl: 'https://www.instagram.com/raj.yashhh/',
         linkedinUrl: 'https://www.linkedin.com/in/yashhhhh/',
@@ -178,7 +164,6 @@ export const teams: Team[] = [
         role: 'Sponsorship Co-Lead',
         imageUrl:
           '/team/Barnik_Ray.jpeg',
-          '/team/Barnik_Ray.jpeg',
         instaUrl: 'https://www.instagram.com/barnik_br7/',
         linkedinUrl: 'https://www.linkedin.com/in/barnik-ray-br7/',
       },
@@ -195,7 +180,6 @@ export const teams: Team[] = [
         role: 'Finance Lead',
         imageUrl:
           '/team/Oyshi_Mukherjee.jpg',
-          '/team/Oyshi_Mukherjee.jpg',
         instaUrl: 'https://www.instagram.com/infernal.gaze/profilecard/?igsh=a3psM3doYmU5ejRy',
         linkedinUrl: 'https://www.linkedin.com/in/oyshi-mukherjee-20aaaa2b6',
       },
@@ -204,7 +188,6 @@ export const teams: Team[] = [
         role: 'Sponsorship Member',
         imageUrl:
           '/team/Jahid.jpeg',
-          '/team/Jahid.jpeg',
         instaUrl: 'https://www.instagram.com/jem_.__?igsh=b2o0ZjlqZ3pkeW5t',
         linkedinUrl: 'http://www.linkedin.com/in/jahid-mamud',
       },
@@ -212,7 +195,6 @@ export const teams: Team[] = [
         name: 'Aishani Roy ',
         role: 'Content Co-Lead',
         imageUrl:
-          '/team/Aishani_Roy.jpg',
           '/team/Aishani_Roy.jpg',
         instaUrl: 'https://www.instagram.com/aishani._?igsh=MTZtMmN3M3VrZ3o1cA==',
         linkedinUrl: 'https://www.linkedin.com/in/aishani-roy-a6804829b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
@@ -318,7 +300,6 @@ export const teams: Team[] = [
         role: 'Design Lead',
         imageUrl:
           '/team/Aindree_Chatterjee.png',
-          '/team/Aindree_Chatterjee.png',
         instaUrl: 'https://www.instagram.com/aindree2005/',
         linkedinUrl: 'https://www.linkedin.com/in/aindree-chatterjee-b93279201/',
       },
@@ -327,14 +308,12 @@ export const teams: Team[] = [
         role: 'Design Lead',
         imageUrl:
           '/team/Chandrima_Ghosh.jpg',
-          '/team/Chandrima_Ghosh.jpg',
         instaUrl: '#',
         linkedinUrl: 'http://www.linkedin.com/in/chandrima-ghosh-5a15292a7',
       },
       {
         name: 'Arka Dhar',
         role: 'Content Co-Lead',
-        imageUrl: '/team/Arka_Dhar.jpeg',
         imageUrl: '/team/Arka_Dhar.jpeg',
         instaUrl: 'https://www.instagram.com/__ark_phoenix/?next=%2F',
         linkedinUrl: 'http://www.linkedin.com/in/arka-dhar-4921882a7',
@@ -343,7 +322,6 @@ export const teams: Team[] = [
         name: 'Anitketan Suin',
         role: 'Video Co-Lead',
         imageUrl:
-          '/team/Anitketan_Suin.jpg',
           '/team/Anitketan_Suin.jpg',
         instaUrl: 'https://www.instagram.com/_.anit._xd/',
         linkedinUrl: 'https://www.linkedin.com/in/anitketan-suin-07488b289/',
@@ -394,13 +372,11 @@ export const teams: Team[] = [
   },
   {
     name: 'PR & Marketing',
-    name: 'PR & Marketing',
     members: [
 			{
         name: 'Meghna Das',
         role: 'Social Media Lead',
         imageUrl:
-          '/team/Meghna_Das.jpg',
           '/team/Meghna_Das.jpg',
         instaUrl: 'https://www.instagram.com/heels_xl?igsh=cXRsdmJpMmdyMzdk',
         linkedinUrl: 'https://www.linkedin.com/in/meghna-das-009628248?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
@@ -410,7 +386,6 @@ export const teams: Team[] = [
         role: 'PR Lead',
         imageUrl:
           '/team/Anubrata_Karmakar.jpg',
-          '/team/Anubrata_Karmakar.jpg',
         instaUrl: 'https://www.instagram.com/anubrata_0312/',
         linkedinUrl: 'https://www.linkedin.com/in/anubrata-karmakar-926631212',
       },
@@ -418,7 +393,6 @@ export const teams: Team[] = [
         name: 'Sayandip Das',
         role: 'Marketing Lead',
         imageUrl:
-          '/team/Sayandip_Das.jpg',
           '/team/Sayandip_Das.jpg',
         instaUrl: 'https://www.instagram.com/iamsayaandipdas/',
         linkedinUrl: 'https://www.linkedin.com/in/sayandip-das-592b7030b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
@@ -428,7 +402,6 @@ export const teams: Team[] = [
         role: 'PR Member',
         imageUrl:
           '/team/Shubham_Sarkar.jpg',
-          '/team/Shubham_Sarkar.jpg',
         instaUrl: 'https://www.instagram.com/_iamshubhamsarkar_?igsh=MTZ2b24xc2pwdmI4dQ==',
         linkedinUrl: 'https://www.linkedin.com/in/shubham-sarkar-57438b27a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
       },
@@ -436,7 +409,6 @@ export const teams: Team[] = [
         name: 'Ayudh Banerjee',
         role: 'Judges Coordinator',
         imageUrl:
-          '/team/Ayudh_Banerjee.jpeg',
           '/team/Ayudh_Banerjee.jpeg',
         instaUrl: 'https://www.instagram.com/melody_of_lyf/',
         linkedinUrl: 'https://www.linkedin.com/in/ayudh-banerjee/',
@@ -479,14 +451,12 @@ export const teams: Team[] = [
         role: 'Operations Lead',
         imageUrl:
           '/team/Taufique_Ali.jpg',
-          '/team/Taufique_Ali.jpg',
         instaUrl: 'https://www.instagram.com/taufiqueali007s?igsh=bHYycDVsaWUzN3By',
         linkedinUrl: 'https://www.linkedin.com/in/taufiqueali?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
       },
       {
         name: 'Rudra Ray',
         role: 'Operations Lead',
-        imageUrl: '/team/Rudra_Ray.jpeg',
         imageUrl: '/team/Rudra_Ray.jpeg',
         instaUrl: 'https://www.instagram.com/rudray006/',
         linkedinUrl: 'https://www.linkedin.com/in/rudray006/',
@@ -504,7 +474,6 @@ export const teams: Team[] = [
         role: 'On Day Co-Lead',
         imageUrl:
           '/team/Rishob_Mondal.jpg',
-          '/team/Rishob_Mondal.jpg',
         instaUrl: 'https://www.instagram.com/mondal_rishob?igsh=MXkybzNxcWlpNG91bg==',
         linkedinUrl: 'https://www.linkedin.com/in/rishob-mondal-671497258?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
       },
@@ -513,7 +482,6 @@ export const teams: Team[] = [
         role: 'On-Day Co-Lead',
         imageUrl:
           '/team/Subhro_Roy.jpg',
-          '/team/Subhro_Roy.jpg',
         instaUrl: 'https://www.instagram.com/lyadhkarkhana/profilecard/?igsh=MWxrdDltc2RweTdncw==',
         linkedinUrl: 'https://www.linkedin.com/in/subhro-roy-84b01827a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
       },
@@ -521,7 +489,6 @@ export const teams: Team[] = [
         name: 'Sabyasachi Sen',
         role: 'Logistics Member',
         imageUrl:
-          '/team/Sabyasachi_Sen.jpeg',
           '/team/Sabyasachi_Sen.jpeg',
         instaUrl: 'https://www.instagram.com/yoursabya/',
         linkedinUrl: 'https://www.linkedin.com/in/sabyasachi-sen-16b7b3303',
