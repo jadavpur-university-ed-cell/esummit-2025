@@ -11,7 +11,7 @@ export default function Hero() {
           height={500}
           className="w-[80vw] md:w-[65vw] drop-shadow-[(0 px 32px rgba(80, 0, 180, 0.45)]"
         />
-        <p className="md:text-2xl text-[#afb2f5] max-w-2xl mx-auto font-semibold">
+        <p className="md:text-2xl max-w-2xl mx-auto font-semibold text-[#c084fc]">
           Jadavpur University Entrepreneurship Cell Presents the Fifth Edition
           of Our Flagship Event
         </p>
