@@ -7,6 +7,7 @@ import { useRef, useState, useEffect } from 'react';
 import { Session } from '@/types/all';
 import { useRouter } from 'next/navigation';
 import type { User } from '@prisma/client';
+import loadConfig from 'next/dist/server/config';
 
 interface Response {
   razorpay_order_id: string,
@@ -34,23 +35,37 @@ const RAZORPAY_KEY_ID = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!;
 const Merchandise = () => {
   const router = useRouter();
   const [session, setSession] = useState<Session | null>(null);
+  const [shirtSize, setShirtSize] = useState<String> ("");
   const editUserRef = useRef<HTMLDialogElement>(null);
   const [isScriptLoaded, setIsScriptLoaded] = useState(false);
 
   useEffect(() => {
-    const fetchSession = async () => {
+    const fetchSessionAndUser = async () => {
       try {
-        const res = await fetch("/api/get-session");
-        const data = await res.json();
-        setSession(data.session);
+        const sessionRes = await fetch("/api/get-session");
+        const sessionData = await sessionRes.json();
+        setSession(sessionData.session);
+
+        if (sessionData.session) {
+          const userRes = await fetch("/api/find-user", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ session: sessionData.session }),
+          });
+
+          if (!userRes.ok) throw new Error("Failed to load user");
+          const userData = await userRes.json();
+          setShirtSize(userData.shirtSize);
+        }
       } catch (err) {
-        console.error("Failed to fetch session:", err);
+        console.error("Error fetching session or user:", err);
         setSession(null);
       } finally {
         setIsScriptLoaded(true);
       }
     };
-    fetchSession();
+
+    fetchSessionAndUser();
   }, []);
 
   const handlePayment = async () => {
@@ -173,7 +188,7 @@ const Merchandise = () => {
                   <h1 className="text-[#c085fd] text-2xl title-font font-semibold mb-1">Get the official E-Summit 25 Merchandise</h1>
                   <div className="flex mb-4 text-grey-200">
                     <span className="flex ml-3 pl-3 py-2 space-x-2">
-                      Shirt Size: 
+                      Shirt Size: {shirtSize || "Loading..."}
                     </span>
                   </div>
                   <p className="leading-relaxed text-[#eae2b7]">
@@ -193,7 +208,7 @@ const Merchandise = () => {
 
                       }}
                     >
-                      {session === undefined || !isScriptLoaded
+                      {session === undefined || !isScriptLoaded || !shirtSize
                         ? "Loading..."
                         : session
                           ? "Buy"
