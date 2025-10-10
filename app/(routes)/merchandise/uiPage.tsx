@@ -6,8 +6,6 @@ import Script from 'next/script';
 import { useRef, useState, useEffect } from 'react';
 import { Session } from '@/types/all';
 import { useRouter } from 'next/navigation';
-import type { User } from '@prisma/client';
-import loadConfig from 'next/dist/server/config';
 
 interface Response {
   razorpay_order_id: string,
@@ -35,7 +33,7 @@ const RAZORPAY_KEY_ID = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!;
 const Merchandise = () => {
   const router = useRouter();
   const [session, setSession] = useState<Session | null>(null);
-  const [shirtSize, setShirtSize] = useState<String> ("");
+  const [shirtSize, setShirtSize] = useState<string> ("");
   const editUserRef = useRef<HTMLDialogElement>(null);
   const [isScriptLoaded, setIsScriptLoaded] = useState(false);
 
