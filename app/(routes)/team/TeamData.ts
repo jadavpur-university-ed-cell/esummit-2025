@@ -179,7 +179,7 @@ export const teams: Team[] = [
         name: 'Oyshi Mukherjee',
         role: 'Finance Lead',
         imageUrl:
-          '/team/Oyshi_Mukherjee.jpg',
+          '/team/Oyshi_Mukherjee.jpeg',
         instaUrl: 'https://www.instagram.com/infernal.gaze/profilecard/?igsh=a3psM3doYmU5ejRy',
         linkedinUrl: 'https://www.linkedin.com/in/oyshi-mukherjee-20aaaa2b6',
       },
