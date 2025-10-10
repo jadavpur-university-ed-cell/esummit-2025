@@ -381,7 +381,7 @@ export const eventData: Event[] = [
             {
                 number: "Offline Knockout Tournament",
                 title: "Knockouts",
-                about: "Finals: On PS5/Xbox using EA Sports FC 25/26",
+                about: "Finals: On PS5/Xbox (Will be provided) using EA Sports FC 25/26",
                 mode: "Offline"
             }
         ],
