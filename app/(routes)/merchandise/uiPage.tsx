@@ -196,7 +196,7 @@ const Merchandise = () => {
                   </p>
 
                   <div className="flex my-6">
-                    <span className="title-font font-medium text-2xl text-white">₹{SHIRT_PRICE}.00</span>
+                     {/*<span className="title-font font-medium text-2xl text-white">₹{SHIRT_PRICE}.00</span>
                     <button
                       className="flex ml-auto bg-[#c085fd] text-[#101720] font-semibold border-0 py-2 px-6 focus:outline-none hover:bg-[#EAE2B7] rounded-full cursor-pointer"
                       onClick={() => {
@@ -221,7 +221,7 @@ const Merchandise = () => {
                         className="absolute top-4 right-4 text-white">
                         <FaXmark />
                       </button>
-                    </dialog>
+                    </dialog> */}
                     {/* // TODO: Add Pay Button when env is updated */}
                   </div>
                 </div>
