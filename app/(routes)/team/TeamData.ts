@@ -227,6 +227,20 @@ export const teams: Team[] = [
         linkedinUrl: 'http://www.linkedin.com/in/dipjyoti-dash-22508227a'
       },
       {
+        name: 'Sumedha Kar',
+        role: 'Sponsorship Member',
+        imageUrl: '/team/Sumedha_Kar.jpeg',
+        instaUrl: 'https://www.linkedin.com/in/sumedha-kar-02665b310?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+        linkedinUrl: 'https://www.linkedin.com/in/sumedha-kar-02665b310?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+      },
+      {
+        name: 'Shreejita Chatterjee',
+        role: 'Sponsorship Member',
+        imageUrl: '/team/Shreejita_Chatterjee.jpeg',
+        instaUrl: 'https://www.instagram.com/tisshreejita?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',
+        linkedinUrl: 'https://in.linkedin.com/in/shreejita-chatterjee-49ab65289',
+      },
+      {
         name: 'Nirnoy Barma',
         role: 'Sponsorship Member',
         imageUrl: '/team/Nirnoy_Barma.jpeg',
@@ -341,6 +355,13 @@ export const teams: Team[] = [
         linkedinUrl: 'https://www.linkedin.com/in/ujaan-roy-a2109b193/',
       },
       {
+        name: 'Dipayan Sardar',
+        role: 'Content & Design Team Member',
+        imageUrl: '/team/Dipayan_Sardar.jpeg',
+        instaUrl: 'https://www.instagram.com/dipayan_00001/',
+        linkedinUrl: 'https://www.linkedin.com/in/dipayan-sardar-a5119a381/',
+      },
+      {
         name: 'Utsha Ghosh',
         role: 'Content & Design Team Member',
         imageUrl: '/team/Utsha_Ghosh.jpeg',
@@ -426,6 +447,13 @@ export const teams: Team[] = [
         imageUrl: '/team/Debarpan_Ghosh.jpeg',
         instaUrl: 'https://www.instagram.com/ami_debarpan?igsh=MXdveTE2eW9ybHhrcw==',
         linkedinUrl: 'https://www.linkedin.com/in/debarpan-ghosh-405419322?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+      },
+      {
+        name: 'Niladri Bhowmick',
+        role: 'Outreach & PR Team Member',
+        imageUrl: '/team/Niladri_Bhowmick.jpeg',
+        instaUrl: 'https://www.instagram.com/bhowmickkneil',
+        linkedinUrl: 'https://www.linkedin.com/in/niladri-bhowmick-40a4bb28b',
       },
       {
         name: 'Souranil Sen',
