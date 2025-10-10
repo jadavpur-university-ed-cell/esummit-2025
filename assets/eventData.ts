@@ -198,7 +198,7 @@ export const eventData: Event[] = [
       },
       {
         number: "Round 4",
-        title: "Pitching",
+        title: "Final Pitching",
         about: "All teams will pitch to the panel of judges and top 3 will be crowned winners!",
         mode: "Offline"
       }
@@ -352,41 +352,41 @@ export const eventData: Event[] = [
         question: "How to connect with the organising team?",
         answer: "Join our Discord server"
       }
-    ],
-    sponsors: []
-  },
-  {
-    eventSlug: "summit-cup",
-    eventName: "Summit Cup",
-    registrationLink: "https://unstop.com/events/summit-cup-jadavpur-university-kolkata-1570847",
-    about: "random text",
-    description: "some more text",
-    previewText: "New Event",
-    day: "Someday",
-    image: "SummitCup.jpeg",
-    imageUrl: "/eventFlyer/8.png",
-    rounds: [
-      {
-        number: "Data Analytics Round",
-        title: "screening round",
-        about: "preliminary submission",
-        mode: "online"
-      },
-      {
-        number: "Auctions",
-        title: "Fun Round",
-        about: "Make your squad via live online auction",
-        mode: "online"
-      },
-      {
-        number: "Offline Knockout Tournament",
-        title: "Knockouts",
-        about: "Finals: On PS5/Xbox using EA Sports FC 25/26",
-        mode: "Offline"
-      }
-    ],
-    contact: [
-      { name: "Dipjyoti Dash", number: "8158066614", link: "https://wa.me/918158066614" },
+        ],
+        sponsors: []
+    },
+    {
+        eventSlug: "summit-cup",
+        eventName: "Summit Cup",
+        registrationLink: "https://unstop.com/events/summit-cup-jadavpur-university-kolkata-1570847",
+        about: "Unleash your skills, Conquer the pitch, Rule the cup",
+        description: "Summit Cup'25 is a premier football tournament blending strategy and skill, where 20,000+ players are auctioned online to form 64 squads. Teams battle in an offline knockout showdown, from Round of 32 to Finals, with the twist that a missed kick-off means instant elimination. A fusion of data-driven auctions, high-stakes gameplay, and on-field intensity, Summit Cup'25 redefines football competition.",
+        previewText: "Unleash your skills, Conquer the pitch, Rule the cup",
+        day: "Day 1",
+        image:"SummitCup.jpeg",
+        imageUrl: "/eventFlyer/8.png",
+        rounds: [
+            {
+                number: "Data Analytics Round",
+                title: "screening round",
+                about: "preliminary submission",
+                mode: "online"
+            },
+            {
+                number: "Auctions",
+                title: "Fun Round",
+                about: "Make your squad via live online auction",
+                mode: "online"
+            },
+            {
+                number: "Offline Knockout Tournament",
+                title: "Knockouts",
+                about: "Finals: On PS5/Xbox using EA Sports FC 25/26",
+                mode: "Offline"
+            }
+        ],
+        contact: [
+            { name: "Dipjyoti Dash", number: "8158066614", link: "https://wa.me/918158066614" },
       { name: "Pranjal Deb", number: "6290622851", link: "https://wa.me/916290622851" },
       { name: "Dipayan Sardar", number: "9733817692", link: "https://wa.me/919733817692" },
       { name: "Adrija Das", number: "7980466251", link: "https://wa.me/917980466251" },
@@ -399,12 +399,9 @@ export const eventData: Event[] = [
       { question: "What happens after the auction?", answer: "Offline knockout tournament using a football simulation game (e.g., EA FC)." },
       { question: "What is the \"missed kick-off\" rule?", answer: "Missing your match start time means elimination; opponent gets a bye." },
       { question: "How is the winner decided?", answer: "Based on performance in the offline knockout tournament." },
-      { question: "Will I receive the player data in advance?", answer: "Yes, the dataset will be shared before the submission deadline." },
-      { question: "What is the total budget for the live auction?", answer: "Virtual budget will be announced before the auction." },
       { question: "Are there any squad composition rules?", answer: "Yes. At least one goalkeeper is mandatory in the final squad." },
       { question: "What game will be used for the offline finals?", answer: "A football simulation game like EA Sports FC 25." },
       { question: "Do I need to bring my own gaming controller?", answer: "No. Controllers will be provided at the venue." },
-      { question: "What happens if there is a tie during the knockout match?", answer: "Decided via a penalty shootout as per game rules." },
       { question: "How will the data analysis submissions be judged?", answer: "Depth of analysis, logic, clarity, and squad effectiveness." },
       { question: "Is there a registration fee for the event?", answer: "No, participation is free." },
       { question: "Where will the offline finals be held?", answer: "Jadavpur University, Salt Lake Campus." }
@@ -486,55 +483,55 @@ export const eventData: Event[] = [
         question: "Who can participate in Equity Edge?",
         answer: "The event is open to all UG and PG students from any discipline across India."
       }
-    ],
-    sponsors: []
-  },
-  {
-    eventSlug: "inspira-talks",
-    eventName: "Inspira Talks",
-    about: "random text",
-    description: "some more text",
-    registrationLink: "https://unstop.com/college-fests/e-summit25-jadavpur-university-jadavpur-university-ju-kolkata-402308",
-    previewText: "Learn from top experts and ignite your entrepreneurial journey.",
-    day: "Day 3",
-    image: "inspiratalks.png",
-    imageUrl: "/eventFlyer/9.png",
-    rounds: [],
-    contact: [
+        ],
+        sponsors: []
+    },
+    {
+        eventSlug: "inspira-talks",
+        eventName: "Inspira Talks",
+        about: "Are you an entrepreneur yearning for inspiration and guidance?",
+        description: "Inspira Talks is a series of inspirational talks delivered by experts from all across the nation. These individuals will converge to share their stories and lessons that they learned in their road to success.",
+        registrationLink: "https://unstop.com/college-fests/e-summit25-jadavpur-university-jadavpur-university-ju-kolkata-402308",
+        previewText: "Learn from top experts and ignite your entrepreneurial journey.",
+        day: "Day 3",
+        image:"inspiratalks.png",
+        imageUrl: "/eventFlyer/9.png",
+        rounds: [],
+        contact: [
       { name: "Anamitra Roy", number: "9132781437", link: "https://wa.me/919132781437" },
       { name: "Ayan Bhowmick", number: "9804964509", link: "https://wa.me/919804964509" },
       { name: "Ayush", number: "6291162975", link: "https://wa.me/916291162975" },
       { name: "Karan Prasad", number: "9163039213", link: "https://wa.me/919163039213" }
-    ],
-    faq: [],
-    sponsors: []
-  },
-  {
-    eventSlug: "dizmart",
-    eventName: "Dizmart",
-    registrationLink: "https://unstop.com/competitions/dizmart-jadavpur-university-kolkata-1570813",
-    about: "random text",
-    description: "some more text",
-    previewText: "Design impactful labels at Dizmart, merging creativity, branding, and marketing.",
-    day: "Day 2",
-    image: "Dizmart.png",
-    imageUrl: "/eventFlyer/3.png",
-    rounds: [
-      {
-        number: "Prelims",
-        title: "screening round",
-        about: "preliminary submission",
-        mode: "online"
-      },
-      {
-        number: "Finals",
-        title: "Final Round",
-        about: "On Spot Product Label Designing",
-        mode: "Offline"
-      }
-    ],
-    contact: [
-      { name: "Chandrima", number: "9051998358", link: "https://wa.me/919051998358" },
+        ],
+        faq: [],
+        sponsors: []
+    },
+    {
+        eventSlug: "dizmart",
+        eventName: "Dizmart",
+        registrationLink: "https://unstop.com/competitions/dizmart-jadavpur-university-kolkata-1570813",
+        about: "Design impactful labels at Dizmart, merging creativity, branding, and marketing.",
+        description: "Ever felt the power of a perfect design? In an instant, a compelling label can drive decisions. At Dizmart, create a standout label that commands attention and sets brands apart. Design with impact. Win with purpose.",
+        previewText: "Design impactful labels at Dizmart, merging creativity, branding, and marketing.",
+        day: "Day 2",
+        image:"Dizmart.png",
+        imageUrl: "/eventFlyer/3.png",
+        rounds: [
+            {
+                number: "Prelims",
+                title: "screening round",
+                about: "preliminary submission",
+                mode: "online"
+            },
+            {
+                number: "Finals",
+                title: "Final Round",
+                about: "On Spot Product Label Designing",
+                mode: "Offline"
+            }
+        ],
+        contact: [
+             { name: "Chandrima", number: "9051998358", link: "https://wa.me/919051998358" },
       { name: "Ujaan", number: "8961865041", link: "https://wa.me/918961865041" },
       { name: "Shreyash", number: "6291516600", link: "https://wa.me/916291516600" },
       { name: "Utsha", number: "7550986081", link: "https://wa.me/917550986081" }

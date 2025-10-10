@@ -47,7 +47,7 @@ export default function Page() {
         <p className="text-gray-300 max-w-2xl mx-auto text-lg leading-relaxed mb-12">
           {eventDetails.about}
         </p>
-        <Link href={eventDetails.registrationLink} className="bg-gray-200 hover:bg-white text-black font-semibold py-4 px-12 rounded-full transition-all duration-300 transform hover:scale-105 cursor-pointer">
+        <Link href={eventDetails.registrationLink??"#"} className="bg-gray-200 hover:bg-white text-black font-semibold py-4 px-12 rounded-full transition-all duration-300 transform hover:scale-105 cursor-pointer">
           Register
         </Link>
       </div>

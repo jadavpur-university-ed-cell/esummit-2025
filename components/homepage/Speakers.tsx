@@ -19,7 +19,7 @@ interface SpeakerDetails {
 const speakers: SpeakerDetails[] = [
   {
     image: "/speakerImages/comingsoon.png",
-    name: "TBD",
+    name: "Revealing Soon",
     designation: "",
     about:
       "Stay tuned for more updates.",
@@ -27,7 +27,7 @@ const speakers: SpeakerDetails[] = [
   },
   {
     image: "/speakerImages/comingsoon.png",
-    name: "TBD",
+    name: "Revealing Soon",
     designation: "",
     about:
       "Stay tuned for more updates.",
@@ -35,7 +35,7 @@ const speakers: SpeakerDetails[] = [
   },
   {
     image: "/speakerImages/comingsoon.png",
-    name: "TBD",
+    name: "Revealing Soon",
     designation: "",
     about:
       "Stay tuned for more updates.",
@@ -43,7 +43,7 @@ const speakers: SpeakerDetails[] = [
   },
   {
     image: "/speakerImages/comingsoon.png",
-    name: "TBD",
+    name: "Revealing Soon",
     designation: "",
     about:
       "Stay tuned for more updates.",
@@ -51,7 +51,7 @@ const speakers: SpeakerDetails[] = [
   },
   {
     image: "/speakerImages/comingsoon.png",
-    name: "TBD",
+    name: "Revealing Soon",
     designation: "",
     about:
       "Stay tuned for more updates.",
@@ -59,7 +59,7 @@ const speakers: SpeakerDetails[] = [
   },
   {
     image: "/speakerImages/comingsoon.png",
-    name: "TBD",
+    name: "Revealing Soon",
     designation: "",
     about:
       "Stay tuned for more updates.",
@@ -67,7 +67,7 @@ const speakers: SpeakerDetails[] = [
   },
   {
     image: "/speakerImages/comingsoon.png",
-    name: "TBD",
+    name: "Revealing Soon",
     designation: "",
     about:
       "Stay tuned for more updates.",
@@ -75,7 +75,7 @@ const speakers: SpeakerDetails[] = [
   },
   {
     image: "/speakerImages/comingsoon.png",
-    name: "TBD",
+    name: "Revealing Soon",
     designation: "",
     about:
       "Stay tuned for more updates.",

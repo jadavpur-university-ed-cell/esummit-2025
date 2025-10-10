@@ -29,7 +29,7 @@ export type Event = {
   day?: string;
   image?: string;
   previewText?: string;
-  registrationLink: string;
+  registrationLink?: string;
 };
 
 export interface SessionUser {
