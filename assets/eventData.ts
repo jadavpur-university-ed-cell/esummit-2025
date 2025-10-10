@@ -169,9 +169,9 @@ export const eventData: Event[] = [
   },
   {
     eventSlug: "hacknpitch",
-    eventName: "Hack N Pitch",
+    eventName: "Hack<N>Pitch",
     registrationLink: "https://unstop.com/hackathons/hacknpitch-jadavpur-university-kolkata-1570879",
-    about: "HACK<N>PITCH is Eastern India’s premier 24-hour product-based hackathon, set to take place on 7th–8th November 2025 at Jadavpur University’s Salt Lake Campus (JUSL), Kolkata. ",
+    about: "Hack<N>Pitch is Eastern India’s premier 24-hour product-based hackathon, set to take place on 7th–8th November 2025 at Jadavpur University’s Salt Lake Campus , Kolkata. ",
     description: "Designed to ignite innovation and entrepreneurial thinking, the event will bring together 25 elite teams (100 participants max) from across the country to compete, collaborate, and create impactful tech solutions under intense time constraints. With a strong focus on real-world problem solving, this hackathon is structured around four cutting-edge tracks: Generative AI, Agentic AI, Web3, Cybersecurity",
     previewText: "Join Hack-n-Pitch: Innovate, hack, and pitch your ideas overnight!",
     day: "Day 2",
@@ -270,8 +270,8 @@ export const eventData: Event[] = [
     eventSlug: "corporate-clash",
     eventName: "Corporate Clash",
     registrationLink: "https://unstop.com/competitions/corporate-clash-e-summit25-jadavpur-university-jadavpur-university-kolkata-1570741",
-    about: "random text",
-    description: "some more text",
+    about: "Corporate Clash is the ultimate battleground for aspiring corporate leaders, combining strategic thinking, quick decision-making in a high-stake simulation of corporate development challenges",
+    description: "In a dynamic corporate world, adaptability and analytical prowess are vital.The challenge is designed to test your problem solving and problem statement understanding abilities. Sharpen your critical analysis skills to dissect complex challenges. The Analyst challenge transcends personal growth, offering an intellectually stimulating experience within a high-stakes corporate environment. Will your team rise to the challenge and dominate the boardroom? Prepare yourself for an exhilarating journey through the complexities of the corporate world at Corporate Clash!",
     previewText: "Test your strategic skills in the ultimate analyst challenge.",
     day: "Day 1",
     image: "CorporateClash.png",
@@ -352,41 +352,41 @@ export const eventData: Event[] = [
         question: "How to connect with the organising team?",
         answer: "Join our Discord server"
       }
-        ],
-        sponsors: []
-    },
-    {
-        eventSlug: "summit-cup",
-        eventName: "Summit Cup",
-        registrationLink: "https://unstop.com/events/summit-cup-jadavpur-university-kolkata-1570847",
-        about: "Unleash your skills, Conquer the pitch, Rule the cup",
-        description: "Summit Cup'25 is a premier football tournament blending strategy and skill, where 20,000+ players are auctioned online to form 64 squads. Teams battle in an offline knockout showdown, from Round of 32 to Finals, with the twist that a missed kick-off means instant elimination. A fusion of data-driven auctions, high-stakes gameplay, and on-field intensity, Summit Cup'25 redefines football competition.",
-        previewText: "Unleash your skills, Conquer the pitch, Rule the cup",
-        day: "Day 1",
-        image:"SummitCup.jpeg",
-        imageUrl: "/eventFlyer/8.png",
-        rounds: [
-            {
-                number: "Data Analytics Round",
-                title: "screening round",
-                about: "preliminary submission",
-                mode: "online"
-            },
-            {
-                number: "Auctions",
-                title: "Fun Round",
-                about: "Make your squad via live online auction",
-                mode: "online"
-            },
-            {
-                number: "Offline Knockout Tournament",
-                title: "Knockouts",
-                about: "Finals: On PS5/Xbox (Will be provided) using EA Sports FC 25/26",
-                mode: "Offline"
-            }
-        ],
-        contact: [
-            { name: "Dipjyoti Dash", number: "8158066614", link: "https://wa.me/918158066614" },
+    ],
+    sponsors: []
+  },
+  {
+    eventSlug: "summit-cup",
+    eventName: "Summit Cup",
+    registrationLink: "https://unstop.com/events/summit-cup-jadavpur-university-kolkata-1570847",
+    about: "Unleash your skills, Conquer the pitch, Rule the cup",
+    description: "Summit Cup'25 is a premier football tournament blending strategy and skill, where 20,000+ players are auctioned online to form 64 squads. Teams battle in an offline knockout showdown, from Round of 32 to Finals, with the twist that a missed kick-off means instant elimination. A fusion of data-driven auctions, high-stakes gameplay, and on-field intensity, Summit Cup'25 redefines football competition.",
+    previewText: "Unleash your skills, Conquer the pitch, Rule the cup",
+    day: "Day 1",
+    image: "SummitCup.jpeg",
+    imageUrl: "/eventFlyer/8.png",
+    rounds: [
+      {
+        number: "Data Analytics Round",
+        title: "screening round",
+        about: "preliminary submission",
+        mode: "online"
+      },
+      {
+        number: "Auctions",
+        title: "Fun Round",
+        about: "Make your squad via live online auction",
+        mode: "online"
+      },
+      {
+        number: "Offline Knockout Tournament",
+        title: "Knockouts",
+        about: "Finals: On PS5/Xbox (Will be provided) using EA Sports FC 25/26",
+        mode: "Offline"
+      }
+    ],
+    contact: [
+      { name: "Dipjyoti Dash", number: "8158066614", link: "https://wa.me/918158066614" },
       { name: "Pranjal Deb", number: "6290622851", link: "https://wa.me/916290622851" },
       { name: "Dipayan Sardar", number: "9733817692", link: "https://wa.me/919733817692" },
       { name: "Adrija Das", number: "7980466251", link: "https://wa.me/917980466251" },
@@ -483,55 +483,55 @@ export const eventData: Event[] = [
         question: "Who can participate in Equity Edge?",
         answer: "The event is open to all UG and PG students from any discipline across India."
       }
-        ],
-        sponsors: []
-    },
-    {
-        eventSlug: "inspira-talks",
-        eventName: "Inspira Talks",
-        about: "Are you an entrepreneur yearning for inspiration and guidance?",
-        description: "Inspira Talks is a series of inspirational talks delivered by experts from all across the nation. These individuals will converge to share their stories and lessons that they learned in their road to success.",
-        registrationLink: "https://unstop.com/college-fests/e-summit25-jadavpur-university-jadavpur-university-ju-kolkata-402308",
-        previewText: "Learn from top experts and ignite your entrepreneurial journey.",
-        day: "Day 3",
-        image:"inspiratalks.png",
-        imageUrl: "/eventFlyer/9.png",
-        rounds: [],
-        contact: [
+    ],
+    sponsors: []
+  },
+  {
+    eventSlug: "inspira-talks",
+    eventName: "Inspira Talks",
+    about: "Are you an entrepreneur yearning for inspiration and guidance?",
+    description: "Inspira Talks is a series of inspirational talks delivered by experts from all across the nation. These individuals will converge to share their stories and lessons that they learned in their road to success.",
+    registrationLink: "https://unstop.com/college-fests/e-summit25-jadavpur-university-jadavpur-university-ju-kolkata-402308",
+    previewText: "Learn from top experts and ignite your entrepreneurial journey.",
+    day: "Day 3",
+    image: "inspiratalks.png",
+    imageUrl: "/eventFlyer/9.png",
+    rounds: [],
+    contact: [
       { name: "Anamitra Roy", number: "9132781437", link: "https://wa.me/919132781437" },
       { name: "Ayan Bhowmick", number: "9804964509", link: "https://wa.me/919804964509" },
       { name: "Ayush", number: "6291162975", link: "https://wa.me/916291162975" },
       { name: "Karan Prasad", number: "9163039213", link: "https://wa.me/919163039213" }
-        ],
-        faq: [],
-        sponsors: []
-    },
-    {
-        eventSlug: "dizmart",
-        eventName: "Dizmart",
-        registrationLink: "https://unstop.com/competitions/dizmart-jadavpur-university-kolkata-1570813",
-        about: "Design impactful labels at Dizmart, merging creativity, branding, and marketing.",
-        description: "Ever felt the power of a perfect design? In an instant, a compelling label can drive decisions. At Dizmart, create a standout label that commands attention and sets brands apart. Design with impact. Win with purpose.",
-        previewText: "Design impactful labels at Dizmart, merging creativity, branding, and marketing.",
-        day: "Day 2",
-        image:"Dizmart.png",
-        imageUrl: "/eventFlyer/3.png",
-        rounds: [
-            {
-                number: "Prelims",
-                title: "screening round",
-                about: "preliminary submission",
-                mode: "online"
-            },
-            {
-                number: "Finals",
-                title: "Final Round",
-                about: "On Spot Product Label Designing",
-                mode: "Offline"
-            }
-        ],
-        contact: [
-             { name: "Chandrima", number: "9051998358", link: "https://wa.me/919051998358" },
+    ],
+    faq: [],
+    sponsors: []
+  },
+  {
+    eventSlug: "dizmart",
+    eventName: "Dizmart",
+    registrationLink: "https://unstop.com/competitions/dizmart-jadavpur-university-kolkata-1570813",
+    about: "Design impactful labels at Dizmart, merging creativity, branding, and marketing.",
+    description: "Ever felt the power of a perfect design? In an instant, a compelling label can drive decisions. At Dizmart, create a standout label that commands attention and sets brands apart. Design with impact. Win with purpose.",
+    previewText: "Design impactful labels at Dizmart, merging creativity, branding, and marketing.",
+    day: "Day 2",
+    image: "Dizmart.png",
+    imageUrl: "/eventFlyer/3.png",
+    rounds: [
+      {
+        number: "Prelims",
+        title: "screening round",
+        about: "preliminary submission",
+        mode: "online"
+      },
+      {
+        number: "Finals",
+        title: "Final Round",
+        about: "On Spot Product Label Designing",
+        mode: "Offline"
+      }
+    ],
+    contact: [
+      { name: "Chandrima", number: "9051998358", link: "https://wa.me/919051998358" },
       { name: "Ujaan", number: "8961865041", link: "https://wa.me/918961865041" },
       { name: "Shreyash", number: "6291516600", link: "https://wa.me/916291516600" },
       { name: "Utsha", number: "7550986081", link: "https://wa.me/917550986081" }
