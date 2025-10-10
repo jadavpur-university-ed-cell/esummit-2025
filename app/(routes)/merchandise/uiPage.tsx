@@ -6,6 +6,7 @@ import Script from 'next/script';
 import { useRef, useState, useEffect } from 'react';
 import { Session } from '@/types/all';
 import { useRouter } from 'next/navigation';
+import type { User } from '@prisma/client';
 
 interface Response {
   razorpay_order_id: string,
@@ -172,10 +173,7 @@ const Merchandise = () => {
                   <h1 className="text-[#c085fd] text-2xl title-font font-semibold mb-1">Get the official E-Summit 25 Merchandise</h1>
                   <div className="flex mb-4 text-grey-200">
                     <span className="flex ml-3 pl-3 py-2 space-x-2">
-                      Shirt Size: XL
-                    </span>
-                    <span className="flex ml-3 pl-3 py-2 border-l-2 border-[#ffffff] space-x-2">
-                      Gender: M
+                      Shirt Size: 
                     </span>
                   </div>
                   <p className="leading-relaxed text-[#eae2b7]">
@@ -186,7 +184,7 @@ const Merchandise = () => {
 
                   <div className="flex my-6">
                     <span className="title-font font-medium text-2xl text-white">₹{SHIRT_PRICE}.00</span>
-                    {/* <button
+                    <button
                       className="flex ml-auto bg-[#c085fd] text-[#101720] font-semibold border-0 py-2 px-6 focus:outline-none hover:bg-[#EAE2B7] rounded-full cursor-pointer"
                       onClick={() => {
                         if (!isScriptLoaded) return;
@@ -210,7 +208,7 @@ const Merchandise = () => {
                         className="absolute top-4 right-4 text-white">
                         <FaXmark />
                       </button>
-                    </dialog> */}
+                    </dialog>
                     {/* // TODO: Add Pay Button when env is updated */}
                   </div>
                 </div>
