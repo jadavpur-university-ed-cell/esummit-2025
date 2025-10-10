@@ -138,7 +138,7 @@ const TeamPage = () => {
 
               {/* Team Tabs */}
               <div className="sm:block bg-[#101720]/80 backdrop-blur-sm rounded-xl shadow-lg border border-[#c085fd]/20">
-                <nav className="relative z-0 flex overflow-x-auto" aria-label="Tabs">
+                <nav className="relative z-0 grid grid-cols-3 md:flex overflow-x-auto" aria-label="Tabs">
                   {teams.map((team, tabIdx) => (
                     <button
                       key={team.name}
@@ -154,10 +154,6 @@ const TeamPage = () => {
                       aria-current={team.name === activeTeam ? 'page' : undefined}
                     >
                       <span>{team.name || 'Heads'}</span>
-                      {/* Active indicator */}
-                      {team.name === activeTeam && (
-                        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-3 h-1 bg-[#101720] rounded-full" />
-                      )}
                     </button>
                   ))}
                 </nav>
