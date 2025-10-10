@@ -33,28 +33,36 @@ const isErrorWithMessage = (error: unknown): error is { message: string } => {
   return typeof error === 'object' && error !== null && 'message' in error && typeof (error as any).message === 'string';
 };
 
-// Correct Cashfree SDK initialization
-let cashfree: any;
+// FIXED: Cashfree SDK initialization using static properties method
+let Cashfree: any;
 
 try {
-  const { Cashfree } = require('cashfree-pg');
+  const CashfreeSDK = require('cashfree-pg');
+  Cashfree = CashfreeSDK.Cashfree;
   
   const clientId = process.env.CASHFREE_CLIENT_ID;
   const clientSecret = process.env.CASHFREE_CLIENT_SECRET;
-  const environment = process.env.NODE_ENV === 'production' ? 'PRODUCTION' : 'SANDBOX';
+  const environment = process.env.CASHFREE_ENVIRONMENT || 'PRODUCTION';
   
-  console.log('Initializing Cashfree with:');
-  console.log('Client ID (first 6 chars):', clientId?.substring(0, 6));
-  console.log('Environment:', environment);
+  console.log('🚀 Initializing Cashfree with static properties:');
+  console.log('📋 Client ID (first 6 chars):', clientId?.substring(0, 6));
+  console.log('🔑 Client Secret exists:', !!clientSecret);
+  console.log('🌍 Environment:', environment);
   
   if (!clientId || !clientSecret) {
-    throw new Error('Missing Cashfree credentials');
+    throw new Error('Missing Cashfree credentials - CLIENT_ID or CLIENT_SECRET is undefined');
   }
   
-  cashfree = new Cashfree(environment, clientId, clientSecret);
+  // FIXED: Use static property initialization instead of constructor
+  Cashfree.XClientId = clientId;
+  Cashfree.XClientSecret = clientSecret;
+  Cashfree.XEnvironment = environment;
+  
+  console.log('✅ Cashfree configured successfully with static properties');
   
 } catch (error) {
-  console.error('Failed to initialize Cashfree SDK:', error);
+  console.error('❌ Failed to initialize Cashfree SDK:', error);
+  Cashfree = null;
 }
 
 const DEVELOPER_COUPON_CODE = process.env.NEXT_PUBLIC_DEVELOPER_COUPON_CODE;
@@ -69,9 +77,11 @@ export async function createMerchandiseOrder(paymentData: {
   userId: string;
 }) {
   try {
-    if (!cashfree) {
-      console.error('Cashfree not initialized');
-      return { error: 'Payment service not available' };
+    console.log('🛍️ Starting merchandise order creation:', paymentData);
+    
+    if (!Cashfree) {
+      console.error('❌ Cashfree SDK not initialized');
+      return { error: 'Payment service not available - Cashfree not initialized' };
     }
 
     const { amount, currency, merchandise, size, couponCode, userId } = paymentData;
@@ -82,8 +92,11 @@ export async function createMerchandiseOrder(paymentData: {
     });
 
     if (!user) {
+      console.error('❌ User not found:', userId);
       return { error: 'User not found' };
     }
+
+    console.log('👤 User found:', user.email);
 
     // Validate coupon code
     let finalAmount = amount;
@@ -92,12 +105,14 @@ export async function createMerchandiseOrder(paymentData: {
     if (couponCode && couponCode === DEVELOPER_COUPON_CODE) {
       finalAmount = DEVELOPER_PRICE;
       couponApplied = true;
+      console.log('🎫 Coupon applied, new amount:', finalAmount);
     }
 
     // Generate unique order ID
     const orderId = `order_${Date.now()}_${merchandise}_${userId.slice(-4)}`;
+    console.log('🆔 Generated order ID:', orderId);
 
-    // Create Cashfree order request
+    // FIXED: Updated request format with notify_url
     const request = {
       order_amount: finalAmount,
       order_currency: currency || 'INR',
@@ -109,21 +124,28 @@ export async function createMerchandiseOrder(paymentData: {
         customer_email: user.email || "customer@example.com"
       },
       order_meta: {
-        return_url: `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/merchandise?order_id={order_id}`
+        return_url: `${process.env.NEXT_PUBLIC_APP_URL || 'https://esummit.juecell.com'}/merchandise?order_id={order_id}`,
+        notify_url: `${process.env.NEXT_PUBLIC_APP_URL || 'https://esummit.juecell.com'}/api/cashfree-webhook`
       },
       order_note: `${merchandise} - Size: ${size}${couponApplied ? ' (Coupon Applied)' : ''}`
     };
 
-    console.log('Creating order with request:', JSON.stringify(request, null, 2));
+    console.log('📦 Cashfree request object:', JSON.stringify(request, null, 2));
 
-    // Create order with Cashfree
-    const response = await cashfree.PGCreateOrder(request);
+    // FIXED: Use static method call with API version
+    console.log('🚀 Calling Cashfree.PGCreateOrder with version 2023-08-01...');
+    const response = await Cashfree.PGCreateOrder("2023-08-01", request);
+    
+    console.log('📬 Cashfree response received:', !!response);
+    console.log('📬 Response data exists:', !!response?.data);
     
     if (!response || !response.data) {
+      console.error('❌ Invalid response from Cashfree:', response);
       return { error: 'Failed to create order with payment gateway' };
     }
 
     const order = response.data;
+    console.log('✅ Order created successfully:', order.order_id);
 
     // Store order in database
     await prisma.merchandiseOrder.create({
@@ -142,6 +164,8 @@ export async function createMerchandiseOrder(paymentData: {
       },
     });
 
+    console.log('💾 Order saved to database');
+
     return { 
       success: true, 
       data: {
@@ -151,13 +175,14 @@ export async function createMerchandiseOrder(paymentData: {
       }
     };
   } catch (error: unknown) {
-    console.error('Error creating order:', error);
+    console.error('💥 Error creating order:', error);
     
     // Properly handle unknown error type
     let errorMessage = 'Unknown error occurred';
     let errorDetails = '';
     
     if (isErrorWithResponse(error)) {
+      console.error('📡 API Error Response:', error.response);
       errorDetails = error.response?.data?.message || (isErrorWithMessage(error) ? error.message : '');
       errorMessage = errorDetails || errorMessage;
     } else if (isErrorWithMessage(error)) {
@@ -168,7 +193,7 @@ export async function createMerchandiseOrder(paymentData: {
       errorDetails = error;
     }
     
-    console.error('Error details:', errorDetails);
+    console.error('🔍 Error details:', errorDetails);
     return { error: 'Failed to create order: ' + errorMessage };
   }
 }
@@ -181,14 +206,14 @@ export async function verifyMerchandisePayment(verificationData: {
   userId: string;
 }) {
   try {
-    if (!cashfree) {
+    if (!Cashfree) {
       return { error: 'Payment service not available' };
     }
 
     const { order_id, merchandise, size, couponCode, userId } = verificationData;
 
-    // Fetch payment details from Cashfree
-    const response = await cashfree.PGOrderFetchPayments(order_id);
+    // FIXED: Use static method call with API version
+    const response = await Cashfree.PGOrderFetchPayments("2023-08-01", order_id);
     
     if (!response || !response.data) {
       return { error: 'Failed to fetch payment details' };
@@ -274,7 +299,7 @@ export async function verifyMerchandisePayment(verificationData: {
 
 export async function checkOrderStatus(orderId: string, userId: string) {
   try {
-    if (!cashfree) {
+    if (!Cashfree) {
       return { error: 'Payment service not available' };
     }
 
@@ -295,8 +320,8 @@ export async function checkOrderStatus(orderId: string, userId: string) {
       return { success: true, status: 'paid', message: 'Order is confirmed and paid' };
     }
 
-    // Check with Cashfree for latest status
-    const response = await cashfree.PGOrderFetchPayments(orderId);
+    // FIXED: Use static method call with API version
+    const response = await Cashfree.PGOrderFetchPayments("2023-08-01", orderId);
     
     if (!response || !response.data) {
       return { success: true, status: order.status, message: 'Unable to fetch latest status' };
