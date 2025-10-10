@@ -87,10 +87,10 @@ export const EventDirectionAwareHover = ({
             <Image
               alt="image"
               className={cn(
-                "h-full w-full object-cover scale-[1.15]",
+                "h-full w-full object-cover object-left scale-[1.15]",
                 imageClassName
               )}
-              width={1600}
+              width={1800}
               height={900}
               src={imageUrl}
             />

@@ -109,18 +109,18 @@ const EventPage = () => {
 
         {/* Events Grid Section */}
         <section ref={gridRef}>
-          <div className="max-w-7xl mx-auto py-2 px-4 pb-20">
+          <div className="w-4/5 mx-auto py-2 px-4 pb-20">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
               {eventData.map((event, idx) => (
                 <Link key={idx} href={`/events/${event.eventSlug}`} className="event-card relative w-full aspect-video overflow-hidden rounded-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
                  <EventDirectionAwareHover imageUrl={`${event.imageUrl}`} className="relative h-full w-full overflow-visible border-2 border-[#c085fd]/20" >
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                    <div className="absolute w-full inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                     {/* Content Overlay */}
                     <div className="absolute bottom-0 left-0 right-0 p-6">
-                      <div className="space-y-2">
-                        <p className="font-bold text-2xl text-white drop-shadow-lg">{event.eventName}</p>
-                        <p className="font-normal text-lg text-[#eae2b7] drop-shadow-lg">
-                          {event.description}
+                      <div className="space-y-2 left-0 right-0 w-52">
+                        <p className="font-bold md:text-2xl text-white drop-shadow-lg">{event.eventName}</p>
+                        <p className="font-normal text-xs md:text-lg text-[#eae2b7] drop-shadow-lg">
+                          {event.previewText}
                         </p>
                       </div>
                     </div>
