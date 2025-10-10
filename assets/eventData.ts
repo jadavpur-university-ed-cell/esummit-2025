@@ -494,6 +494,7 @@ export const eventData: Event[] = [
         eventName: "Inspira Talks",
         about: "random text",
         description: "some more text",
+        registrationLink: "https://unstop.com/college-fests/e-summit25-jadavpur-university-jadavpur-university-ju-kolkata-402308",
         previewText: "Learn from top experts and ignite your entrepreneurial journey.",
         day: "Day 3",
         image:"inspiratalks.png",
