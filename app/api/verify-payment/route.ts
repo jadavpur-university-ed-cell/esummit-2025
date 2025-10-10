@@ -1,50 +1,57 @@
-
 import { NextResponse } from "next/server";
 import { prisma } from "@/prisma/client";
 import { auth } from "@/auth";
+import { verifyMerchandisePayment } from "@/actions/merchandise";
 
 export async function POST(req: Request) {
-    try {
-        const session = await auth();
-        if (!session?.user?.email) {
-            return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
-        }
-
-        const {
-            // razorpay_order_id, razorpay_signature,
-            razorpay_payment_id, merchandise, amount } = await req.json();
-
-        // const body = razorpay_order_id + "|" + razorpay_payment_id;
-        // const expectedSignature = crypto
-        //     .createHmac("sha256", process.env.NEXT_RAZORPAY_KEY_SECRET!)
-        //     .update(body)
-        //     .digest("hex");
-
-        // if (expectedSignature !== razorpay_signature) {
-        //     return NextResponse.json({ success: false, error: "Invalid signature" }, { status: 400 });
-        // }
-
-        const user = await prisma.user.findUnique({
-            where: { email: session.user.email },
-            select: { id: true, shirtSize: true },
-        });
-
-        if (!user) return NextResponse.json({ error: "User not found" }, { status: 404 });
-
-        await prisma.merchandiseOrder.create({
-            data: {
-                orderId: razorpay_payment_id,
-                amount,
-                merchandise,
-                size: user.shirtSize!,
-                userId: user.id,
-                status: "paid"
-            },
-        });
-
-        return NextResponse.json({ success: true });
-    } catch (err) {
-        console.error("Error verifying payment:", err);
-        return NextResponse.json({ success: false, error: "Server error" }, { status: 500 });
+  try {
+    const session = await auth();
+    if (!session?.user?.email) {
+      return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
     }
+
+    // Remove unused 'amount' variable
+    const { order_id, merchandise, couponCode } = await req.json();
+
+    if (!order_id || !merchandise) {
+      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+    }
+
+    const user = await prisma.user.findUnique({
+      where: { email: session.user.email },
+      select: { id: true, shirtSize: true },
+    });
+
+    if (!user) {
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
+    }
+
+    // Call the server action to verify Cashfree payment
+    const result = await verifyMerchandisePayment({
+      order_id,
+      merchandise,
+      size: user.shirtSize!,
+      couponCode,
+      userId: user.id,
+    });
+
+    if (result.error) {
+      return NextResponse.json({ 
+        success: false, 
+        error: result.error 
+      }, { status: 400 });
+    }
+
+    return NextResponse.json({ 
+      success: true, 
+      message: result.message 
+    });
+
+  } catch (err) {
+    console.error("Error verifying payment:", err);
+    return NextResponse.json({ 
+      success: false, 
+      error: "Server error" 
+    }, { status: 500 });
+  }
 }

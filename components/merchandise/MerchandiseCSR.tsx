@@ -3,14 +3,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import { FaXmark} from 'react-icons/fa6';
 import { FaCheckCircle } from 'react-icons/fa';
 import Image from 'next/image';
-import { createMerchandiseOrder, verifyMerchandisePayment } from '@/actions/merchandise';
 
-// Razorpay response type
-interface RazorpayResponse {
-  razorpay_order_id: string;
-  razorpay_payment_id: string;
-  razorpay_signature: string;
-}
+// Remove the conflicting global declarations
+// These will come from the global types file
 
 interface UserDetails {
   id: string;
@@ -31,15 +26,13 @@ interface MerchandiseItem {
 
 interface MerchandiseData {
   SHIRT: MerchandiseItem;
-//   CAP: MerchandiseItem;
 }
 
 interface PricingConfig {
   shirtPrice: number;
-//   capPrice: number;
   developerCouponCode: string;
   developerPrice: number;
-  razorpayKeyId: string;
+  cashfreeClientId: string;
 }
 
 type PaymentStatus = 'idle' | 'processing' | 'success' | 'failed';
@@ -55,7 +48,6 @@ export default function MerchandiseClient({
   merchandiseData, 
   pricingConfig 
 }: MerchandiseClientProps) {
-    // const [selectedMerch, setSelectedMerch] = useState<'SHIRT' | 'CAP'>('SHIRT');
     const [selectedMerch, setSelectedMerch] = useState<'SHIRT'>('SHIRT');
     const [size, setSize] = useState(userDetails?.shirtSize || 'XL');
     const [couponCode, setCouponCode] = useState('');
@@ -63,8 +55,31 @@ export default function MerchandiseClient({
     const [couponMessage, setCouponMessage] = useState('');
     const [paymentStatus, setPaymentStatus] = useState<PaymentStatus>('idle');
     const [paymentMessage, setPaymentMessage] = useState('');
+    const [isScriptLoaded, setIsScriptLoaded] = useState(false);
     const paymentDialogRef = useRef<HTMLDialogElement>(null);
     const statusModalRef = useRef<HTMLDialogElement>(null);
+
+    // Load Cashfree SDK
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = 'https://sdk.cashfree.com/js/v3/cashfree.js';
+        script.onload = () => {
+            console.log('Cashfree SDK loaded successfully');
+            setIsScriptLoaded(true);
+        };
+        script.onerror = () => {
+            console.error('Failed to load Cashfree SDK');
+        };
+        document.head.appendChild(script);
+
+        return () => {
+            // Cleanup script on unmount
+            const existingScript = document.querySelector('script[src="https://sdk.cashfree.com/js/v3/cashfree.js"]');
+            if (existingScript) {
+                document.head.removeChild(existingScript);
+            }
+        };
+    }, []);
 
     // Auto-close success modal and redirect
     useEffect(() => {
@@ -133,9 +148,36 @@ export default function MerchandiseClient({
         window.location.href = '/dashboard';
     };
 
+    const verifyPayment = async (orderId: string) => {
+        try {
+            const verifyRes = await fetch("/api/verify-payment", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    order_id: orderId,
+                    merchandise: selectedMerch
+                }),
+            });
+
+            const result = await verifyRes.json();
+            
+            if (result.success) {
+                setPaymentStatus('success');
+                setPaymentMessage('Payment completed successfully! Redirecting to dashboard...');
+            } else {
+                setPaymentStatus('failed');
+                setPaymentMessage("Payment verification failed: " + (result.error || "Unknown error"));
+            }
+        } catch (error) {
+            console.error("Verification error:", error);
+            setPaymentStatus('failed');
+            setPaymentMessage("Payment verification failed!");
+        }
+    };
+
     const handlePayment = async () => {
-        if (!userDetails) {
-            alert('Please login to purchase merchandise');
+        if (!userDetails || !isScriptLoaded || !window.Cashfree) {
+            alert('Payment system not ready. Please wait and try again.');
             return;
         }
 
@@ -143,90 +185,73 @@ export default function MerchandiseClient({
             setPaymentStatus('processing');
             togglePaymentWindow();
 
-            const paymentData = {
-                amount: getFinalPrice(),
-                currency: 'INR',
-                merchandise: selectedMerch,
-                size,
-                couponCode: couponCode || undefined,
-                userId: userDetails.id
-            };
-
-            // Create order via Server Action
-            const orderResult = await createMerchandiseOrder(paymentData);
-
-            if (orderResult.error) {
-                throw new Error(orderResult.error);
+            // STEP 1 — Create order on backend
+            const res = await fetch("/api/create-order", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    amount: getFinalPrice(),
+                    merchandise: selectedMerch
+                }),
+            });
+            
+            const result = await res.json();
+            
+            // Check if the API call was successful
+            if (!result.success) {
+                console.error("Order creation failed:", result.error);
+                throw new Error(result.error || "Unknown error");
+            }
+            
+            // Check if result.data exists before destructuring
+            if (!result.data) {
+                console.error("Order creation failed: No data returned");
+                throw new Error("No order data received");
             }
 
-            if (!orderResult.data) {
-                throw new Error('No order data received');
+            const { orderId, paymentSessionId } = result.data;
+            
+            if (!orderId || !paymentSessionId) {
+                console.error("Missing order details:", result.data);
+                throw new Error("Missing order details");
             }
 
-            const orderData = orderResult.data;
+            // STEP 2 — Initialize Cashfree
+            const cashfree = window.Cashfree({
+                mode: "sandbox" // Change to "production" for live
+            });
 
-            // Load Razorpay script
-            const script = document.createElement('script');
-            script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-            script.onload = () => {
-                const options = {
-                    key: pricingConfig.razorpayKeyId,
-                    amount: Number(orderData.amount),
-                    currency: orderData.currency,
-                    name: 'E-Summit 2025',
-                    description: `E-Summit'25 ${selectedMerch.toLowerCase()} purchase`,
-                    order_id: orderData.id,
-                    handler: async function (response: RazorpayResponse) {
-                        try {
-                            // Verify payment via Server Action
-                            const verificationResult = await verifyMerchandisePayment({
-                                razorpay_order_id: response.razorpay_order_id,
-                                razorpay_payment_id: response.razorpay_payment_id,
-                                razorpay_signature: response.razorpay_signature,
-                                merchandise: selectedMerch,
-                                size,
-                                couponCode: couponCode || undefined,
-                                userId: userDetails.id
-                            });
-
-                            if (verificationResult.success) {
-                                setPaymentStatus('success');
-                                setPaymentMessage('Payment completed successfully! Redirecting to dashboard...');
-                            } else {
-                                setPaymentStatus('failed');
-                                setPaymentMessage(verificationResult.error || 'Payment verification failed');
-                            }
-                        } catch (error) {
-                            console.error('Payment verification error:', error);
-                            setPaymentStatus('failed');
-                            setPaymentMessage('Error verifying payment. Please contact support.');
-                        }
-                    },
-                    prefill: {
-                        name: userDetails.name,
-                        email: userDetails.email,
-                        contact: '',
-                    },
-                    theme: {
-                        color: '#c085fd',
-                    },
-                    modal: {
-                        ondismiss: function() {
-                            setPaymentStatus('idle');
-                        }
-                    }
-                };
-
-                const rzp = new window.Razorpay(options);
-                rzp.open();
+            // STEP 3 — Open Cashfree Checkout
+            const checkoutOptions = {
+                paymentSessionId: paymentSessionId,
+                redirectTarget: "_modal" as const
             };
-            document.body.appendChild(script);
+
+            const paymentResult = await cashfree.checkout(checkoutOptions);
+
+            if (paymentResult.error) {
+                console.error("Payment failed:", paymentResult.error);
+                throw new Error(paymentResult.error.message);
+            }
+
+            if (paymentResult.redirect) {
+                console.log("Redirecting...");
+                return;
+            }
+
+            if (paymentResult.paymentDetails) {
+                console.log("Payment completed:", paymentResult.paymentDetails);
+                // Verify payment on backend
+                await verifyPayment(orderId);
+            }
+
         } catch (error) {
             console.error('Payment error:', error);
             setPaymentStatus('failed');
             setPaymentMessage(error instanceof Error ? error.message : 'Payment failed. Please try again.');
         }
     };
+
     return (
         <>
             <section className="text-gray-600 body-font overflow-hidden bg-[#1b1c3d]">
@@ -247,16 +272,6 @@ export default function MerchandiseClient({
                         >
                             T-Shirt
                         </button>
-                        {/* <button
-                            onClick={() => setSelectedMerch('CAP')}
-                            className={`px-6 py-2 rounded-md font-semibold transition-colors ${
-                                selectedMerch === 'CAP' 
-                                    ? 'bg-[#c085fd] text-[#101720]' 
-                                    : 'text-[#c085fd] hover:bg-[#3a3b6a]'
-                            }`}
-                        >
-                            Cap
-                        </button> */}
                     </div>
                 </div>
 
@@ -265,13 +280,12 @@ export default function MerchandiseClient({
                         <Image
                             width={500}
                             height={500}
-                            alt="ecommerce"
+                            alt="E-Summit 25 Official T-Shirt"
                             className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
                             src={currentMerch.image}
                         />
                         <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                             <h2 className="text-sm title-font text-[#ffffff] tracking-widest">
-                                {/* {selectedMerch === 'SHIRT' ? 'T-SHIRT' : 'CAP'} */}
                                 {selectedMerch}
                             </h2>
                             <h1 className="text-[#c085fd] text-2xl title-font font-semibold mb-1">
@@ -309,11 +323,7 @@ export default function MerchandiseClient({
                             <p className="leading-relaxed text-[#eae2b7]">
                                 {currentMerch.description}
                                 <br /><br />
-                                <span className='font-semibold text-[#ffffff]'>Note:</span> {
-                                    selectedMerch === 'SHIRT' 
-                                        ? "This is a unisex T-Shirt. Organizing Committee Members are asked to contact the Logistic Team for their Customized Shirts." : ""
-                                        // : "This cap comes in one size fits all and is unisex. Organizing Committee Members should contact the Logistic Team for any special requirements."
-                                }
+                                <span className='font-semibold text-[#ffffff]'>Note:</span> This is a unisex T-Shirt. Organizing Committee Members are asked to contact the Logistic Team for their Customized Shirts.
                             </p>
 
                             {/* Coupon Code Section */}
@@ -359,10 +369,22 @@ export default function MerchandiseClient({
                                     )}
                                 </div>
                                 <button
-                                    className="flex ml-auto bg-[#c085fd] text-[#101720] font-semibold border-0 py-2 px-6 focus:outline-none hover:bg-[#EAE2B7] rounded-full transition-colors"
+                                    className={`flex ml-auto font-semibold border-0 py-2 px-6 focus:outline-none rounded-full transition-colors ${
+                                        !userDetails || !isScriptLoaded || paymentStatus === 'processing'
+                                            ? 'bg-gray-500 text-gray-300 cursor-not-allowed'
+                                            : 'bg-[#c085fd] text-[#101720] hover:bg-[#EAE2B7]'
+                                    }`}
                                     onClick={togglePaymentWindow}
+                                    disabled={!userDetails || !isScriptLoaded || paymentStatus === 'processing'}
                                 >
-                                    {userDetails ? 'Buy Now' : 'Login to Purchase'}
+                                    {!userDetails 
+                                        ? 'Login to Purchase' 
+                                        : !isScriptLoaded 
+                                        ? 'Loading...' 
+                                        : paymentStatus === 'processing' 
+                                        ? 'Processing...' 
+                                        : 'Buy Now'
+                                    }
                                 </button>
                             </div>
                         </div>
@@ -410,14 +432,19 @@ export default function MerchandiseClient({
                             
                             <div className="space-y-4">
                                 <h3 className="text-xl border-b border-[#c085fd] pb-2">Payment</h3>
-                                <p className="text-white">You will be redirected to Razorpay secure payment gateway to complete your purchase.</p>
+                                <p className="text-white">You will be redirected to Cashfree secure payment gateway to complete your purchase.</p>
                                 
                                 <button
                                     onClick={handlePayment}
-                                    disabled={paymentStatus === 'processing'}
+                                    disabled={paymentStatus === 'processing' || !isScriptLoaded}
                                     className="w-full bg-[#c085fd] text-[#101720] font-semibold py-3 px-6 rounded-lg hover:bg-[#EAE2B7] transition-colors mt-4 disabled:bg-gray-400 disabled:cursor-not-allowed"
                                 >
-                                    {paymentStatus === 'processing' ? 'Processing...' : `Proceed to Pay ₹${getFinalPrice()}`}
+                                    {paymentStatus === 'processing' 
+                                        ? 'Processing...' 
+                                        : !isScriptLoaded 
+                                        ? 'Loading Payment Gateway...' 
+                                        : `Proceed to Pay ₹${getFinalPrice()}`
+                                    }
                                 </button>
                             </div>
                         </div>

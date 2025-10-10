@@ -10,16 +10,28 @@ export async function GET() {
             return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
         }
 
+        // Find user first to get the correct user ID
+        const user = await prisma.user.findUnique({
+            where: { email: session.user.email },
+            select: { id: true }
+        });
+
+        if (!user) {
+            return NextResponse.json({ error: "User not found" }, { status: 404 });
+        }
+
         const order = await prisma.merchandiseOrder.findMany({
             where: {
-                userId: session.user.id,
+                userId: user.id, // Use the correct user ID from database
             },
             select: {
                 status: true,
                 size: true,
                 amount: true,
                 createdAt: true,
-                orderId: true
+                orderId: true,
+                merchandise: true, // You might want to include this too
+                paymentId: true,   // And this for Cashfree payment IDs
             }
         });
 
