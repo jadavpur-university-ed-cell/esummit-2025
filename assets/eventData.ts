@@ -1,54 +1,54 @@
 import { Event } from "@/types/all"
 
 export const eventData: Event[] = [
-    {
-        eventSlug: "launchx",
-        eventName: "LaunchX",
-        registrationLink: "https://unstop.com/p/launchx-jadavpur-university-kolkata-1570769",
-        about:  "Launch X is the perfect platform for entrepreneurs to showcase their innovations and gain valuable feedback from industry experts to achieve the next step of their own startup journey.",
-        description: "Launch X is the perfect platform for aspiring entrepreneurs to showcase their innovations, gain invaluable feedback from industry experts, and propel their startup journey forward. With a legacy of collaborations with industry leaders like NASSCOM, 100X VC, and TiE Kolkata, Launch X is a prestigious platform for emerging ventures. Participants can connect with over 20,000 business aficionados, refine their ideas with support from top-tier mentors, and compete with promising ventures from across India. If investors show interest, winning teams may get an exclusive opportunity to pitch their ideas directly to a panel of esteemed Venture Capitalists.",
-        previewText: "Showcase, pitch, and launch your startup with expert backing.",
-        day: "Day 3",
-        image:"LaunchX.png",
-        imageUrl: "/eventFlyer/12.png",
-        rounds: [
-             {
-            number: "round 1",
-            "title": "Screening Round",
-            "about": "In round 1, a 3-slide PPT (Intro and Thanks slides are excluded) capturing the essence of their idea needs to be submitted",
-            "mode": "online"
-        },
-        {
-            number: "round 2",
-            "title": "Final Round",
-            "about": "Qualifying teams will have 7 minutes to present: 5 minutes for the pitch and 2 minutes for rebuttal. Teams outside Kolkata must submit a recorded pitch in advance and join the rebuttal via G-Meet.",
-            "mode": "offline"
-        }
-        ],
-        contact: [
-            {
-                name: "Anitketan Suin",
-                number: "9433894770",
-                link: "https://wa.me/919433894770"
-            },
-            {
-                name: "Abhradeep Jana",
-                number: "9831902777",
-                link: "https://wa.me/919831902777"
-            },
-            {
-                name: "Sumedha Kar",
-                number: "9330296249",
-                link: "https://wa.me/919330296249"
-            },
-            {
-                name: "Niladri Bhowmick",
-                number: "9136817827",
-                link: "https://wa.me/919136817827"
-            }
-        ],
-        faq: [
-            {
+  {
+    eventSlug: "launchx",
+    eventName: "LaunchX",
+    registrationLink: "https://unstop.com/p/launchx-jadavpur-university-kolkata-1570769",
+    about: "Launch X is the perfect platform for entrepreneurs to showcase their innovations and gain valuable feedback from industry experts to achieve the next step of their own startup journey.",
+    description: "Launch X is the perfect platform for aspiring entrepreneurs to showcase their innovations, gain invaluable feedback from industry experts, and propel their startup journey forward. With a legacy of collaborations with industry leaders like NASSCOM, 100X VC, and TiE Kolkata, Launch X is a prestigious platform for emerging ventures. Participants can connect with over 20,000 business aficionados, refine their ideas with support from top-tier mentors, and compete with promising ventures from across India. If investors show interest, winning teams may get an exclusive opportunity to pitch their ideas directly to a panel of esteemed Venture Capitalists.",
+    previewText: "Showcase, pitch, and launch your startup with expert backing.",
+    day: "Day 3",
+    image: "LaunchX.png",
+    imageUrl: "/eventFlyer/12.png",
+    rounds: [
+      {
+        number: "round 1",
+        "title": "Screening Round",
+        "about": "In round 1, a 3-slide PPT (Intro and Thanks slides are excluded) capturing the essence of their idea needs to be submitted",
+        "mode": "online"
+      },
+      {
+        number: "round 2",
+        "title": "Final Round",
+        "about": "Qualifying teams will have 7 minutes to present: 5 minutes for the pitch and 2 minutes for rebuttal. Teams outside Kolkata must submit a recorded pitch in advance and join the rebuttal via G-Meet.",
+        "mode": "offline"
+      }
+    ],
+    contact: [
+      {
+        name: "Anitketan Suin",
+        number: "9433894770",
+        link: "https://wa.me/919433894770"
+      },
+      {
+        name: "Abhradeep Jana",
+        number: "9831902777",
+        link: "https://wa.me/919831902777"
+      },
+      {
+        name: "Sumedha Kar",
+        number: "9330296249",
+        link: "https://wa.me/919330296249"
+      },
+      {
+        name: "Niladri Bhowmick",
+        number: "9136817827",
+        link: "https://wa.me/919136817827"
+      }
+    ],
+    faq: [
+      {
         question: "What is the benefit of participating in LaunchX?",
         answer: "Exposure to real investors, mentorship from industry experts, networking with startup enthusiasts, and a chance to turn your idea into a real venture."
       },
@@ -81,28 +81,28 @@ export const eventData: Event[] = [
         answer: "Cash prizes, incubation support, funding opportunities, and certificates of excellence."
       }
     ],
-        sponsors: []
-    },
-    {
-        eventSlug: "mock-stock",
-        eventName: "Mock Stock",
-        registrationLink: "https://unstop.com/competitions/mock-stock-jadavpur-university-kolkata-1570790",
-        about: "Mock Stock is a live stock trading simulation event that allows participants to experience the thrill of trading in a real-time competitive environment using virtual currency.",
-        description: "Mock Stock is an exciting stock market simulation event designed to give participants hands-on experience in real-time trading. From 3rd November 2025 to 7th November 2025, players will trade virtual stocks online via a trading simulation platform. With live leaderboards and performance tracking, the competition tests participants' analytical skills, decision-making abilities, and strategic thinking. Whether you're a beginner exploring the stock market or an experienced trader, Mock Stock is your gateway to mastering trading skills without financial risk.",
-        previewText: "Master trading skills in a risk-free, competitive stock simulation.",
-        day: "Day 1",
-        image:"MockStock.png",
-        imageUrl: "/eventFlyer/4.png",
-        rounds: [
-            {
-            number: "round 1",
-            "title": "Live Trading Simulation",
-            "about": "Participants will trade virtual stocks in real-time using provided credentials on the trading simulation platform.",
-            "mode": "online"
-        }
-        ],
-        contact: [
-                  {
+    sponsors: []
+  },
+  {
+    eventSlug: "mock-stock",
+    eventName: "Mock Stock",
+    registrationLink: "https://unstop.com/competitions/mock-stock-jadavpur-university-kolkata-1570790",
+    about: "Mock Stock is a live stock trading simulation event that allows participants to experience the thrill of trading in a real-time competitive environment using virtual currency.",
+    description: "Mock Stock is an exciting stock market simulation event designed to give participants hands-on experience in real-time trading. From 3rd November 2025 to 7th November 2025, players will trade virtual stocks online via a trading simulation platform. With live leaderboards and performance tracking, the competition tests participants' analytical skills, decision-making abilities, and strategic thinking. Whether you're a beginner exploring the stock market or an experienced trader, Mock Stock is your gateway to mastering trading skills without financial risk.",
+    previewText: "Master trading skills in a risk-free, competitive stock simulation.",
+    day: "Day 1",
+    image: "MockStock.png",
+    imageUrl: "/eventFlyer/4.png",
+    rounds: [
+      {
+        number: "round 1",
+        "title": "Live Trading Simulation",
+        "about": "Participants will trade virtual stocks in real-time using provided credentials on the trading simulation platform.",
+        "mode": "online"
+      }
+    ],
+    contact: [
+      {
         name: "Oyshi Mukherjee",
         number: "8910959991",
         link: "https://wa.me/918910959991"
@@ -122,9 +122,9 @@ export const eventData: Event[] = [
         number: "6290793236",
         link: "https://wa.me/916290793236"
       }
-        ],
-        faq: [
-             {
+    ],
+    faq: [
+      {
         question: "What is Mock Stock?",
         answer: "It is a live stock trading simulation where participants trade virtual stocks in real time."
       },
@@ -164,47 +164,47 @@ export const eventData: Event[] = [
         question: "What skills can I gain from Mock Stock?",
         answer: "You will learn market analysis, trading strategy, and decision-making under pressure."
       }
-        ],
-        sponsors: []
-    },
-    {
-        eventSlug: "hacknpitch",
-        eventName: "Hack N Pitch",
-        registrationLink: "https://unstop.com/hackathons/hacknpitch-jadavpur-university-kolkata-1570879",
-        about: "random text",
-        description: "some more text",
-        previewText: "Join Hack-n-Pitch: Innovate, hack, and pitch your ideas overnight!",
-        day: "Day 2",
-        image:"HackNPitch.png",
-        imageUrl: "/eventFlyer/6.png",
-        rounds: [
-            {
-                number: "round 1",
-                title: "screening round",
-                about: "preliminary submission",
-                mode: "online"
-            },
-            {
-                number: "round 1",
-                title: "screening round",
-                about: "preliminary submission",
-                mode: "online"
-            },
-            {
-                number: "round 1",
-                title: "screening round",
-                about: "preliminary submission",
-                mode: "online"
-            },
-            {
-                number: "round 1",
-                title: "screening round",
-                about: "preliminary submission",
-                mode: "online"
-            }
-        ],
-        contact: [
-            {
+    ],
+    sponsors: []
+  },
+  {
+    eventSlug: "hacknpitch",
+    eventName: "Hack N Pitch",
+    registrationLink: "https://unstop.com/hackathons/hacknpitch-jadavpur-university-kolkata-1570879",
+    about: "HACK<N>PITCH is Eastern India’s premier 24-hour product-based hackathon, set to take place on 7th–8th November 2025 at Jadavpur University’s Salt Lake Campus (JUSL), Kolkata. ",
+    description: "Designed to ignite innovation and entrepreneurial thinking, the event will bring together 25 elite teams (100 participants max) from across the country to compete, collaborate, and create impactful tech solutions under intense time constraints. With a strong focus on real-world problem solving, this hackathon is structured around four cutting-edge tracks: Generative AI, Agentic AI, Web3, Cybersecurity",
+    previewText: "Join Hack-n-Pitch: Innovate, hack, and pitch your ideas overnight!",
+    day: "Day 2",
+    image: "HackNPitch.png",
+    imageUrl: "/eventFlyer/6.png",
+    rounds: [
+      {
+        number: "Round 1",
+        title: "Quiz Round",
+        about: "All teams will join on Unstop for a quiz session. Top 60 teams will qualify to the next round.",
+        mode: "Online"
+      },
+      {
+        number: "Round 2",
+        title: "Screening round",
+        about: "PPTs will be submitted, and top 25 teams will be chosen to be the finalists for the event",
+        mode: "online"
+      },
+      {
+        number: "Round 3",
+        title: "Hackathon",
+        about: "Exciting 24 Hours Hackathon @ Jadavpur University Salt Lake Campus",
+        mode: "Offline"
+      },
+      {
+        number: "Round 4",
+        title: "Pitching",
+        about: "All teams will pitch to the panel of judges and top 3 will be crowned winners!",
+        mode: "Offline"
+      }
+    ],
+    contact: [
+      {
         name: "Sarin Sanyal",
         number: "9432264022",
         link: "https://wa.me/919432264022"
@@ -229,9 +229,9 @@ export const eventData: Event[] = [
         number: "6291936657",
         link: "https://wa.me/916291936657"
       }
-        ],
-        faq: [
-     {
+    ],
+    faq: [
+      {
         question: "Team size",
         answer: "2 - 4"
       },
@@ -263,41 +263,41 @@ export const eventData: Event[] = [
         question: "How to connect with the organising team?",
         answer: "Join the Discord server or contact through email/phone."
       }
-        ],
-        sponsors: []
-    },
-    {
-        eventSlug: "corporate-clash",
-        eventName: "Corporate Clash",
-        registrationLink: "https://unstop.com/competitions/corporate-clash-e-summit25-jadavpur-university-jadavpur-university-kolkata-1570741",
-        about: "random text",
-        description: "some more text",
-        previewText: "Test your strategic skills in the ultimate analyst challenge.",
-        day: "Day 1",
-        image:"CorporateClash.png",
-        imageUrl: "/eventFlyer/5.png",
-        rounds: [
-            {
-                number: "round 1",
-                title: "screening round",
-                about: "preliminary submission",
-                mode: "online"
-            },
-            {
-                number: "round 2",
-                title: "Pitching round",
-                about: "Direct pitching with a 5+2 minute format to a panel of judges.",
-                mode: "offline"
-            },
-            {
-                number: "Final Round",
-                title: "Individual Round",
-                about: "Surprise Round",
-                mode: "Offline"
-            },
-        ],
-        contact: [
-            {
+    ],
+    sponsors: []
+  },
+  {
+    eventSlug: "corporate-clash",
+    eventName: "Corporate Clash",
+    registrationLink: "https://unstop.com/competitions/corporate-clash-e-summit25-jadavpur-university-jadavpur-university-kolkata-1570741",
+    about: "random text",
+    description: "some more text",
+    previewText: "Test your strategic skills in the ultimate analyst challenge.",
+    day: "Day 1",
+    image: "CorporateClash.png",
+    imageUrl: "/eventFlyer/5.png",
+    rounds: [
+      {
+        number: "round 1",
+        title: "screening round",
+        about: "preliminary submission",
+        mode: "online"
+      },
+      {
+        number: "round 2",
+        title: "Pitching round",
+        about: "Direct pitching with a 5+2 minute format to a panel of judges.",
+        mode: "offline"
+      },
+      {
+        number: "Final Round",
+        title: "Individual Round",
+        about: "Surprise Round",
+        mode: "Offline"
+      },
+    ],
+    contact: [
+      {
         name: "Aindree Chatterjee",
         number: "6291896539",
         link: "https://wa.me/916291896539"
@@ -318,9 +318,9 @@ export const eventData: Event[] = [
         link: "https://wa.me/918100027187"
       }
 
-        ],
-        faq: [
-             {
+    ],
+    faq: [
+      {
         question: "What is the benefit of participating in Corporate Clash?",
         answer: "You step into the shoes of a management consultant solving a high-stakes strategic business challenge."
       },
@@ -352,48 +352,48 @@ export const eventData: Event[] = [
         question: "How to connect with the organising team?",
         answer: "Join our Discord server"
       }
-        ],
-        sponsors: []
-    },
-    {
-        eventSlug: "summit-cup",
-        eventName: "Summit Cup",
-        registrationLink: "https://unstop.com/events/summit-cup-jadavpur-university-kolkata-1570847",
-        about: "random text",
-        description: "some more text",
-        previewText: "New Event",
-        day: "Someday",
-        image:"SummitCup.jpeg",
-        imageUrl: "/eventFlyer/8.png",
-        rounds: [
-            {
-                number: "Data Analytics Round",
-                title: "screening round",
-                about: "preliminary submission",
-                mode: "online"
-            },
-            {
-                number: "Auctions",
-                title: "Fun Round",
-                about: "Make your squad via live online auction",
-                mode: "online"
-            },
-            {
-                number: "Offline Knockout Tournament",
-                title: "Knockouts",
-                about: "Finals: On PS5/Xbox using EA Sports FC 25/26",
-                mode: "Offline"
-            }
-        ],
-        contact: [
-            { name: "Dipjyoti Dash", number: "8158066614", link: "https://wa.me/918158066614" },
+    ],
+    sponsors: []
+  },
+  {
+    eventSlug: "summit-cup",
+    eventName: "Summit Cup",
+    registrationLink: "https://unstop.com/events/summit-cup-jadavpur-university-kolkata-1570847",
+    about: "random text",
+    description: "some more text",
+    previewText: "New Event",
+    day: "Someday",
+    image: "SummitCup.jpeg",
+    imageUrl: "/eventFlyer/8.png",
+    rounds: [
+      {
+        number: "Data Analytics Round",
+        title: "screening round",
+        about: "preliminary submission",
+        mode: "online"
+      },
+      {
+        number: "Auctions",
+        title: "Fun Round",
+        about: "Make your squad via live online auction",
+        mode: "online"
+      },
+      {
+        number: "Offline Knockout Tournament",
+        title: "Knockouts",
+        about: "Finals: On PS5/Xbox using EA Sports FC 25/26",
+        mode: "Offline"
+      }
+    ],
+    contact: [
+      { name: "Dipjyoti Dash", number: "8158066614", link: "https://wa.me/918158066614" },
       { name: "Pranjal Deb", number: "6290622851", link: "https://wa.me/916290622851" },
       { name: "Dipayan Sardar", number: "9733817692", link: "https://wa.me/919733817692" },
       { name: "Adrija Das", number: "7980466251", link: "https://wa.me/917980466251" },
       { name: "Anshika Dutta", number: "8617317676", link: "https://wa.me/918617317676" }
-        ],
-        faq: [
-            { question: "How many participants can be on a team?", answer: "Each team consists of one participant only." },
+    ],
+    faq: [
+      { question: "How many participants can be on a team?", answer: "Each team consists of one participant only." },
       { question: "What's involved in the preliminary data analysis round?", answer: "Analyze a dataset of 20,000+ football players to shortlist your ideal 18-player squad." },
       { question: "What happens after the preliminary round?", answer: "Top 64 participants move to a live online auction to build their squad." },
       { question: "What happens after the auction?", answer: "Offline knockout tournament using a football simulation game (e.g., EA FC)." },
@@ -408,21 +408,21 @@ export const eventData: Event[] = [
       { question: "How will the data analysis submissions be judged?", answer: "Depth of analysis, logic, clarity, and squad effectiveness." },
       { question: "Is there a registration fee for the event?", answer: "No, participation is free." },
       { question: "Where will the offline finals be held?", answer: "Jadavpur University, Salt Lake Campus." }
-        ],
-        sponsors: []
-    },
-    {
-        eventSlug: "equity-edge",
-        eventName: "Equity Edge",
-        registrationLink: "https://unstop.com/competitions/equity-edge-jadavpur-university-kolkata-1570842",
-        about: "A unique simulation where students become investors and founders. Equity Edge challenges participants to think, pitch, and negotiate like real entrepreneurs. Students experience the real dynamics of equity, funding, and valuation by making strategic decisions—gaining hands-on exposure to the world of startups and investments.",
-        description:  "Equity Edge is a one-of-a-kind simulation event where participants act as both investors and founders. The event tests your analytical ability, decision-making, and strategic thinking in the world of startups and investments. In the prelims, you analyze real NSE/BSE-listed companies, while in the finals, you allocate a budget across diverse live startup pitches using a weighted ranking model. Experience real-world challenges in equity, funding, and valuations and compete to amplify your financial impact.",
-        previewText:  "Simplify Equities, Amplify Impact",
-        day: "Day 3",
-		image:"EquityEdge.png",
-        imageUrl: "/eventFlyer/7.png",
-        rounds: [
-            {
+    ],
+    sponsors: []
+  },
+  {
+    eventSlug: "equity-edge",
+    eventName: "Equity Edge",
+    registrationLink: "https://unstop.com/competitions/equity-edge-jadavpur-university-kolkata-1570842",
+    about: "A unique simulation where students become investors and founders. Equity Edge challenges participants to think, pitch, and negotiate like real entrepreneurs. Students experience the real dynamics of equity, funding, and valuation by making strategic decisions—gaining hands-on exposure to the world of startups and investments.",
+    description: "Equity Edge is a one-of-a-kind simulation event where participants act as both investors and founders. The event tests your analytical ability, decision-making, and strategic thinking in the world of startups and investments. In the prelims, you analyze real NSE/BSE-listed companies, while in the finals, you allocate a budget across diverse live startup pitches using a weighted ranking model. Experience real-world challenges in equity, funding, and valuations and compete to amplify your financial impact.",
+    previewText: "Simplify Equities, Amplify Impact",
+    day: "Day 3",
+    image: "EquityEdge.png",
+    imageUrl: "/eventFlyer/7.png",
+    rounds: [
+      {
         number: "round 1",
         title: "online quiz",
         about: "Multiple-choice quiz featuring 30 questions to be solved in 10 minutes.",
@@ -434,9 +434,9 @@ export const eventData: Event[] = [
         about: "Shortlisted participants will act as investors evaluating a portfolio of 25 startup ideas, allocating funds based on strategic reasoning.",
         mode: "offline"
       }
-        ],
-        contact: [
-            {
+    ],
+    contact: [
+      {
         name: "Aishani Roy",
         number: "+918653121414",
         link: "mailto:royaishani27@gmail.com"
@@ -456,14 +456,14 @@ export const eventData: Event[] = [
         number: "+917003184131",
         link: "mailto:ansarimdarsh8@gmail.com"
       }
-        ],
-        faq: [
-          {
-            question: "How many participants can be on a team?",
-            answer: "Each team will consist of one participant only."
-          },
-          {
-            question: "What topics will be covered in the quiz round?",
+    ],
+    faq: [
+      {
+        question: "How many participants can be on a team?",
+        answer: "Each team will consist of one participant only."
+      },
+      {
+        question: "What topics will be covered in the quiz round?",
         answer: "Questions will focus on Investment, Portfolio Management, Corporate Finance, Macroeconomics, and Entrepreneurship."
       },
       {
@@ -486,61 +486,61 @@ export const eventData: Event[] = [
         question: "Who can participate in Equity Edge?",
         answer: "The event is open to all UG and PG students from any discipline across India."
       }
-        ],
-        sponsors: []
-    },
-    {
-        eventSlug: "inspira-talks",
-        eventName: "Inspira Talks",
-        about: "random text",
-        description: "some more text",
-        registrationLink: "https://unstop.com/college-fests/e-summit25-jadavpur-university-jadavpur-university-ju-kolkata-402308",
-        previewText: "Learn from top experts and ignite your entrepreneurial journey.",
-        day: "Day 3",
-        image:"inspiratalks.png",
-        imageUrl: "/eventFlyer/9.png",
-        rounds: [],
-        contact: [
+    ],
+    sponsors: []
+  },
+  {
+    eventSlug: "inspira-talks",
+    eventName: "Inspira Talks",
+    about: "random text",
+    description: "some more text",
+    registrationLink: "https://unstop.com/college-fests/e-summit25-jadavpur-university-jadavpur-university-ju-kolkata-402308",
+    previewText: "Learn from top experts and ignite your entrepreneurial journey.",
+    day: "Day 3",
+    image: "inspiratalks.png",
+    imageUrl: "/eventFlyer/9.png",
+    rounds: [],
+    contact: [
       { name: "Anamitra Roy", number: "9132781437", link: "https://wa.me/919132781437" },
       { name: "Ayan Bhowmick", number: "9804964509", link: "https://wa.me/919804964509" },
       { name: "Ayush", number: "6291162975", link: "https://wa.me/916291162975" },
       { name: "Karan Prasad", number: "9163039213", link: "https://wa.me/919163039213" }
-        ],
-        faq: [],
-        sponsors: []
-    },
-    {
-        eventSlug: "dizmart",
-        eventName: "Dizmart",
-        registrationLink: "https://unstop.com/competitions/dizmart-jadavpur-university-kolkata-1570813",
-        about: "random text",
-        description: "some more text",
-        previewText: "Design impactful labels at Dizmart, merging creativity, branding, and marketing.",
-        day: "Day 2",
-        image:"Dizmart.png",
-        imageUrl: "/eventFlyer/3.png",
-        rounds: [
-            {
-                number: "Prelims",
-                title: "screening round",
-                about: "preliminary submission",
-                mode: "online"
-            },
-            {
-                number: "Finals",
-                title: "Final Round",
-                about: "On Spot Product Label Designing",
-                mode: "Offline"
-            }
-        ],
-        contact: [
-             { name: "Chandrima", number: "9051998358", link: "https://wa.me/919051998358" },
+    ],
+    faq: [],
+    sponsors: []
+  },
+  {
+    eventSlug: "dizmart",
+    eventName: "Dizmart",
+    registrationLink: "https://unstop.com/competitions/dizmart-jadavpur-university-kolkata-1570813",
+    about: "random text",
+    description: "some more text",
+    previewText: "Design impactful labels at Dizmart, merging creativity, branding, and marketing.",
+    day: "Day 2",
+    image: "Dizmart.png",
+    imageUrl: "/eventFlyer/3.png",
+    rounds: [
+      {
+        number: "Prelims",
+        title: "screening round",
+        about: "preliminary submission",
+        mode: "online"
+      },
+      {
+        number: "Finals",
+        title: "Final Round",
+        about: "On Spot Product Label Designing",
+        mode: "Offline"
+      }
+    ],
+    contact: [
+      { name: "Chandrima", number: "9051998358", link: "https://wa.me/919051998358" },
       { name: "Ujaan", number: "8961865041", link: "https://wa.me/918961865041" },
       { name: "Shreyash", number: "6291516600", link: "https://wa.me/916291516600" },
       { name: "Utsha", number: "7550986081", link: "https://wa.me/917550986081" }
-        ],
-        faq: [
-            {
+    ],
+    faq: [
+      {
         question: "How many participants can be on a team?",
         answer: "Each team can have 2-4 members."
       },
@@ -588,22 +588,22 @@ export const eventData: Event[] = [
         question: "What is the benefit of participating in Dizmart?",
         answer: "Showcase creativity to real industry leaders and enhance your portfolio."
       }
-        ],
-        sponsors: []
-    },
+    ],
+    sponsors: []
+  },
 ]
 
 export const inspiraTalksSpeakers = [
-    {
-        id: 1,
-        name: "Coming Soon",
-        designation: "",
-				imageUrl: "/speakerImages/comingsoon.png"
-    },
-    {   
-        id: 2,
-        name: "Coming Soon",
-        designation: "",
-        imageUrl: "/speakerImages/comingsoon.png"
-    },
+  {
+    id: 1,
+    name: "Coming Soon",
+    designation: "",
+    imageUrl: "/speakerImages/comingsoon.png"
+  },
+  {
+    id: 2,
+    name: "Coming Soon",
+    designation: "",
+    imageUrl: "/speakerImages/comingsoon.png"
+  },
 ];
