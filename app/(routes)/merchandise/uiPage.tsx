@@ -8,9 +8,9 @@ import { Session } from '@/types/all';
 import { useRouter } from 'next/navigation';
 
 interface Response {
-  razorpay_order_id: String,
-  razorpay_payment_id: String,
-  razorpay_signature: String
+  razorpay_order_id: string,
+  razorpay_payment_id: string,
+  razorpay_signature: string
 }
 
 // Dynamic Pricing from environment variables
@@ -180,7 +180,7 @@ const Merchandise = () => {
 
                   <div className="flex my-6">
                     <span className="title-font font-medium text-2xl text-white">₹{SHIRT_PRICE}.00</span>
-                    <button
+                    {/* <button
                       className="flex ml-auto bg-[#c085fd] text-[#101720] font-semibold border-0 py-2 px-6 focus:outline-none hover:bg-[#EAE2B7] rounded-full cursor-pointer"
                       onClick={() => {
                         if (!isScriptLoaded) return;
@@ -204,7 +204,8 @@ const Merchandise = () => {
                         className="absolute top-4 right-4 text-white">
                         <FaXmark />
                       </button>
-                    </dialog>
+                    </dialog> */}
+                    {/* // TODO: Add Pay Button when env is updated */}
                   </div>
                 </div>
               </div>

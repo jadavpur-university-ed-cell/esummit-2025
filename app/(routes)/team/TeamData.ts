@@ -74,7 +74,7 @@ export const teams: Team[] = [
       },
       {
         name: 'Sakshya Mukherjee',
-        role: 'Sponsorship Co-Lead',
+        role: 'Logidstics Head',
         imageUrl:
           '/team/Sakshya_Mukherjee.jpg',
         instaUrl: 'https://www.instagram.com/_.sakshya._/profilecard/?igsh=d3YwamM5MzFrbndp',
@@ -82,7 +82,7 @@ export const teams: Team[] = [
       },
       {
         name: 'Shivam Mundra',
-        role: 'Sponsorship Member',
+        role: 'Logistics Head',
         imageUrl:
           '/team/Shivam_Mundra.jpg',
         instaUrl: 'https://www.instagram.com/shivam_mundra24/',
@@ -120,28 +120,28 @@ export const teams: Team[] = [
       },
       {
         name: 'Sarin Sanyal',
-        role: 'Tech Team Member',
+        role: 'Backend Developer',
         imageUrl: '/team/Sarin_Sanyal.jpeg',
         instaUrl: '',
         linkedinUrl: 'https://www.linkedin.com/in/sarinsanyal/',
       },
       {
         name: 'Krittika Sen',
-        role: 'Tech Team Member',
+        role: 'Frontend Developer',
         imageUrl: '/team/Krittika_Sen.jpeg',
         instaUrl: 'https://www.instagram.com/krittikaisasloth?igsh=ZzNhb2phOGVnbGZs&utm_source=qr',
         linkedinUrl: 'http://linkedin.com/in/krittika-sen-22a7a624a',
       },
       {
         name: 'Ayush Bhattacharyya',
-        role: 'Tech Team Member',
+        role: 'Frontend Developer',
         imageUrl: '/team/Ayush_Bhattacharyya.jpeg',
         instaUrl: 'https://www.instagram.com/_._ayush.b_._?igsh=MTZ0emZ1bGprMmNyOQ==',
         linkedinUrl: 'https://www.linkedin.com/in/ayush-bhattacharyya-654063314?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
       },
       {
         name: 'Pritam Das',
-        role: 'Tech Team Member',
+        role: 'Frontend Developer',
         imageUrl: '/team/Pritam_Das.jpeg',
         instaUrl: 'https://www.instagram.com/davyprit/',
         linkedinUrl: 'https://linkedin.com/in/pritamdas2006/',
@@ -155,7 +155,7 @@ export const teams: Team[] = [
         name: 'Om Karmakar',
         role: 'Finance Lead',
         imageUrl:
-          '/team/Om_Karmakar.jpg',
+          '/team/Team/10.jpg',
         instaUrl: 'https://www.instagram.com/iamomkarmakar?igsh=MTlzaWZhYXRzbG5ndw==',
         linkedinUrl: 'https://www.linkedin.com/in/om-karmakar-52214b1ba',
       },
@@ -190,14 +190,6 @@ export const teams: Team[] = [
           '/team/Jahid.jpeg',
         instaUrl: 'https://www.instagram.com/jem_.__?igsh=b2o0ZjlqZ3pkeW5t',
         linkedinUrl: 'http://www.linkedin.com/in/jahid-mamud',
-      },
-      {
-        name: 'Aishani Roy ',
-        role: 'Content Co-Lead',
-        imageUrl:
-          '/team/Aishani_Roy.jpg',
-        instaUrl: 'https://www.instagram.com/aishani._?igsh=MTZtMmN3M3VrZ3o1cA==',
-        linkedinUrl: 'https://www.linkedin.com/in/aishani-roy-a6804829b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
       },
       {
         name: 'Ayan Bhowmick',
@@ -272,7 +264,7 @@ export const teams: Team[] = [
       {
         name: 'Pranjal Deb',
         role: 'Sponsorship Member',
-        imageUrl: '/team/Pranjal_Deb.jpg',
+        imageUrl: '/team/Team/18.jpg',
         instaUrl: '',
         linkedinUrl: 'https://www.linkedin.com/in/pranjal-deb-62aa15324',
       },
@@ -325,6 +317,14 @@ export const teams: Team[] = [
           '/team/Anitketan_Suin.jpg',
         instaUrl: 'https://www.instagram.com/_.anit._xd/',
         linkedinUrl: 'https://www.linkedin.com/in/anitketan-suin-07488b289/',
+      },
+      {
+        name: 'Aishani Roy ',
+        role: 'Content Co-Lead',
+        imageUrl:
+          '/team/Aishani_Roy.jpg',
+        instaUrl: 'https://www.instagram.com/aishani._?igsh=MTZtMmN3M3VrZ3o1cA==',
+        linkedinUrl: 'https://www.linkedin.com/in/aishani-roy-a6804829b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
       },
       {
         name: 'Shreyash Ray',
