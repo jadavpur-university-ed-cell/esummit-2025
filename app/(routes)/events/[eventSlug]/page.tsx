@@ -23,7 +23,7 @@ export default function Page() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-800 via-slate-900 to-black text-white">
+    <div className="min-h-screen w-full bg-gradient-to-b from-slate-800 via-slate-900 to-black text-white">
       {/* Navigation */}
       <nav className="hidden sm:flex justify-center py-8">
         <div className="flex space-x-8 bg-slate-700/50 backdrop-blur-sm rounded-full px-8 py-3">

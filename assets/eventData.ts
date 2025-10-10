@@ -4,6 +4,7 @@ export const eventData: Event[] = [
     {
         eventSlug: "launchx",
         eventName: "LaunchX",
+        registrationLink: "https://unstop.com/p/launchx-jadavpur-university-kolkata-1570769",
         about:  "Launch X is the perfect platform for entrepreneurs to showcase their innovations and gain valuable feedback from industry experts to achieve the next step of their own startup journey.",
         description: "Launch X is the perfect platform for aspiring entrepreneurs to showcase their innovations, gain invaluable feedback from industry experts, and propel their startup journey forward. With a legacy of collaborations with industry leaders like NASSCOM, 100X VC, and TiE Kolkata, Launch X is a prestigious platform for emerging ventures. Participants can connect with over 20,000 business aficionados, refine their ideas with support from top-tier mentors, and compete with promising ventures from across India. If investors show interest, winning teams may get an exclusive opportunity to pitch their ideas directly to a panel of esteemed Venture Capitalists.",
         previewText: "Showcase, pitch, and launch your startup with expert backing.",
@@ -85,6 +86,7 @@ export const eventData: Event[] = [
     {
         eventSlug: "mock-stock",
         eventName: "Mock Stock",
+        registrationLink: "https://unstop.com/competitions/mock-stock-jadavpur-university-kolkata-1570790",
         about: "Mock Stock is a live stock trading simulation event that allows participants to experience the thrill of trading in a real-time competitive environment using virtual currency.",
         description: "Mock Stock is an exciting stock market simulation event designed to give participants hands-on experience in real-time trading. From 3rd November 2025 to 7th November 2025, players will trade virtual stocks online via a trading simulation platform. With live leaderboards and performance tracking, the competition tests participants' analytical skills, decision-making abilities, and strategic thinking. Whether you're a beginner exploring the stock market or an experienced trader, Mock Stock is your gateway to mastering trading skills without financial risk.",
         previewText: "Master trading skills in a risk-free, competitive stock simulation.",
@@ -168,6 +170,7 @@ export const eventData: Event[] = [
     {
         eventSlug: "hacknpitch",
         eventName: "Hack N Pitch",
+        registrationLink: "https://unstop.com/hackathons/hacknpitch-jadavpur-university-kolkata-1570879",
         about: "random text",
         description: "some more text",
         previewText: "Join Hack-n-Pitch: Innovate, hack, and pitch your ideas overnight!",
@@ -266,6 +269,7 @@ export const eventData: Event[] = [
     {
         eventSlug: "corporate-clash",
         eventName: "Corporate Clash",
+        registrationLink: "https://unstop.com/competitions/corporate-clash-e-summit25-jadavpur-university-jadavpur-university-kolkata-1570741",
         about: "random text",
         description: "some more text",
         previewText: "Test your strategic skills in the ultimate analyst challenge.",
@@ -354,6 +358,7 @@ export const eventData: Event[] = [
     {
         eventSlug: "summit-cup",
         eventName: "Summit Cup",
+        registrationLink: "https://unstop.com/events/summit-cup-jadavpur-university-kolkata-1570847",
         about: "random text",
         description: "some more text",
         previewText: "New Event",
@@ -409,6 +414,7 @@ export const eventData: Event[] = [
     {
         eventSlug: "equity-edge",
         eventName: "Equity Edge",
+        registrationLink: "https://unstop.com/competitions/equity-edge-jadavpur-university-kolkata-1570842",
         about: "A unique simulation where students become investors and founders. Equity Edge challenges participants to think, pitch, and negotiate like real entrepreneurs. Students experience the real dynamics of equity, funding, and valuation by making strategic decisions—gaining hands-on exposure to the world of startups and investments.",
         description:  "Equity Edge is a one-of-a-kind simulation event where participants act as both investors and founders. The event tests your analytical ability, decision-making, and strategic thinking in the world of startups and investments. In the prelims, you analyze real NSE/BSE-listed companies, while in the finals, you allocate a budget across diverse live startup pitches using a weighted ranking model. Experience real-world challenges in equity, funding, and valuations and compete to amplify your financial impact.",
         previewText:  "Simplify Equities, Amplify Impact",
@@ -505,6 +511,7 @@ export const eventData: Event[] = [
     {
         eventSlug: "dizmart",
         eventName: "Dizmart",
+        registrationLink: "https://unstop.com/competitions/dizmart-jadavpur-university-kolkata-1570813",
         about: "random text",
         description: "some more text",
         previewText: "Design impactful labels at Dizmart, merging creativity, branding, and marketing.",
