@@ -206,6 +206,20 @@ export const teams: Team[] = [
         linkedinUrl: 'https://www.linkedin.com/in/ayush-choudhary18/',
       },
       {
+        name: "Nirjhar Das",
+        role: "Sponsorship Member",
+        imageUrl: "/team/Nirjhar_Das.jpg",
+        instaUrl: "https://www.instagram.com/in_search_of_peace_05?igsh=c3hma3dwamlscWIz",
+        linkedinUrl: "https://www.linkedin.com/in/nirjhar-das-078577241?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+      },
+      {
+        name: "Avik Kapri",
+        role: "Sponsorship Member",
+        imageUrl: "/team/Team/19.jpg",
+        instaUrl: "https://www.instagram.com/avikkapri29?igsh=YzljYTk1ODg3Zg==",
+        linkedinUrl: "https://www.linkedin.com/in/avik-kapri-997110338?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+      },
+      {
         name: 'Kingshuk Bhandary',
         role: 'Sponsorship Member',
         imageUrl: '/team/Kingshuk_Bhandary.jpeg',
@@ -218,13 +232,6 @@ export const teams: Team[] = [
         imageUrl: '/team/Srishti_Dutta.jpeg',
         instaUrl: 'https://www.instagram.com/__srishtid?igsh=MWxzcHpibWNpb2I2aw%3D%3D&utm_source=qr',
         linkedinUrl: 'https://www.linkedin.com/in/srishti-dutta-4104b1317?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app'
-      },
-      {
-        name: 'Dipjyoti Dash',
-        role: 'Sponsorship Member',
-        imageUrl: '/team/Dipjyoti_Dash.jpeg',
-        instaUrl: 'https://www.instagram.com/dipjyotidash/',
-        linkedinUrl: 'http://www.linkedin.com/in/dipjyoti-dash-22508227a'
       },
       {
         name: 'Sumedha Kar',
@@ -253,13 +260,6 @@ export const teams: Team[] = [
         imageUrl: '/team/Neelavra_Das.jpeg',
         instaUrl: 'https://www.instagram.com/neelavradas?igsh=MTF0cm56bTRjNGF3Yg==',
         linkedinUrl: 'https://www.linkedin.com/in/neelavra-das-3657a731b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-      },
-      {
-        name: 'Swapnendu Sikdar',
-        role: 'Sponsorship Member',
-        imageUrl: '/team/Swapnendu_Sikdar.jpeg',
-        instaUrl: 'https://www.instagram.com/just_swapnendu?igsh=MTI1dTJyMG4xNjR5aA==',
-        linkedinUrl: 'www.linkedin.com/in/swapnendu-sikdar-9080aa365',
       },
       {
         name: 'Abhradeep Jana',
@@ -383,6 +383,13 @@ export const teams: Team[] = [
         linkedinUrl: 'https://www.linkedin.com/in/ashmit-sinha2005?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
       },
       {
+        name: 'Swapnendu Sikdar',
+        role: 'Content & Design Member',
+        imageUrl: '/team/Swapnendu_Sikdar.jpeg',
+        instaUrl: 'https://www.instagram.com/just_swapnendu?igsh=MTI1dTJyMG4xNjR5aA==',
+        linkedinUrl: 'www.linkedin.com/in/swapnendu-sikdar-9080aa365',
+      },
+      {
         name: 'Ayush Chowdhary',
         role: 'Content & Design Team Member',
         imageUrl: '/team/Ayush_Chowdhary.jpeg',
@@ -496,6 +503,13 @@ export const teams: Team[] = [
           '/team/Anamitra_Roy.jpeg',
         instaUrl: 'https://www.instagram.com/itsroybaybay/',
         linkedinUrl: 'https://www.linkedin.com/in/anamitra-roy-832a6b301?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+      },
+      {
+        name: 'Dipjyoti Dash',
+        role: 'Logistics In-Charge',
+        imageUrl: '/team/Dipjyoti_Dash.jpeg',
+        instaUrl: 'https://www.instagram.com/dipjyotidash/',
+        linkedinUrl: 'http://www.linkedin.com/in/dipjyoti-dash-22508227a'
       },
       {
         name: 'Rishob Mondal',
