@@ -436,22 +436,22 @@ export const eventData: Event[] = [
       {
         name: "Aishani Roy",
         number: "+918653121414",
-        link: "mailto:royaishani27@gmail.com"
+        link: "https://wa.me/918653121414"
       },
       {
         name: "Kingshuk Bhandary",
         number: "+916291108578",
-        link: "mailto:kingshukbhandaryedm@gmail.com"
+        link: "https://wa.me/916291108578"
       },
       {
         name: "Debarpan Ghosh",
         number: "+917003120954",
-        link: "mailto:debarpan.ghoshpeju24@gmail.com"
+        link: "https://wa.me/917003120954"
       },
       {
         name: "Md. Arsh Ansari",
         number: "+917003184131",
-        link: "mailto:ansarimdarsh8@gmail.com"
+        link: "https://wa.me/917003184131"
       }
     ],
     faq: [
