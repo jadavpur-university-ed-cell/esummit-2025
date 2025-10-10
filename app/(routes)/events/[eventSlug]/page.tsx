@@ -47,9 +47,12 @@ export default function Page() {
         <p className="text-gray-300 max-w-2xl mx-auto text-lg leading-relaxed mb-12">
           {eventDetails.about}
         </p>
-        <button className="bg-gray-200 hover:bg-white text-black font-semibold py-4 px-12 rounded-full transition-all duration-300 transform hover:scale-105">
+        {
+          eventDetails.eventSlug !== "inspira-talks" && eventDetails.registrationLink &&
+          <Link href={eventDetails.registrationLink} className="bg-gray-200 hover:bg-white text-black font-semibold py-4 px-12 rounded-full transition-all duration-300 transform hover:scale-105">
           Register
-        </button>
+        </Link>
+        }
       </div>
 
       {/* Description Section */}
