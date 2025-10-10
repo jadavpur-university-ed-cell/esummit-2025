@@ -5,12 +5,6 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
     domains: ["lh3.googleusercontent.com", "media.licdn.com"],  // <-- add any external hosts here
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
   }
 };
 

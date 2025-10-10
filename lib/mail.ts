@@ -25,7 +25,7 @@ export default async function sendMail({to,subject,body}:email){
     }
 
     try{
-        const sendResult = await transport.sendMail({
+        await transport.sendMail({
             from: email, to, subject, html:body
         })
     }

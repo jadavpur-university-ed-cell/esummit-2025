@@ -1,21 +1,21 @@
 "use client"
 import { SignInButton } from "./signInButton";
-import { useSearchParams } from "next/navigation";
+// import { useSearchParams } from "next/navigation";
 import Image from 'next/image';
 import Link from "next/link";
 
-type AuthErrorType =
-  | "AccessDenied"
-  | "OAuthAccountNotLinked"
-  | "Configuration"
-  | "Callback"
-  | "Verification"
-  | "Default"
-  | string;
+// type AuthErrorType =
+//   | "AccessDenied"
+//   | "OAuthAccountNotLinked"
+//   | "Configuration"
+//   | "Callback"
+//   | "Verification"
+//   | "Default"
+//   | string;
 
 const SignIn = () => {
-  const searchParams = useSearchParams();
-  const error = searchParams.get("error") as AuthErrorType | null;
+  // const searchParams = useSearchParams();
+  // const error = searchParams.get("error") as AuthErrorType | null;
 
   // const errorMessage = (() => {
   //   switch (error) {

@@ -1,6 +1,5 @@
 import Image from "next/image";
-import { LogOut, Bell } from "lucide-react";
-import { Event } from "@/types/all";
+import { LogOut } from "lucide-react";
 import { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
 import { useState, useEffect } from "react";
@@ -54,9 +53,10 @@ export default function UserDashboard({
 
                 setOrders(data.order || "");
                 console.log("Data from user-dashboard is:", data.order);
-            } catch (err: any) {
+            } catch (err: unknown) {
                 console.error(err);
-                setError(err.message);
+                if(err instanceof Error) setError(err.message);
+                else setError("Unexpected Error Occurred.")
             } finally {
                 setLoading(false);
             }

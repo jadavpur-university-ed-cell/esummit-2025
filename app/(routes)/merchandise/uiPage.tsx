@@ -15,9 +15,9 @@ interface Response {
 
 // Dynamic Pricing from environment variables
 const SHIRT_PRICE = parseInt('359');
-const CAP_PRICE = parseInt(process.env.NEXT_PUBLIC_CAP_PRICE || '200');
-const DEVELOPER_COUPON_CODE = process.env.NEXT_PUBLIC_DEVELOPER_COUPON_CODE || 'ESUMMIT_DEV_2025';
-const DEVELOPER_PRICE = parseInt(process.env.NEXT_PUBLIC_DEVELOPER_PRICE || '50');
+// const CAP_PRICE = parseInt(process.env.NEXT_PUBLIC_CAP_PRICE || '200');
+// const DEVELOPER_COUPON_CODE = process.env.NEXT_PUBLIC_DEVELOPER_COUPON_CODE || 'ESUMMIT_DEV_2025';
+// const DEVELOPER_PRICE = parseInt(process.env.NEXT_PUBLIC_DEVELOPER_PRICE || '50');
 const RAZORPAY_KEY_ID = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!;
 
 // interface UserDetails {
@@ -33,7 +33,7 @@ const RAZORPAY_KEY_ID = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!;
 const Merchandise = () => {
   const router = useRouter();
   const [session, setSession] = useState<Session | null>(null);
-  const editUserRef = useRef(null);
+  const editUserRef = useRef<HTMLDialogElement>(null);
   const [isScriptLoaded, setIsScriptLoaded] = useState(false);
 
   useEffect(() => {
@@ -74,10 +74,16 @@ const Merchandise = () => {
       // STEP 2 — Open Razorpay Checkout
       const options = {
         key: RAZORPAY_KEY_ID,
+        order_id: orderId,
         amount: SHIRT_PRICE * 100,
         currency: "INR",
         name: "E-Summit 25 Merchandise",
         description: "Official T-Shirt",
+        prefill: {
+          name: session?.user?.name ?? "Name Not Found",
+          email: session?.user?.email ?? "Email Not Found",
+          contact: session?.user?.email ?? "Email Not Found"
+        },
         handler: async function (response: Response) {
           const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = response;
 

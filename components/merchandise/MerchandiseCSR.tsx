@@ -5,6 +5,13 @@ import { FaCheckCircle } from 'react-icons/fa';
 import Image from 'next/image';
 import { createMerchandiseOrder, verifyMerchandisePayment } from '@/actions/merchandise';
 
+// Razorpay response type
+interface RazorpayResponse {
+  razorpay_order_id: string;
+  razorpay_payment_id: string;
+  razorpay_signature: string;
+}
+
 interface UserDetails {
   id: string;
   name: string;
@@ -164,7 +171,7 @@ export default function MerchandiseClient({
             script.onload = () => {
                 const options = {
                     key: pricingConfig.razorpayKeyId,
-                    amount: orderData.amount,
+                    amount: Number(orderData.amount),
                     currency: orderData.currency,
                     name: 'E-Summit 2025',
                     description: `E-Summit'25 ${selectedMerch.toLowerCase()} purchase`,
