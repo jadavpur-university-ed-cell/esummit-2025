@@ -291,7 +291,7 @@ export default function UserDashboard({
                 </div>
 
                 {/* Event Sections */}
-                {['Registered', 'Wishlisted', 'Pending'].map((type) => (
+                {/* {['Registered', 'Wishlisted', 'Pending'].map((type) => (
                     <section
                         key={type}
                         className="my-8 p-6 rounded-xl backdrop-blur-md bg-white/10 border border-white/20 shadow-lg"
@@ -301,7 +301,7 @@ export default function UserDashboard({
                             No events in this category, as of now.
                         </p>
                     </section>
-                ))}
+                ))} */}
             </main>
         </section>
 
