@@ -33,32 +33,44 @@ const isErrorWithMessage = (error: unknown): error is { message: string } => {
   return typeof error === 'object' && error !== null && 'message' in error && typeof (error as any).message === 'string';
 };
 
-// FIXED: Cashfree SDK initialization using static properties method
+// FIXED: Correct Cashfree SDK import and initialization
 let Cashfree: any;
 
 try {
-  const CashfreeSDK = require('cashfree-pg');
-  Cashfree = CashfreeSDK.Cashfree;
+  // Try different import methods to find the correct one
+  const cashfreePG = require('cashfree-pg');
+  
+  // Check what's available in the package
+  console.log('📦 Available cashfree-pg exports:', Object.keys(cashfreePG));
+  
+  // Try different possible export names
+  Cashfree = cashfreePG.Cashfree || cashfreePG.CFPaymentGateway || cashfreePG.default || cashfreePG;
   
   const clientId = process.env.CASHFREE_CLIENT_ID;
   const clientSecret = process.env.CASHFREE_CLIENT_SECRET;
   const environment = process.env.CASHFREE_ENVIRONMENT || 'PRODUCTION';
   
-  console.log('🚀 Initializing Cashfree with static properties:');
+  console.log('🚀 Initializing Cashfree:');
   console.log('📋 Client ID (first 6 chars):', clientId?.substring(0, 6));
   console.log('🔑 Client Secret exists:', !!clientSecret);
   console.log('🌍 Environment:', environment);
+  console.log('📦 Cashfree object type:', typeof Cashfree);
+  console.log('📦 Available methods:', Object.getOwnPropertyNames(Cashfree));
   
   if (!clientId || !clientSecret) {
     throw new Error('Missing Cashfree credentials - CLIENT_ID or CLIENT_SECRET is undefined');
   }
   
-  // FIXED: Use static property initialization instead of constructor
-  Cashfree.XClientId = clientId;
-  Cashfree.XClientSecret = clientSecret;
-  Cashfree.XEnvironment = environment;
-  
-  console.log('✅ Cashfree configured successfully with static properties');
+  // Initialize using the static property method
+  if (Cashfree && typeof Cashfree === 'object') {
+    Cashfree.XClientId = clientId;
+    Cashfree.XClientSecret = clientSecret;
+    Cashfree.XEnvironment = environment;
+    
+    console.log('✅ Cashfree configured successfully with static properties');
+  } else {
+    throw new Error('Cashfree SDK not properly loaded');
+  }
   
 } catch (error) {
   console.error('❌ Failed to initialize Cashfree SDK:', error);
@@ -82,6 +94,12 @@ export async function createMerchandiseOrder(paymentData: {
     if (!Cashfree) {
       console.error('❌ Cashfree SDK not initialized');
       return { error: 'Payment service not available - Cashfree not initialized' };
+    }
+
+    // Check if PGCreateOrder method exists
+    if (typeof Cashfree.PGCreateOrder !== 'function') {
+      console.error('❌ PGCreateOrder method not found. Available methods:', Object.getOwnPropertyNames(Cashfree));
+      return { error: 'Payment method not available' };
     }
 
     const { amount, currency, merchandise, size, couponCode, userId } = paymentData;
@@ -112,7 +130,7 @@ export async function createMerchandiseOrder(paymentData: {
     const orderId = `order_${Date.now()}_${merchandise}_${userId.slice(-4)}`;
     console.log('🆔 Generated order ID:', orderId);
 
-    // FIXED: Updated request format with notify_url
+    // Create Cashfree order request
     const request = {
       order_amount: finalAmount,
       order_currency: currency || 'INR',
@@ -132,9 +150,29 @@ export async function createMerchandiseOrder(paymentData: {
 
     console.log('📦 Cashfree request object:', JSON.stringify(request, null, 2));
 
-    // FIXED: Use static method call with API version
-    console.log('🚀 Calling Cashfree.PGCreateOrder with version 2023-08-01...');
-    const response = await Cashfree.PGCreateOrder("2023-08-01", request);
+    // Try different method call patterns
+    console.log('🚀 Attempting to call PGCreateOrder...');
+    let response;
+    
+    try {
+      // Method 1: With version parameter
+      response = await Cashfree.PGCreateOrder("2023-08-01", request);
+    } catch (error1) {
+      console.log('❌ Method 1 failed, trying Method 2...');
+      try {
+        // Method 2: Without version parameter
+        response = await Cashfree.PGCreateOrder(request);
+      } catch (error2) {
+        console.log('❌ Method 2 failed, trying Method 3...');
+        try {
+          // Method 3: Alternative method name
+          response = await Cashfree.CreateOrder(request);
+        } catch (error3) {
+          console.error('❌ All methods failed:', { error1, error2, error3 });
+          throw error1; // Throw the first error
+        }
+      }
+    }
     
     console.log('📬 Cashfree response received:', !!response);
     console.log('📬 Response data exists:', !!response?.data);
@@ -198,6 +236,9 @@ export async function createMerchandiseOrder(paymentData: {
   }
 }
 
+// Keep the other functions (verifyMerchandisePayment, checkOrderStatus) the same for now
+// We'll update them once we confirm this fix works
+
 export async function verifyMerchandisePayment(verificationData: {
   order_id: string;
   merchandise: 'SHIRT';
@@ -212,8 +253,17 @@ export async function verifyMerchandisePayment(verificationData: {
 
     const { order_id, merchandise, size, couponCode, userId } = verificationData;
 
-    // FIXED: Use static method call with API version
-    const response = await Cashfree.PGOrderFetchPayments("2023-08-01", order_id);
+    // Use same fallback method pattern for fetching payments
+    let response;
+    try {
+      response = await Cashfree.PGOrderFetchPayments("2023-08-01", order_id);
+    } catch (error1) {
+      try {
+        response = await Cashfree.PGOrderFetchPayments(order_id);
+      } catch (error2) {
+        throw error1;
+      }
+    }
     
     if (!response || !response.data) {
       return { error: 'Failed to fetch payment details' };
@@ -320,8 +370,17 @@ export async function checkOrderStatus(orderId: string, userId: string) {
       return { success: true, status: 'paid', message: 'Order is confirmed and paid' };
     }
 
-    // FIXED: Use static method call with API version
-    const response = await Cashfree.PGOrderFetchPayments("2023-08-01", orderId);
+    // Use same fallback method pattern
+    let response;
+    try {
+      response = await Cashfree.PGOrderFetchPayments("2023-08-01", orderId);
+    } catch (error1) {
+      try {
+        response = await Cashfree.PGOrderFetchPayments(orderId);
+      } catch (error2) {
+        throw error1;
+      }
+    }
     
     if (!response || !response.data) {
       return { success: true, status: order.status, message: 'Unable to fetch latest status' };
