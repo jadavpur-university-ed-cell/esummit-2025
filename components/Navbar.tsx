@@ -91,7 +91,7 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
-  const isEventsPage = pathname.startsWith("/events/*");
+  const isEventsPage = pathname.startsWith("/events/");
 
   if (isEventsPage) {
     return <SideBar navigationItems={navigationItems} />;

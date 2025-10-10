@@ -44,7 +44,7 @@ export const teams: Team[] = [
         name: 'Anurag Dey',
         role: 'Design Head',
         imageUrl:
-          '/team/Anurag_Dey.jpg',
+          '/team/Anurag_Dey.jpeg',
         instaUrl: 'https://www.instagram.com/_theweirdintrovert_/',
         linkedinUrl: 'https://www.linkedin.com/in/iamanurag101/',
       },
@@ -155,7 +155,7 @@ export const teams: Team[] = [
         name: 'Om Karmakar',
         role: 'Finance Lead',
         imageUrl:
-          '/team/Team/10.jpg',
+          '/team/Om_Karmakar.jpeg',
         instaUrl: 'https://www.instagram.com/iamomkarmakar?igsh=MTlzaWZhYXRzbG5ndw==',
         linkedinUrl: 'https://www.linkedin.com/in/om-karmakar-52214b1ba',
       },

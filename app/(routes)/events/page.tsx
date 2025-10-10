@@ -2,9 +2,10 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { DirectionAwareHover } from "@/components/ui/direction-aware-hover";
+// import { DirectionAwareHover } from "@/components/ui/direction-aware-hover";
 import { eventData } from '@/assets/eventData';
 import Link from 'next/link';
+import { EventDirectionAwareHover } from '@/components/ui/event-direction-aware-hover';
 
 // Register ScrollTrigger plugin
 if (typeof window !== 'undefined') {
@@ -111,15 +112,8 @@ const EventPage = () => {
           <div className="max-w-7xl mx-auto py-2 px-4 pb-20">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
               {eventData.map((event, idx) => (
-                <Link
-                  key={idx}
-                  href={`/events/${event.eventSlug}`}
-                  className="event-card relative w-full aspect-video overflow-hidden rounded-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-                >
-                  <DirectionAwareHover
-                    imageUrl={`${event.imageUrl}`}
-                    className="relative h-full w-full overflow-visible border-2 border-[#c085fd]/20"
-                  >
+                <Link key={idx} href={`/events/${event.eventSlug}`} className="event-card relative w-full aspect-video overflow-hidden rounded-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                 <EventDirectionAwareHover imageUrl={`${event.imageUrl}`} className="relative h-full w-full overflow-visible border-2 border-[#c085fd]/20" >
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                     {/* Content Overlay */}
                     <div className="absolute bottom-0 left-0 right-0 p-6">
@@ -130,7 +124,7 @@ const EventPage = () => {
                         </p>
                       </div>
                     </div>
-                  </DirectionAwareHover>
+                  </EventDirectionAwareHover>
                 </Link>
               ))}
             </div>

@@ -19,7 +19,7 @@ export default function Hero() {
                     <div className="md:text-xl text-gray-300 mb-6">
                         Jadavpur University, established in 1955, has transcended its origins as a state university to emerge as the best in the East. Presently it is an internationally recognised premier academic institute of the country. Accredited as a &quot;Five Star University&quot; by India&apos;s National Assessment and Accreditation Council (NAAC).
                         <br /><br />
-                        Jadavpur University&apos;s Faculty of Engineering and Technology (FET) consistently commands a place among the nation&apos;s elite. In 2024 it was ranked 9th in the University Rankings of India by the NIRF , and holds the distinction of being the 12th best among Engineering Colleges in India.
+                        Jadavpur University&apos;s Faculty of Engineering and Technology (FET) consistently commands a place among the nation&apos;s elite. In 2025 it was ranked 1st in State University Ranking, 9th in the University Rankings of India by the NIRF , and holds the distinction of being the 18th best among Engineering Colleges in India.
                     </div>
                 </div>
             </div>
