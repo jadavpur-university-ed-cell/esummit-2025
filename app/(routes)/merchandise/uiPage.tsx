@@ -153,7 +153,7 @@ const Merchandise = () => {
 
       // STEP 2 — Initialize Cashfree
       const cashfree = window.Cashfree({
-        mode: "sandbox" // Change to "production" for live
+        mode: "production" 
       });
 
       // STEP 3 — Open Cashfree Checkout
