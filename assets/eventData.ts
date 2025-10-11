@@ -510,9 +510,8 @@ export const eventData: Event[] = [
     eventSlug: "dizmart",
     eventName: "Dizmart",
     registrationLink: "https://unstop.com/competitions/dizmart-jadavpur-university-kolkata-1570813",
-    about: "Design impactful labels at Dizmart, merging creativity, branding, and marketing.",
-    description: "Ever felt the power of a perfect design? In an instant, a compelling label can drive decisions. At Dizmart, create a standout label that commands attention and sets brands apart. Design with impact. Win with purpose.",
-    previewText: "Design impactful labels at Dizmart, merging creativity, branding, and marketing.",
+    about: "Dizmart is the crossroads of imagination and market intelligence — only the best campaigns survive.",
+    description: "Gear up for Dizmart, the ultimate test of creativity and marketing prowess! This is your chance to showcase your ability to craft ideas that captivate, persuade, and make an impact. Start with our engaging prelims round, where your ingenuity and brand instincts will be put to the test, and pave your way to the high-stakes final, where strategy, innovation, and presentation collide in a thrilling challenge.",
     day: "Day 2",
     image: "Dizmart.png",
     imageUrl: "/eventFlyer/3.png",
@@ -526,7 +525,7 @@ export const eventData: Event[] = [
       {
         number: "Finals",
         title: "Final Round",
-        about: "On Spot Product Label Designing",
+        about: "Craft a complete, budget-capped campaign covering ads, packaging, PR, and more. You’ll have 3 minutes to pitch and 2 minutes to defend your idea before the judges",
         mode: "Offline"
       }
     ],
