@@ -30,45 +30,39 @@ const isErrorWithMessage = (error: unknown): error is { message: string } => {
   return typeof error === 'object' && error !== null && 'message' in error && typeof (error as any).message === 'string';
 };
 
-// FIXED: Use constructor approach for Cashfree SDK
-let cashfree: any;
+// FIXED: Use direct HTTP approach instead of SDK configuration
+let cashfreeConfig: {
+  clientId: string;
+  clientSecret: string;
+  environment: string;
+} | null = null;
 
 try {
-  console.log('🔍 Starting Cashfree SDK initialization...');
-  
-  const { Cashfree } = require('cashfree-pg');
-  console.log('📦 Cashfree constructor loaded successfully');
-  
   const clientId = process.env.CASHFREE_CLIENT_ID;
   const clientSecret = process.env.CASHFREE_CLIENT_SECRET;
-  const environment = process.env.CASHFREE_ENVIRONMENT || 'PRODUCTION';
+  const environment = process.env.CASHFREE_ENVIRONMENT || 'SANDBOX';
   
-  console.log('🚀 Environment Variables:');
-  console.log('📋 Client ID (first 6 chars):', clientId?.substring(0, 6));
-  console.log('🔑 Client Secret exists:', !!clientSecret);
-  console.log('🌍 Environment:', environment);
+  console.log('🔍 FULL CLIENT ID LOADED:', clientId);
+  console.log('🔍 SECRET EXISTS:', !!clientSecret);
+  console.log('🔍 ENVIRONMENT:', environment);
   
   if (!clientId || !clientSecret) {
     throw new Error('Missing Cashfree credentials');
   }
   
-  // FIXED: Create instance using constructor
-  console.log('🔧 Creating Cashfree instance...');
-  cashfree = new Cashfree({
-    XClientId: clientId,
-    XClientSecret: clientSecret,
-    XEnvironment: environment === 'PRODUCTION' ? 'PRODUCTION' : 'SANDBOX'
-  });
+  cashfreeConfig = {
+    clientId,
+    clientSecret,
+    environment
+  };
   
-  console.log('✅ Cashfree instance created successfully');
-  console.log('🔍 Instance methods:', Object.getOwnPropertyNames(Object.getPrototypeOf(cashfree)));
+  console.log('✅ Cashfree config created successfully');
+  console.log('📋 Client ID (first 10 chars):', clientId.substring(0, 10));
   
 } catch (error) {
-  console.error('❌ Failed to initialize Cashfree SDK:', error);
-  cashfree = null;
+  console.error('❌ Failed to initialize Cashfree config:', error);
+  cashfreeConfig = null;
 }
-
-console.log('🏁 Final Cashfree initialization status:', !!cashfree);
 
 const DEVELOPER_COUPON_CODE = process.env.NEXT_PUBLIC_DEVELOPER_COUPON_CODE;
 const DEVELOPER_PRICE = parseInt(process.env.NEXT_PUBLIC_DEVELOPER_PRICE || '50');
@@ -84,8 +78,8 @@ export async function createMerchandiseOrder(paymentData: {
   try {
     console.log('🛍️ Starting merchandise order creation:', paymentData);
     
-    if (!cashfree) {
-      console.error('❌ Cashfree SDK not initialized');
+    if (!cashfreeConfig) {
+      console.error('❌ Cashfree config not initialized');
       return { error: 'Payment service not available - Cashfree not initialized' };
     }
 
@@ -129,51 +123,59 @@ export async function createMerchandiseOrder(paymentData: {
         customer_email: user.email || "customer@example.com"
       },
       order_meta: {
-        return_url: `${process.env.NEXT_PUBLIC_APP_URL || 'https://esummit.juecell.com'}/merchandise?order_id={order_id}`,
-        notify_url: `${process.env.NEXT_PUBLIC_APP_URL || 'https://esummit.juecell.com'}/api/cashfree-webhook`
+        return_url: `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/merchandise?order_id={order_id}`,
+        notify_url: `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/cashfree-webhook`
       },
       order_note: `${merchandise} - Size: ${size}${couponApplied ? ' (Coupon Applied)' : ''}`
     };
 
     console.log('📦 Cashfree request object:', JSON.stringify(request, null, 2));
+    console.log('🔑 Using credentials - ID first 10:', cashfreeConfig.clientId.substring(0, 10));
 
-    // FIXED: Use instance method calls
-    console.log('🚀 Attempting to call PGCreateOrder...');
-    let response;
-    
-    try {
-      // Method 1: Instance method call
-      response = await cashfree.PGCreateOrder(request);
-      console.log('✅ Method 1 successful');
-    } catch (error1) {
-      console.log('❌ Method 1 failed, trying with version...');
-      try {
-        // Method 2: With version parameter
-        response = await cashfree.PGCreateOrder("2023-08-01", request);
-        console.log('✅ Method 2 successful');
-      } catch (error2) {
-        console.error('❌ Both methods failed:', { error1, error2 });
-        throw error1;
-      }
+    // FIXED: Use direct fetch with proper headers instead of SDK
+    const apiUrl = cashfreeConfig.environment === 'PRODUCTION' 
+      ? 'https://api.cashfree.com/pg/orders'
+      : 'https://sandbox.cashfree.com/pg/orders';
+
+    console.log('🚀 Making direct API call to:', apiUrl);
+
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'x-client-id': cashfreeConfig.clientId,
+        'x-client-secret': cashfreeConfig.clientSecret,
+        'x-api-version': '2023-08-01'
+      },
+      body: JSON.stringify(request)
+    });
+
+    console.log('📡 Response status:', response.status);
+    console.log('📡 Response headers:', Object.fromEntries(response.headers.entries()));
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('❌ API Error Response:', errorText);
+      throw new Error(`API Error ${response.status}: ${errorText}`);
     }
+
+    const result = await response.json();
+    console.log('📬 Cashfree response received:', result);
     
-    console.log('📬 Cashfree response received:', !!response);
-    console.log('📬 Response data exists:', !!response?.data);
-    
-    if (!response || !response.data) {
-      console.error('❌ Invalid response from Cashfree:', response);
+    if (!result || !result.order_id) {
+      console.error('❌ Invalid response from Cashfree:', result);
       return { error: 'Failed to create order with payment gateway' };
     }
 
-    const order = response.data;
-    console.log('✅ Order created successfully:', order.order_id);
+    console.log('✅ Order created successfully:', result.order_id);
 
     // Store order in database
     await prisma.merchandiseOrder.create({
       data: {
-        orderId: order.order_id,
+        orderId: result.order_id,
         amount: finalAmount,
-        currency: order.order_currency,
+        currency: result.order_currency || 'INR',
         receipt: orderId,
         merchandise,
         size,
@@ -181,7 +183,7 @@ export async function createMerchandiseOrder(paymentData: {
         couponCode: couponApplied ? couponCode : null,
         status: 'created',
         userId: userId,
-        paymentId: order.payment_session_id,
+        paymentId: result.payment_session_id,
       },
     });
 
@@ -190,8 +192,8 @@ export async function createMerchandiseOrder(paymentData: {
     return { 
       success: true, 
       data: {
-        orderId: order.order_id,
-        paymentSessionId: order.payment_session_id,
+        orderId: result.order_id,
+        paymentSessionId: result.payment_session_id,
         amount: finalAmount
       }
     };
@@ -218,6 +220,7 @@ export async function createMerchandiseOrder(paymentData: {
   }
 }
 
+// Keep the other functions the same for now - we'll update them once this works
 export async function verifyMerchandisePayment(verificationData: {
   order_id: string;
   merchandise: 'SHIRT';
@@ -226,29 +229,33 @@ export async function verifyMerchandisePayment(verificationData: {
   userId: string;
 }) {
   try {
-    if (!cashfree) {
+    if (!cashfreeConfig) {
       return { error: 'Payment service not available' };
     }
 
     const { order_id, merchandise, size, couponCode, userId } = verificationData;
 
-    // Use instance method
-    let response;
-    try {
-      response = await cashfree.PGOrderFetchPayments(order_id);
-    } catch (error1) {
-      try {
-        response = await cashfree.PGOrderFetchPayments("2023-08-01", order_id);
-      } catch (error2) {
-        throw error1;
+    const apiUrl = cashfreeConfig.environment === 'PRODUCTION'
+      ? `https://api.cashfree.com/pg/orders/${order_id}/payments`
+      : `https://sandbox.cashfree.com/pg/orders/${order_id}/payments`;
+
+    const response = await fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'x-client-id': cashfreeConfig.clientId,
+        'x-client-secret': cashfreeConfig.clientSecret,
+        'x-api-version': '2023-08-01'
       }
-    }
-    
-    if (!response || !response.data) {
+    });
+
+    if (!response.ok) {
       return { error: 'Failed to fetch payment details' };
     }
 
-    const payments: CashfreePayment[] = response.data;
+    const result = await response.json();
+    const payments: CashfreePayment[] = result;
 
     if (!payments || payments.length === 0) {
       return { error: 'No payments found for this order' };
@@ -325,7 +332,7 @@ export async function verifyMerchandisePayment(verificationData: {
 
 export async function checkOrderStatus(orderId: string, userId: string) {
   try {
-    if (!cashfree) {
+    if (!cashfreeConfig) {
       return { error: 'Payment service not available' };
     }
 
@@ -344,22 +351,26 @@ export async function checkOrderStatus(orderId: string, userId: string) {
       return { success: true, status: 'paid', message: 'Order is confirmed and paid' };
     }
 
-    let response;
-    try {
-      response = await cashfree.PGOrderFetchPayments(orderId);
-    } catch (error1) {
-      try {
-        response = await cashfree.PGOrderFetchPayments("2023-08-01", orderId);
-      } catch (error2) {
-        throw error1;
+    const apiUrl = cashfreeConfig.environment === 'PRODUCTION'
+      ? `https://api.cashfree.com/pg/orders/${orderId}/payments`
+      : `https://sandbox.cashfree.com/pg/orders/${orderId}/payments`;
+
+    const response = await fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'x-client-id': cashfreeConfig.clientId,
+        'x-client-secret': cashfreeConfig.clientSecret,
+        'x-api-version': '2023-08-01'
       }
-    }
-    
-    if (!response || !response.data) {
+    });
+
+    if (!response.ok) {
       return { success: true, status: order.status, message: 'Unable to fetch latest status' };
     }
 
-    const payments: CashfreePayment[] = response.data;
+    const payments: CashfreePayment[] = await response.json();
 
     if (!payments || payments.length === 0) {
       return { success: true, status: order.status, message: 'No payments found' };
