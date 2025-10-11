@@ -156,7 +156,7 @@ export const teams: Team[] = [
         role: 'Finance Lead',
         imageUrl:
           '/team/Om_Karmakar.jpeg',
-        instaUrl: 'https://www.instagram.com/iamomkarmakar?igsh=MTlzaWZhYXRzbG5ndw==',
+        instaUrl: 'https://www.instagram.com/itznotomkar',
         linkedinUrl: 'https://www.linkedin.com/in/om-karmakar-52214b1ba',
       },
       {
