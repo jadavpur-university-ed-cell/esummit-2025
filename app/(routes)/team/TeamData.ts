@@ -74,7 +74,7 @@ export const teams: Team[] = [
       },
       {
         name: 'Sakshya Mukherjee',
-        role: 'Logidstics Head',
+        role: 'Logistics Head',
         imageUrl:
           '/team/Sakshya_Mukherjee.jpg',
         instaUrl: 'https://www.instagram.com/_.sakshya._/profilecard/?igsh=d3YwamM5MzFrbndp',
