@@ -2,40 +2,72 @@
 
 import Image from 'next/image';
 import { FaXmark } from 'react-icons/fa6';
-import Script from 'next/script';
 import { useRef, useState, useEffect } from 'react';
 import { Session } from '@/types/all';
 import { useRouter } from 'next/navigation';
 
-interface Response {
-  razorpay_order_id: string,
-  razorpay_payment_id: string,
-  razorpay_signature: string
-}
-
 // Dynamic Pricing from environment variables
 const SHIRT_PRICE = parseInt('359');
-// const CAP_PRICE = parseInt(process.env.NEXT_PUBLIC_CAP_PRICE || '200');
-// const DEVELOPER_COUPON_CODE = process.env.NEXT_PUBLIC_DEVELOPER_COUPON_CODE || 'ESUMMIT_DEV_2025';
-// const DEVELOPER_PRICE = parseInt(process.env.NEXT_PUBLIC_DEVELOPER_PRICE || '50');
-const RAZORPAY_KEY_ID = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!;
+const CASHFREE_CLIENT_ID = process.env.NEXT_PUBLIC_CASHFREE_CLIENT_ID!;
 
-// interface UserDetails {
-//   id: string;
-//   name: string;
-//   email: string;
-//   shirtSize?: string;
-//   college: string;
-//   year: string;
-//   branch: string;
-// }
+// Remove all of these conflicting declarations:
+/*
+interface CashfreeSDK {
+  (config: { mode: string }): CashfreeInstance;
+}
+
+interface CashfreeInstance {
+  checkout(options: CheckoutOptions): Promise<CashfreeResult>;
+}
+
+interface CheckoutOptions {
+  paymentSessionId: string;
+  redirectTarget: '_modal' | '_self';
+}
+
+interface CashfreeResult {
+  error?: {
+    message: string;
+    code?: string;
+  };
+  redirect?: boolean;
+  paymentDetails?: {
+    orderId: string;
+    paymentId: string;
+    paymentStatus: string;
+  };
+}
+
+declare global {
+  interface Window {
+    Cashfree?: CashfreeSDK;
+  }
+}
+*/
+
+interface OrderResponse {
+  success: boolean;
+  data?: {
+    orderId: string;
+    paymentSessionId: string;
+    amount: number;
+  };
+  error?: string;
+}
+
+interface PaymentVerificationResponse {
+  success: boolean;
+  message?: string;
+  error?: string;
+}
 
 const Merchandise = () => {
   const router = useRouter();
   const [session, setSession] = useState<Session | null>(null);
-  const [shirtSize, setShirtSize] = useState<string> ("");
+  const [shirtSize, setShirtSize] = useState<string>("");
   const editUserRef = useRef<HTMLDialogElement>(null);
   const [isScriptLoaded, setIsScriptLoaded] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchSessionAndUser = async () => {
@@ -59,7 +91,17 @@ const Merchandise = () => {
         console.error("Error fetching session or user:", err);
         setSession(null);
       } finally {
-        setIsScriptLoaded(true);
+        // Load Cashfree SDK
+        const script = document.createElement('script');
+        script.src = 'https://sdk.cashfree.com/js/v3/cashfree.js';
+        script.onload = () => {
+          console.log('Cashfree SDK loaded successfully');
+          setIsScriptLoaded(true);
+        };
+        script.onerror = () => {
+          console.error('Failed to load Cashfree SDK');
+        };
+        document.head.appendChild(script);
       }
     };
 
@@ -67,10 +109,12 @@ const Merchandise = () => {
   }, []);
 
   const handlePayment = async () => {
-    if (!RAZORPAY_KEY_ID || !isScriptLoaded || typeof window === "undefined" || !window.Razorpay) {
+    if (!CASHFREE_CLIENT_ID || !isScriptLoaded || typeof window === "undefined" || !window.Cashfree) {
       alert("Payment system not ready. Please refresh.");
       return;
     }
+
+    setIsLoading(true);
 
     try {
       // STEP 1 — Create order on backend
@@ -82,56 +126,91 @@ const Merchandise = () => {
           merchandise: "SHIRT"
         }),
       });
-      const { orderId } = await res.json();
-      if (!orderId) throw new Error("Order creation failed");
 
-      // STEP 2 — Open Razorpay Checkout
-      const options = {
-        key: RAZORPAY_KEY_ID,
-        order_id: orderId,
-        amount: SHIRT_PRICE * 100,
-        currency: "INR",
-        name: "E-Summit 25 Merchandise",
-        description: "Official T-Shirt",
-        prefill: {
-          name: session?.user?.name ?? "Name Not Found",
-          email: session?.user?.email ?? "Email Not Found",
-          contact: session?.user?.email ?? "Email Not Found"
-        },
-        handler: async function (response: Response) {
-          const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = response;
+      const result: OrderResponse = await res.json();
 
-          // if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature) {
-          //   alert("Payment failed: incomplete response from Razorpay");
-          //   return;
-          // }
+      // Check if the API call was successful
+      if (!result.success) {
+        console.error("Order creation failed:", result.error);
+        alert("Failed to create order: " + (result.error || "Unknown error"));
+        return;
+      }
 
-          const verifyRes = await fetch("/api/verify-payment", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              razorpay_order_id,
-              razorpay_payment_id,
-              razorpay_signature,
-              merchandise: "SHIRT",
-              amount: SHIRT_PRICE
-            }),
-          });
+      // Check if result.data exists before destructuring
+      if (!result.data) {
+        console.error("Order creation failed: No data returned");
+        alert("Failed to create order: No order data received");
+        return;
+      }
 
-          const result = await verifyRes.json();
-          if (result.success) {
-            router.push("/dashboard");
-          } else {
-            alert("Payment verification failed!");
-          }
-        },
+      const { orderId, paymentSessionId } = result.data;
+
+      if (!orderId || !paymentSessionId) {
+        console.error("Missing order details:", result.data);
+        alert("Failed to create order: Missing order details");
+        return;
+      }
+
+      // STEP 2 — Initialize Cashfree
+      const cashfree = window.Cashfree({
+        mode: "production" 
+      });
+
+      // STEP 3 — Open Cashfree Checkout
+      const checkoutOptions = {
+        paymentSessionId: paymentSessionId,
+        redirectTarget: "_modal" as const
       };
 
-      const rzp = new window.Razorpay(options);
-      rzp.open();
+      const paymentResult = await cashfree.checkout(checkoutOptions);
+
+      if (paymentResult.error) {
+        console.error("Payment failed:", paymentResult.error);
+        alert("Payment failed: " + paymentResult.error.message);
+        return;
+      }
+
+      if (paymentResult.redirect) {
+        console.log("Redirecting...");
+        return;
+      }
+
+      if (paymentResult.paymentDetails) {
+        console.log("Payment completed:", paymentResult.paymentDetails);
+        // Verify payment on backend
+        await verifyPayment(orderId);
+      }
+
     } catch (err) {
       console.error("Payment error:", err);
       alert("Failed to start payment. Try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const verifyPayment = async (orderId: string) => {
+    try {
+      const verifyRes = await fetch("/api/verify-payment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          order_id: orderId,
+          merchandise: "SHIRT"
+        }),
+      });
+
+      const result: PaymentVerificationResponse = await verifyRes.json();
+      
+      if (result.success) {
+        alert("Payment successful! Redirecting to dashboard...");
+        router.push("/dashboard");
+      } else {
+        alert("Payment verification failed: " + (result.error || "Unknown error"));
+      }
+    } catch (error) {
+      console.error("Verification error:", error);
+      alert("Payment verification failed!");
     }
   };
 
@@ -139,23 +218,28 @@ const Merchandise = () => {
     editUserRef.current?.showModal();
   };
 
-  // Rest of your component logic stays the same...
-  // const merchandiseData = {
-  //   SHIRT: {
-  //     name: "E-Summit'25 T-Shirt",
-  //     description: "Presenting the Official Merch of E-Summit'25. Grab your hands on the exclusive merchandise of E-Summit'25! A round-necked T-Shirt with a 200 GSM fabric, perfect for your casual outings.",
-  //     image: "/shirt.png",
-  //     originalPrice: SHIRT_PRICE
-  //   },
-  // };
+  const getButtonText = () => {
+    if (session === undefined || !isScriptLoaded || !shirtSize) {
+      return "Loading...";
+    }
+    if (!session) {
+      return "Login";
+    }
+    if (isLoading) {
+      return "Processing...";
+    }
+    return "Buy";
+  };
 
-  // const pricingConfig = {
-  //   shirtPrice: SHIRT_PRICE,
-  //   capPrice: CAP_PRICE,
-  //   developerCouponCode: DEVELOPER_COUPON_CODE,
-  //   developerPrice: DEVELOPER_PRICE,
-  //   razorpayKeyId: RAZORPAY_KEY_ID,
-  // };
+  const isButtonDisabled = () => {
+    return (
+      session === undefined ||
+      !isScriptLoaded ||
+      !shirtSize ||
+      isLoading ||
+      !CASHFREE_CLIENT_ID
+    );
+  };
 
   return (
     <>
@@ -177,13 +261,15 @@ const Merchandise = () => {
                 <Image
                   width={500}
                   height={500}
-                  alt="ecommerce"
+                  alt="E-Summit 25 Official T-Shirt"
                   className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
                   src="/shirt.png"
                 />
                 <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                   <h2 className="text-sm title-font text-[#ffffff] tracking-widest">T-SHIRT</h2>
-                  <h1 className="text-[#c085fd] text-2xl title-font font-semibold mb-1">Get the official E-Summit 25 Merchandise</h1>
+                  <h1 className="text-[#c085fd] text-2xl title-font font-semibold mb-1">
+                    Get the official E-Summit 25 Merchandise
+                  </h1>
                   <div className="flex mb-4 text-grey-200">
                     <span className="flex ml-3 pl-3 py-2 space-x-2">
                       Shirt Size: {shirtSize || "Loading..."}
@@ -196,33 +282,33 @@ const Merchandise = () => {
                   </p>
 
                   <div className="flex my-6">
-                     {/*<span className="title-font font-medium text-2xl text-white">₹{SHIRT_PRICE}.00</span>
+                    <span className="title-font font-medium text-2xl text-white">₹{SHIRT_PRICE}.00</span>
                     <button
-                      className="flex ml-auto bg-[#c085fd] text-[#101720] font-semibold border-0 py-2 px-6 focus:outline-none hover:bg-[#EAE2B7] rounded-full cursor-pointer"
+                      className={`flex ml-auto font-semibold border-0 py-2 px-6 focus:outline-none rounded-full cursor-pointer transition-colors ${
+                        isButtonDisabled()
+                          ? 'bg-gray-500 text-gray-300 cursor-not-allowed'
+                          : 'bg-[#c085fd] text-[#101720] hover:bg-[#EAE2B7]'
+                      }`}
                       onClick={() => {
-                        if (!isScriptLoaded) return;
+                        if (isButtonDisabled()) return;
                         if (session) handlePayment();
                         else window.location.href = "/sign-in";
-
                       }}
+                      disabled={isButtonDisabled()}
                     >
-                      {session === undefined || !isScriptLoaded || !shirtSize
-                        ? "Loading..."
-                        : session
-                          ? "Buy"
-                          : "Login"
-                      }
+                      {getButtonText()}
                     </button>
                     <dialog
                       ref={editUserRef}
                       className="relative h-[90vh] w-[70vw] rounded-xl backdrop:bg-[#00000080] bg-[#101720] text-[#c085fd] font-semibold">
                       <button
                         onClick={togglePaymentWindow}
-                        className="absolute top-4 right-4 text-white">
-                        <FaXmark />
+                        className="absolute top-4 right-4 text-white hover:text-red-400 transition-colors"
+                        aria-label="Close dialog"
+                      >
+                        <FaXmark size={24} />
                       </button>
-                    </dialog> */}
-                    {/* // TODO: Add Pay Button when env is updated */}
+                    </dialog>
                   </div>
                 </div>
               </div>
@@ -230,17 +316,8 @@ const Merchandise = () => {
           </div>
         </div>
       </section>
-      <Script
-        src="https://checkout.razorpay.com/v1/checkout.js"
-        onLoad={() => {
-          console.log('Razorpay script loaded successfully');
-          setIsScriptLoaded(true);
-        }}
-        onError={() => {
-          console.error('Failed to load Razorpay script');
-        }}
-      />
     </>
-  )
-}
+  );
+};
+
 export default Merchandise;
