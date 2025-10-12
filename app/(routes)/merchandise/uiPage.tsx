@@ -277,7 +277,7 @@ const Merchandise = () => {
                   </div>
                   <p className="leading-relaxed text-[#eae2b7]">
                     Presenting the Official Merch of E-Summit&apos;25. Grab your hands on the exclusive merchandise of E-Summit&apos;25!
-                    A round-necked T-Shirt with a 200 GSM fabric, perfect for your casual outings. <br /><br />
+                    A polo T-Shirt with a 200 GSM fabric, perfect for your casual outings. <br /><br />
                     <span className='font-semibold text-[#ffffff]'>Note:</span> This is a non Customizable Shirt, Organizing Committee Members are asked to contact the Logistic Team for their Customized Shirts.
                   </p>
 
