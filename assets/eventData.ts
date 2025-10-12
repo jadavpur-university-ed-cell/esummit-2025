@@ -510,7 +510,7 @@ export const eventData: Event[] = [
     eventSlug: "dizmart",
     eventName: "Dizmart",
     registrationLink: "https://unstop.com/competitions/dizmart-jadavpur-university-kolkata-1570813",
-    previewText: "Dream, Design, Advertise — Make Imagination Marketable.",
+    previewText: "Conceptualize, Advertise, Captivate — Make Imagination Marketable.",
     about: "Dizmart is the crossroads of imagination and market intelligence — only the best campaigns survive.",
     description: "Gear up for Dizmart, the ultimate test of creativity and marketing prowess! This is your chance to showcase your ability to craft ideas that captivate, persuade, and make an impact. Start with our engaging prelims round, where your ingenuity and brand instincts will be put to the test, and pave your way to the high-stakes final, where strategy, innovation, and presentation collide in a thrilling challenge.",
     day: "Day 2",
