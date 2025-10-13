@@ -5,6 +5,7 @@ import { FaXmark } from 'react-icons/fa6';
 import { useRef, useState, useEffect } from 'react';
 import { Session } from '@/types/all';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 // Dynamic Pricing from environment variables
 const SHIRT_PRICE = parseInt('359');
@@ -310,6 +311,8 @@ const Merchandise = () => {
                       </button>
                     </dialog>
                   </div>
+
+                  <Link href={"/merch-terms-and-conditions.pdf"} className='text-sm underline text-gray-300 underline-offset-2'>Terms and Conditions</Link>
                 </div>
               </div>
             </div>

@@ -15,7 +15,7 @@ const DevfolioButton = () => {
 
 	return (
 		<div
-			className="apply-button"
+			className="apply-button mt-3"
 			data-hackathon-slug="hackandpitch"
 			data-button-theme="dark-inverted"
 		></div>
