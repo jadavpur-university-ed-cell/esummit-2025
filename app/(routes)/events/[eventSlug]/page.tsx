@@ -5,6 +5,7 @@ import { eventData, inspiraTalksSpeakers } from "@/assets/eventData";
 import { Event } from "@/types/all";
 import Link from "next/link";
 import Image from "next/image";
+import DevfolioButton from "@/components/DevfolioButton";
 
 export default function Page() {
   const { eventSlug } = useParams();
@@ -50,6 +51,7 @@ export default function Page() {
         <Link href={eventDetails.registrationLink??"#"} className="bg-gray-200 hover:bg-white text-black font-semibold py-4 px-12 rounded-full transition-all duration-300 transform hover:scale-105 cursor-pointer">
           Register
         </Link>
+        {eventDetails.eventSlug === "hacknpitch" && <DevfolioButton />}
       </div>
 
       {/* Description Section */}
