@@ -5,7 +5,6 @@ import { eventData, inspiraTalksSpeakers } from "@/assets/eventData";
 import { Event } from "@/types/all";
 import Link from "next/link";
 import Image from "next/image";
-import DevfolioButton from "@/components/DevfolioButton";
 
 export default function Page() {
   const { eventSlug } = useParams();
