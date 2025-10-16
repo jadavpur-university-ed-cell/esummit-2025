@@ -51,7 +51,6 @@ export default function Page() {
         <Link href={eventDetails.registrationLink??"#"} className="bg-gray-200 hover:bg-white text-black font-semibold py-4 px-12 rounded-full transition-all duration-300 transform hover:scale-105 cursor-pointer">
           Register
         </Link>
-        {eventDetails.eventSlug === "hacknpitch" && <DevfolioButton />}
       </div>
 
       {/* Description Section */}
