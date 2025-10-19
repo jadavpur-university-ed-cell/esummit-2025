@@ -271,11 +271,13 @@ const Merchandise = () => {
                   <h1 className="text-[#c085fd] text-2xl title-font font-semibold mb-1">
                     Get the official E-Summit 25 Merchandise
                   </h1>
+                  {shirtSize && 
                   <div className="flex mb-4 text-grey-200">
                     <span className="flex ml-3 pl-3 py-2 space-x-2">
-                      Shirt Size: {shirtSize || "Loading..."}
+                      Shirt Size: {shirtSize}
                     </span>
                   </div>
+                  }
                   <p className="leading-relaxed text-[#eae2b7]">
                     Presenting the Official Merch of E-Summit&apos;25. Grab your hands on the exclusive merchandise of E-Summit&apos;25!
                     A polo T-Shirt with a 200 GSM fabric, perfect for your casual outings. <br /><br />
