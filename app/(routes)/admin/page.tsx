@@ -4,6 +4,7 @@ import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { getAllMerchOrders } from "@/lib/services/admin";
 import { MerchOrder } from "@/types/admin";
+import Link from "next/link";
 
 function Page() {
   const router = useRouter();
@@ -40,10 +41,11 @@ function Page() {
             signOut({ redirect: false });
             router.push("/");
         }}
-        className="mt-6 p-3 rounded-lg bg-red-500 cursor-pointer"
+        className="p-3 rounded-lg bg-red-500 cursor-pointer"
         >
         Logout
       </button>
+      <Link href={"/admin/registrations"} className="text-white text-lg underline underline-offset-2">Registrations</Link>
         <h1 className="text-3xl font-bold text-white">Merchandise Dashboard</h1>
         <input
           type="text"

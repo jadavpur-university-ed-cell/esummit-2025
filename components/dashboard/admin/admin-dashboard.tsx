@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { User } from "@/types/all";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function AdminDashboard() {
   const [users, setUsers] = useState<User[]>([]);
@@ -47,15 +48,19 @@ export default function AdminDashboard() {
         backgroundPosition: "left",
       }}
     >
+      <div className="mt-6 flex w-4/5 justify-between text-white text-lg items-center">
       <button
         onClick={() => {
           signOut({ redirect: false });
           router.push("/");
         }}
-        className="mt-6 p-3 rounded-lg bg-red-500 cursor-pointer"
-      >
+        className="p-3 rounded-lg bg-red-500 cursor-pointer"
+        >
         Logout
       </button>
+      <Link href={"/admin"} className="underline underline-offset-2">Payments Dashboard</Link>
+      <Link href={"/admin/registrations"} className="underline underline-offset-2">Registrations Dashboard</Link>
+        </div>
 
       <div className="flex pt-10 items-center justify-between mb-6">
         <h1 className="text-3xl font-bold text-white">Admin Dashboard</h1>
