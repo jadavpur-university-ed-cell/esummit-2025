@@ -169,7 +169,7 @@ export const eventData: Event[] = [
   },
   {
     eventSlug: "hacknpitch",
-    eventName: "Hack<N>Pitch",
+    eventName: "Hack <N> Pitch",
     registrationLink: "https://unstop.com/hackathons/hacknpitch-jadavpur-university-kolkata-1570879",
     about: "Hack<N>Pitch is Eastern India’s premier 24-hour product-based hackathon, set to take place on 7th–8th November 2025 at Jadavpur University’s Salt Lake Campus , Kolkata. ",
     description: "Designed to ignite innovation and entrepreneurial thinking, the event will bring together 25 elite teams (100 participants max) from across the country to compete, collaborate, and create impactful tech solutions under intense time constraints. With a strong focus on real-world problem solving, this hackathon is structured around four cutting-edge tracks: Generative AI, Agentic AI, Web3, Cybersecurity",

@@ -18,6 +18,10 @@ declare module "next-auth" {
       role?: string;
     }
   }
+  interface JWT {
+    id?: string;
+    role?: string;
+  }
 }
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
@@ -44,17 +48,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 			}
 
       return token;
-    },
-
-    async session({session, token}){
-      if (token) {
-        session.user.id = String(token.id);
-        session.user.name = token.name;
-        session.user.email = token.email!;
-        //session.user.image = token.picture;
-        session.user.role = typeof token.role === "string" ? token.role : "USER";
-			}
-      return session;
     },
     
     redirect(){

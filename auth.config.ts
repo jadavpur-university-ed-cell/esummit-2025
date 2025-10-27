@@ -27,4 +27,16 @@ export default{
       },
     }),
   ],
+  callbacks: {
+    async session({session, token}){
+      if (token) {
+        session.user.id = String(token.id);
+        session.user.name = token.name;
+        session.user.email = token.email!;
+        //session.user.image = token.picture;
+        session.user.role = typeof token.role === "string" ? token.role : "USER";
+			}
+      return session;
+    },
+  }
 } satisfies NextAuthConfig;

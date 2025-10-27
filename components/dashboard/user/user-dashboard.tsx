@@ -155,6 +155,7 @@ export default function UserDashboard({
                                     Buy Merchandise
                                 </button>
                             ) : (
+                                <div className="w-full overflow-x-auto mt-5 rounded-lg">
                                 <table className="w-full text-sm md:text-base mt-5 border-collapse rounded-lg overflow-hidden">
                                     <thead className="bg-[#c085fd]/20 text-left">
                                         <tr>
@@ -177,6 +178,7 @@ export default function UserDashboard({
                                         ))}
                                     </tbody>
                                 </table>
+                                </div>
                             )}
                         </section>
                     </div>
