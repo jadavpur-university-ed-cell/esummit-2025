@@ -192,6 +192,13 @@ export const teams: Team[] = [
         linkedinUrl: 'http://www.linkedin.com/in/jahid-mamud',
       },
       {
+        name: 'Adrija Das',
+        role: 'Sponsorship Member',
+        imageUrl: '/team/Adrija_Das.jpeg',
+        instaUrl: 'https://www.instagram.com/kateshikizuka.008?igsh=MXR2amFuenZiem5lcA==',
+        linkedinUrl: 'https://www.linkedin.com/in/adrija-das-559370320?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+      },
+      {
         name: 'Ayan Bhowmick',
         role: 'Sponsorship Member',
         imageUrl: '/team/Ayan_Bhowmick.jpeg',
@@ -510,6 +517,13 @@ export const teams: Team[] = [
         imageUrl: '/team/Dipjyoti_Dash.jpeg',
         instaUrl: 'https://www.instagram.com/dipjyotidash/',
         linkedinUrl: 'http://www.linkedin.com/in/dipjyoti-dash-22508227a'
+      },
+      {
+        name: 'Tamoghna Tarafdar',
+        role: 'Logistics In-Charge',
+        imageUrl: '/team/Tamoghna_Tarafdar.jpeg',
+        instaUrl: '',
+        linkedinUrl: 'https://www.linkedin.com/in/tamoghnatarafdar/'
       },
       {
         name: 'Rishob Mondal',
