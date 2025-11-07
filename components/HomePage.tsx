@@ -7,6 +7,7 @@ import About from './homepage/AboutSection';
 import Events from './homepage/EventSection';
 import Speakers from './homepage/Speakers';
 import Sponsors from './homepage/Sponsors';
+import PreviousSponsors from './homepage/PreviousSponsors';
 import Gallery from './homepage/Gallery';
 import Footer from './Footer';
 import PreFooter from './homepage/PreFooter';
@@ -25,6 +26,7 @@ export default function ParallaxWebsite() {
   const eventsRef = useRef<HTMLDivElement>(null);
   const speakersRef = useRef<HTMLDivElement>(null);
   const sponsorsRef = useRef<HTMLDivElement>(null);
+  const previousSponsors = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
 
   const [isMobile, setIsMobile] = useState(false);
@@ -123,6 +125,19 @@ export default function ParallaxWebsite() {
           },
         }
       );
+      gsap.fromTo(previousSponsors.current,
+        { opacity: 0, scale: 0.8 },
+        {
+          opacity: 1,
+          scale: 1,
+          scrollTrigger: {
+            trigger: previousSponsors.current,
+            start: "top bottom",
+            end: "top top",
+            scrub: 1,
+          },
+        }
+      );
 
     }, containerRef);
 
@@ -169,9 +184,12 @@ export default function ParallaxWebsite() {
           <Speakers />
         </section>
 
-        {/* Services Section */}
+        {/* Sponsors Section */}
         <section ref={sponsorsRef}>
           <Sponsors />
+        </section>
+        <section ref={previousSponsors}>
+          <PreviousSponsors />
         </section>
 
         {/* Contact Section */}
