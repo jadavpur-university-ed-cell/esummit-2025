@@ -39,9 +39,9 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link href="/team" className="hover:text-white transition">
+              {/* <Link href="/team" className="hover:text-white transition">
                 Team
-              </Link>
+              </Link> */}
             </li>
           </ul>
         </div>

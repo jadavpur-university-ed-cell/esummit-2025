@@ -10,6 +10,7 @@ import Sponsors from './homepage/Sponsors';
 import Gallery from './homepage/Gallery';
 import Footer from './Footer';
 import PreFooter from './homepage/PreFooter';
+import Workshops from './homepage/WorkshopSection';
 // import { FloatingNavbar } from './homepage/Navbar';
 
 // Register ScrollTrigger plugin
@@ -23,6 +24,7 @@ export default function ParallaxWebsite() {
   const heroRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
   const eventsRef = useRef<HTMLDivElement>(null);
+  const workshopsRef = useRef<HTMLDivElement>(null);
   const speakersRef = useRef<HTMLDivElement>(null);
   const sponsorsRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -87,6 +89,21 @@ export default function ParallaxWebsite() {
           scale: 1,
           scrollTrigger: {
             trigger: eventsRef.current,
+            start: "top top%",
+            end: "top bottom",
+            scrub: 1,
+          },
+        }
+      );
+
+      // Workshops section reveal
+      gsap.fromTo(workshopsRef.current,
+        { opacity: 0, scale: 0.8 },
+        {
+          opacity: 1,
+          scale: 1,
+          scrollTrigger: {
+            trigger: workshopsRef.current,
             start: "top top%",
             end: "top bottom",
             scrub: 1,
@@ -160,11 +177,17 @@ export default function ParallaxWebsite() {
           <About />
         </section>
 
+        {/* Events Section */}  
         <section id='events' ref={eventsRef}>
           <Events />
         </section>
 
-        {/* Events Section */}
+        {/* Workshops Section */}
+        <section id='workshops' ref={workshopsRef}>
+          <Workshops />
+        </section>
+
+        {/* Speakers Section */}
         <section ref={speakersRef}>
           <Speakers />
         </section>

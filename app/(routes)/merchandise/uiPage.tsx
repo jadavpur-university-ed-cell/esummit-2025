@@ -253,7 +253,7 @@ const Merchandise = () => {
           backgroundPosition: 'left',
         }}>
         <div className='min-h-screen flex items-center justify-center'>
-          <div className='bg-gradient-to-br backdrop-blur-lg border border-white/20 rounded-2xl p-1 max-w-5xl mx-4 my-10'>
+          <div className='bg-gradient-to-br backdrop-blur-lg border border-white/20 rounded-2xl p-1 max-w-5xl mx-4 my-10 mt-25'>
             <h1 className="text-4xl text-[#c085fd] mt-8 justify-center font-bold text-center">
               E-Summit&apos;25 Merchandise
             </h1>
